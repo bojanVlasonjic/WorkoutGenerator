@@ -126,9 +126,12 @@ Kad se korisnik opredeli za neki trening i doda ga u kolekciju svojih treninga, 
 
 
 - Pravila koja određuju opterećenja na osnovu odabrane opreme i nivoa spremnosti:
-	- Korisnik je početnog nivoa spremnosti, odabrao je šipku sa tegovima kao deo opreme - opterećenje za vežbe će biti 35-50% od telesne mase.
-	- Korisnik je srednjeg nivoa spremnosti, odabrao je šipku sa tegovima kao deo opreme - opterećenje za vežbe će biti 45-65% od telesne mase.
-	- Korisnik je naprednog nivoa spremnosti, odabrao je šipku sa tegovima kao deo opreme - opterećenje za vežbe će biti 55-80% od telesne mase.
+	- Korisnik je početnog nivoa spremnosti, odabrao je šipku sa tegovima kao deo opreme - opterećenje za vežbe sa šipkom će biti 35-50% od telesne mase.
+	- Korisnik je početnog nivoa spremnosti, odabrao je bučice sa tegovima kao deo opreme - opterećenje za vežbe sa bučicama će biti 5-12% od telesne mase.
+	- Korisnik je srednjeg nivoa spremnosti, odabrao je šipku sa tegovima kao deo opreme - opterećenje za vežbe sa šipkom će biti 45-65% od telesne mase.
+	- Korisnik je srednjeg nivoa spremnosti, oodabrao je bučice tegovima kao deo opreme - opterećenje za vežbe sa bučicama će biti 10-18% od telesne mase.
+	- Korisnik je naprednog nivoa spremnosti, odabrao je šipku sa tegovima kao deo opreme - opterećenje za vežbe sa šipkom će biti 55-70% od telesne mase.
+	- Korisnik je naprednog nivoa spremnosti, odabrao je bučice sa tegovima kao deo opreme - opterećenje za vežbe sa bučicama će biti 15-25% od telesne mase.
 
 
 - Pravila za određivanje intenziteta na osnovu vrste treninga i korisničkih faktora:
