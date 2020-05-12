@@ -1,0 +1,21 @@
+package drools.rules
+
+import rbs.wg.WorkoutGenerator.dto.TestMessage;
+
+rule "Test message id rule"
+
+    when
+        $msg: TestMessage()
+    then
+        modify($msg) { setId(5); }
+
+end
+
+rule "Test message content rule"
+
+    when
+        $msg: TestMessage(message == "test")
+    then
+        modify($msg) { setMessage("Test changed"); }
+
+end
