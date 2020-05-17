@@ -16,7 +16,7 @@ import rbs.wg.WorkoutGenerator.service.WorkoutRequestService;
 public class UserController {
 
     @Autowired
-    WorkoutRequestService workoutRequestService;
+    private WorkoutRequestService workoutRequestService;
 
     @PostMapping("/process-workout")
     public ResponseEntity<WorkoutProcessingDto> processWorkout(@RequestBody WorkoutRequestDto workoutRequest) {

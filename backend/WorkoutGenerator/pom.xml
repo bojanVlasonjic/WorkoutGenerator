@@ -96,7 +96,6 @@
 			<version>7.37.0.Final</version>
 		</dependency>
 
-
 	</dependencies>
 
 	<build>

@@ -6,19 +6,26 @@ import org.kie.api.runtime.KieSession;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Random;
+
 @Configuration
 public class DroolsConfig {
 
-    private KieServices getKieServices() {
-        return KieServices.Factory.get();
-    }
-
-    private KieContainer getKieContainer() {
-        return getKieServices().getKieClasspathContainer();
+    @Bean
+    public KieContainer getKieContainer() {
+        return KieServices.Factory.get().getKieClasspathContainer();
     }
 
     @Bean
     public KieSession getKieSession() {
         return getKieContainer().newKieSession("WGSession");
     }
+
+
+    /** Session global variables */
+   /* @Bean
+    public Random getRandom() {
+        return new Random();
+    }*/
+
 }

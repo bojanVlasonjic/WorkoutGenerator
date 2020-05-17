@@ -2,5 +2,49 @@ package drools.rules
 
 import rbs.wg.WorkoutGenerator.dto.WorkoutProcessingDto;
 import rbs.wg.WorkoutGenerator.dto.WorkoutRequestDto;
+import rbs.wg.WorkoutGenerator.model.ExerciseType;
+
+rule "Strength workout chosen, set workout intensity accordingly"
+
+    when
+        $woReq: WorkoutRequestDto(workoutType == ExerciseType.STRENGTH)
+        $woPr: WorkoutProcessingDto(numOfExercises > 0)
+    then
+        System.out.println("Strength workout chosen, set workout intensity accordingly");
+        modify($woPr) {
+            setSets(3),
+            setRestBetweenSets(90),
+        }
+end
+
+rule "Conditioning workout, set workout intensity accordingly"
+
+    when
+        $woReq: WorkoutRequestDto(workoutType == ExerciseType.CONDITIONING)
+        $woPr: WorkoutProcessingDto(numOfExercises > 0)
+    then
+        System.out.println("Conditioning workout chosen, set workout intensity accordingly");
+        modify($woPr) {
+            setNumOfIntervals(8),
+            setNumOfRounds(4);
+        }
+end
+
+rule "Combo workout chosen, set workout intensity accordingly"
+    no-loop true
+    when
+            $woReq: WorkoutRequestDto(workoutType == ExerciseType.COMBO)
+            $woPr: WorkoutProcessingDto(numOfExercises > 0)
+    then
+        System.out.println("Combo workout chosen, set workout intensity accordingly");
+        modify($woPr) {
+            setNumOfExercises($woPr.getNumOfExercises()/2),
+            setSets(5),
+            setRestBetweenSets(60),
+            setNumOfIntervals(8),
+            setRestBetweenRounds(120),
+            setNumOfRounds(4);
+        }
+end
 
 

@@ -22,9 +22,6 @@ public class StrengthWorkout {
     @Column(nullable = false)
     private int restBetweenSets;
 
-    @Column(nullable = false)
-    private int restBetweenExercises;
-
     @OneToMany(mappedBy = "strengthWorkout", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<StrengthRegime> strengthRegime;
 
