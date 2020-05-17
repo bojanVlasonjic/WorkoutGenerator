@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @NoArgsConstructor
@@ -26,6 +27,9 @@ public class Workout {
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Review review;
+
+    @Column(nullable = false)
+    private Date date;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private AppUser user;

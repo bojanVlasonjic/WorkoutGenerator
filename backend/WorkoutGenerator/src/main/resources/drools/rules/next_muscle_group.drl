@@ -1,0 +1,3 @@
+package drools.rules
+
+import rbs.wg.WorkoutGenerator.dto.WorkoutRequestDto;

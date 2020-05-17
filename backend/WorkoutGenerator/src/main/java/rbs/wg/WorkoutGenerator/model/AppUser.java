@@ -30,7 +30,7 @@ public class AppUser extends Person {
     @Column(nullable = false)
     private int workIntervalFactor = 0;
 
-    @Column(nullable = false)
+    @Enumerated(EnumType.ORDINAL)
     private UserLevel userLevel;
 
     @ElementCollection(fetch = FetchType.EAGER)
