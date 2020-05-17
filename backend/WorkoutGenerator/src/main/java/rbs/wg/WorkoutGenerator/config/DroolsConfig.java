@@ -16,16 +16,11 @@ public class DroolsConfig {
         return KieServices.Factory.get().getKieClasspathContainer();
     }
 
-    @Bean
-    public KieSession getKieSession() {
-        return getKieContainer().newKieSession("WGSession");
-    }
-
 
     /** Session global variables */
-   /* @Bean
+    @Bean
     public Random getRandom() {
         return new Random();
-    }*/
+    }
 
 }

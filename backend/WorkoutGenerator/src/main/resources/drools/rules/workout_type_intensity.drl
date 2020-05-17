@@ -13,7 +13,7 @@ rule "Strength workout chosen, set workout intensity accordingly"
         System.out.println("Strength workout chosen, set workout intensity accordingly");
         modify($woPr) {
             setSets(3),
-            setRestBetweenSets(90),
+            setRestBetweenSets(90);
         }
 end
 
@@ -26,7 +26,8 @@ rule "Conditioning workout, set workout intensity accordingly"
         System.out.println("Conditioning workout chosen, set workout intensity accordingly");
         modify($woPr) {
             setNumOfIntervals(8),
-            setNumOfRounds(4);
+            setNumOfRounds(4),
+            setRestBetweenRounds(120);
         }
 end
 

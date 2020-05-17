@@ -22,8 +22,8 @@ public class WorkoutRequestService {
     @Autowired
     private AppUserRepository userRepo;
 
-    //@Autowired
-    //private Random random;
+    @Autowired
+    private Random random;
 
 
     public WorkoutProcessingDto processWorkout(WorkoutRequestDto workoutRequest) {
@@ -35,7 +35,7 @@ public class WorkoutRequestService {
         // TODO: utvrdi prethodnu grupu misica
         WorkoutProcessingDto workoutProcessing = new WorkoutProcessingDto();
         KieSession workoutSession = kieContainer.newKieSession("WGSession");
-        workoutSession.setGlobal("random", new Random());
+        workoutSession.setGlobal("random", random);
 
         workoutSession.insert(user);
         workoutSession.insert(workoutProcessing);
