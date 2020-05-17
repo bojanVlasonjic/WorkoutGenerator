@@ -14,9 +14,10 @@ rule "User is beginner, set workout intensity accordingly"
     then
         System.out.println("User is beginner, set workout intensity accordingly");
         modify($woPr) {
-            setNumOfExercises(4),
-            setWorkInterval(20),
-            setReps(random.nextInt(5)+4);
+            setNumOfExercises(4 * $user.getNumOfExercisesFactor()),
+            setWorkInterval(20 + $user.getWorkIntervalFactor()),
+            setRestInterval($woPr.getWorkInterval()/2),
+            setReps((random.nextInt(5)+4) * $user.getRepetitionFactor());
         }
 end
 
@@ -27,9 +28,10 @@ rule "User is intermediate, set workout intensity accordingly"
     then
         System.out.println("User is intermediate, set workout intensity accordingly");
         modify($woPr) {
-            setNumOfExercises(5),
-            setWorkInterval(30),
-            setReps(random.nextInt(5)+6);
+            setNumOfExercises(5 * $user.getNumOfExercisesFactor()),
+            setWorkInterval(30 + $user.getWorkIntervalFactor()),
+            setRestInterval($woPr.getWorkInterval()/2),
+            setReps((random.nextInt(5)+6) * $user.getRepetitionFactor());
         }
 end
 
@@ -41,9 +43,10 @@ rule "User is advanced, set workout intensity accordingly"
     then
         System.out.println("User is advanced, set workout intensity accordingly");
         modify($woPr) {
-            setNumOfExercises(6),
-            setWorkInterval(40),
-            setReps(random.nextInt(5)+8);
+            setNumOfExercises(6 * $user.getNumOfExercisesFactor()),
+            setWorkInterval(40 + $user.getWorkIntervalFactor()),
+            setRestInterval($woPr.getWorkInterval()/2),
+            setReps((random.nextInt(5)+8) * $user.getRepetitionFactor());
         }
 end
 
