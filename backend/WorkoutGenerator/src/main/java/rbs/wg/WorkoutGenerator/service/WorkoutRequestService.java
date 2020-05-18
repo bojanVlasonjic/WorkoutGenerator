@@ -128,6 +128,11 @@ public class WorkoutRequestService {
         List<Exercise> exercises = new ArrayList<>();
         int equipmentSize = equipmentExercises.keySet().size();
 
+        // if no exercises were found
+        if(equipmentSize == 0) {
+            return exercises;
+        }
+
         for(int i = 0; i < numOfExercises; i++) {
 
             // randomly select equipment
