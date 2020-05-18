@@ -1,6 +1,6 @@
 
 ------ USERS ------
-insert into app_user(id, email, first_name, last_name, password, weight, user_level, repetition_factor, num_of_exercises_factor, workload_factor, work_interval_factor) values (-1, "user@email.com", "dummy", "dummy", "password", 70, 2, 1, 1, 1, 0)
+insert into app_user(id, email, first_name, last_name, password, weight, user_level, repetition_factor, num_of_exercises_factor, workload_factor, work_interval_factor) values (-1, "user@email.com", "dummy", "dummy", "password", 70, 1, 1, 1, 1, 0)
 
 
 ----- BARBELL EXERCISES -----
@@ -105,7 +105,7 @@ insert into exercise(id, name, equipment, exercise_type, description) values (-2
 insert into exercise_targeted_muscles(exercise_id, targeted_muscles) values (-29, 1)
 
 ----- DIP BAR EXERCISES -----
-insert into exercise(id, name, equipment, exercise_type, description) values (-27, "Dips", 3, 1, "Hold onto the bars at a narrow place (if they are not parallel) and press yourself up, but don't stretch the arms completely, so the muscles stay during the whole exercise under tension. Now bend the arms and go down as much as you can, keeping the elbows always pointing back, At this point, you can make a short pause before repeating the movement.")
+insert into exercise(id, name, equipment, exercise_type, description) values (-27, "Dips", 3, 0, "Hold onto the bars at a narrow place (if they are not parallel) and press yourself up, but don't stretch the arms completely, so the muscles stay during the whole exercise under tension. Now bend the arms and go down as much as you can, keeping the elbows always pointing back, At this point, you can make a short pause before repeating the movement.")
 insert into exercise_targeted_muscles(exercise_id, targeted_muscles) values (-27, 1)
 insert into exercise_targeted_muscles(exercise_id, targeted_muscles) values (-27, 3)
 

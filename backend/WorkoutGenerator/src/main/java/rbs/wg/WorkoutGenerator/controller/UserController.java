@@ -11,6 +11,8 @@ import rbs.wg.WorkoutGenerator.dto.WorkoutProcessingDto;
 import rbs.wg.WorkoutGenerator.dto.WorkoutRequestDto;
 import rbs.wg.WorkoutGenerator.service.WorkoutRequestService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -19,7 +21,7 @@ public class UserController {
     private WorkoutRequestService workoutRequestService;
 
     @PostMapping("/process-workout")
-    public ResponseEntity<WorkoutProcessingDto> processWorkout(@RequestBody WorkoutRequestDto workoutRequest) {
+    public ResponseEntity<WorkoutProcessingDto> processWorkout(@Valid @RequestBody WorkoutRequestDto workoutRequest) {
 
         return new ResponseEntity<>(
                 this.workoutRequestService.processWorkout(workoutRequest),
