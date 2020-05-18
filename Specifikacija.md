@@ -95,7 +95,7 @@ Kad se korisnik opredeli za neki trening i doda ga u kolekciju svojih treninga, 
 
 ## Spisak-pravila:
 
-- Pravila za određivanje sledeće grupe mišića koju bi korisnik trebao da trenira:
+- Pravila za određivanje sledeće grupe mišića koju bi korisnik trebao da trenira: ???
 	- Prethodni trening nije pronađen, na prvom treningu će korisnik vežbati ramena.
 	- Na prethodnom treningu su rađene vežbe za ramena - sledeća grupa mišića su leđa.
 	- Na prethodnom treningu su rađene vežbe za leđa - sledeća grupa mišića su grudi.
@@ -112,19 +112,23 @@ Kad se korisnik opredeli za neki trening i doda ga u kolekciju svojih treninga, 
 	- Korisnik je napredan - vremenski intervali rada će biti postavljeni na 30 sekundi. Radiće 6 vežbi po treningu. Broj ponavljanja će biti između 8 i 12 (uračunaj odgovarajuće faktore dobijene na osnovu anketa).
 
 
-- Pravila koja određuju opterećenja na osnovu odabrane opreme i nivoa spremnosti:
+- Pravila koja određuju opterećenja na osnovu odabrane opreme i nivoa spremnosti: ???
 	- Korisnik je početnog nivoa spremnosti, odabrao je šipku sa tegovima kao deo opreme - opterećenje za vežbe sa šipkom će biti 35-50% od telesne mase.
 	- Korisnik je početnog nivoa spremnosti, odabrao je bučice sa tegovima kao deo opreme - opterećenje za vežbe sa bučicama će biti 5-12% od telesne mase.
 	- Korisnik je srednjeg nivoa spremnosti, odabrao je šipku sa tegovima kao deo opreme - opterećenje za vežbe sa šipkom će biti 45-65% od telesne mase.
 	- Korisnik je srednjeg nivoa spremnosti, oodabrao je bučice tegovima kao deo opreme - opterećenje za vežbe sa bučicama će biti 10-18% od telesne mase.
 	- Korisnik je naprednog nivoa spremnosti, odabrao je šipku sa tegovima kao deo opreme - opterećenje za vežbe sa šipkom će biti 55-70% od telesne mase.
 	- Korisnik je naprednog nivoa spremnosti, odabrao je bučice sa tegovima kao deo opreme - opterećenje za vežbe sa bučicama će biti 15-25% od telesne mase.
+	
+	
+- Pravila koja za odabrane vežbe skaliraju ponavljanja i opterećenje na osnovu opreme za tu vežbu i grupe mišića ???
 
 
 - Pravila za određivanje intenziteta na osnovu vrste treninga:
 	- Odabran je kružni trening - broj intervala će biti 8. Broj rundi će biti 4. Odmaraće 2 minuta između rundi.
 	- Odabran je trening snage - broj serija će biti 3. Odmaraće 2 minuta između vežbi.
 	- Odabrana je kombinacija snage i kružnog treninga - prepolovi broj vežbi po treningu. Postavi broj serija na 5. Broj intervala za kružni trening biti 8. Broj rundi će biti 2. Odmaraće 1 minut između vežbi snage, a 2 minuta između rundi u kružnom treningu.
+	
 
 - Pravila za modifikaciju korisničkih faktora na osnovu ocene.
 	- Ocena je manja od 3, požalio se na broj ponavljanja - uvećaj faktor za ponavljanja za 0.1.
