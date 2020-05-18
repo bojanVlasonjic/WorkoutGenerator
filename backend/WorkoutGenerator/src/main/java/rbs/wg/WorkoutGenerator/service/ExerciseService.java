@@ -43,11 +43,12 @@ public class ExerciseService {
             throw new ApiBadRequestException("The exercise id wasn't specified");
         }
 
-        Exercise ex = exerciseRepository
+        Exercise exercise = exerciseRepository
                 .findById(exerciseDto.getId())
                 .orElseThrow(() -> new ApiNotFoundException("Failed to find exercise with id " + exerciseDto.getId()));
 
-        ex.updateExercise(exerciseDto);
+        exercise.updateExercise(exerciseDto);
+        exerciseRepository.save(exercise);
         return exerciseDto;
     }
 
