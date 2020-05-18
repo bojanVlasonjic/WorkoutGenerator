@@ -39,36 +39,77 @@ public class WorkoutRequestService {
         // default equipment is none
         workoutRequest.getSpecifiedEquipment().add(Equipment.NONE);
 
-        // TODO: utvrdi prethodnu grupu misica
+        // prep session
         WorkoutProcessingDto workoutProcessing = new WorkoutProcessingDto();
         KieSession workoutSession = kieContainer.newKieSession("WGSession");
         workoutSession.setGlobal("random", random);
 
+        // trigger rules
         workoutSession.insert(user);
         workoutSession.insert(workoutProcessing);
         workoutSession.insert(workoutRequest);
         workoutSession.fireAllRules();
 
-        createWorkout(workoutRequest, workoutProcessing);
+        // create workout based on triggered rules
+        workoutProcessing.setSelectedExercises(createWorkout(workoutRequest, workoutProcessing));
         workoutSession.dispose();
 
         return workoutProcessing;
     }
 
-    public void createWorkout(WorkoutRequestDto workoutRequest, WorkoutProcessingDto workoutProcessing) {
+    public List<Exercise> createWorkout(WorkoutRequestDto workoutRequest, WorkoutProcessingDto workoutProcessing) {
 
-        workoutProcessing.setNextMuscleGroup(MuscleGroup.CHEST);
-        //List<Exercise> exercises = new ArrayList<>();
+        Map<Equipment, List<Exercise>> equipmentExercises = new HashMap<>();
 
-        // mapa koja sadrzi opremu i odgovarajuce vezbe za tu opremu
+        switch(workoutRequest.getWorkoutType()) {
+            case STRENGTH:
+                workoutProcessing.setNextMuscleGroup(workoutRequest.getTargetedMuscle()); // temporary, rules will determine
+                equipmentExercises = getStrengthExercises(workoutRequest, workoutProcessing);
+                break;
+
+            case CONDITIONING:
+                equipmentExercises = getConditioningExercises(workoutRequest, workoutProcessing);
+                break;
+
+            default:
+                break;
+        }
+
+
+        return selectExercises(equipmentExercises, workoutProcessing.getNumOfExercises());
+    }
+
+    public Map<Equipment, List<Exercise>> getConditioningExercises(WorkoutRequestDto workoutRequest,
+                                                                   WorkoutProcessingDto workoutProcessing) {
+        Map<Equipment, List<Exercise>> equipmentExercises = new HashMap<>();
+        List<Exercise> matchingExercises;
+
+        for (Equipment equipment : workoutRequest.getSpecifiedEquipment()) {
+
+            matchingExercises = ListUtils.union(
+                    exerciseRepo
+                            .findByEquipmentAndExerciseType(equipment, workoutRequest.getWorkoutType()),
+                    exerciseRepo
+                            .findByEquipmentAndExerciseType(equipment, ExerciseType.COMBO)
+            );
+            if(matchingExercises.size() > 0) {
+                equipmentExercises.put(equipment, matchingExercises);
+            }
+        }
+
+        return equipmentExercises;
+    }
+
+    public Map<Equipment, List<Exercise>> getStrengthExercises(WorkoutRequestDto workoutRequest,
+                                                               WorkoutProcessingDto workoutProcessing) {
         Map<Equipment, List<Exercise>> equipmentExercises = new HashMap<>();
         List<Exercise> matchingExercises;
         for (Equipment equipment : workoutRequest.getSpecifiedEquipment()) {
 
             matchingExercises = ListUtils.union(
                     exerciseRepo
-                        .findByEquipmentAndExerciseTypeAndTargetedMusclesContaining(equipment,
-                            workoutRequest.getWorkoutType(), workoutProcessing.getNextMuscleGroup()),
+                            .findByEquipmentAndExerciseTypeAndTargetedMusclesContaining(equipment,
+                                    workoutRequest.getWorkoutType(), workoutProcessing.getNextMuscleGroup()),
                     exerciseRepo
                             .findByEquipmentAndExerciseTypeAndTargetedMusclesContaining(equipment,
                                     ExerciseType.COMBO, workoutProcessing.getNextMuscleGroup())
@@ -76,10 +117,9 @@ public class WorkoutRequestService {
             if(matchingExercises.size() > 0) {
                 equipmentExercises.put(equipment, matchingExercises);
             }
-
         }
 
-        List<Exercise> exercises = selectExercises(equipmentExercises, workoutProcessing.getNumOfExercises());
+        return equipmentExercises;
     }
 
     public List<Exercise> selectExercises(Map<Equipment, List<Exercise>> equipmentExercises, int numOfExercises) {

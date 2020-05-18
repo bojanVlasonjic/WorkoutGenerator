@@ -12,7 +12,11 @@ import java.util.List;
 @Repository
 public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
 
+    // used for strength workouts
     List<Exercise> findByEquipmentAndExerciseTypeAndTargetedMusclesContaining(Equipment equipment,
                                                                               ExerciseType exerciseType,
                                                                               MuscleGroup muscleGroup);
+
+    // user for conditioning workouts
+    List<Exercise> findByEquipmentAndExerciseType(Equipment equipment, ExerciseType exerciseType);
 }

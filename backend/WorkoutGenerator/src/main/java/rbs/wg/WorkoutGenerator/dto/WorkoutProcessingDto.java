@@ -3,7 +3,10 @@ package rbs.wg.WorkoutGenerator.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import rbs.wg.WorkoutGenerator.model.Exercise;
 import rbs.wg.WorkoutGenerator.model.MuscleGroup;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,4 +27,6 @@ public class WorkoutProcessingDto {
     private int numOfIntervals;
     private int numOfRounds;
     private int restBetweenRounds;
+
+    private List<Exercise> selectedExercises;
 }
