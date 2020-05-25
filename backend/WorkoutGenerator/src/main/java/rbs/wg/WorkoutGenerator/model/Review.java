@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import rbs.wg.WorkoutGenerator.dto.ReviewDto;
 
 import javax.persistence.*;
 
@@ -29,4 +30,11 @@ public class Review {
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private AppUser user;
+
+    public Review(ReviewDto reviewDto, Workout workout, AppUser user) {
+        this.workout = workout;
+        this.exertionLevel = reviewDto.getExertionLevel();
+        this.rating = reviewDto.getRating();
+        this.user = user;
+    }
 }

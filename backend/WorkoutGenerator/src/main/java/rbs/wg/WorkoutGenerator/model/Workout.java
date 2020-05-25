@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import rbs.wg.WorkoutGenerator.dto.WorkoutDto;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -37,6 +38,25 @@ public class Workout {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private AppUser user;
+
+    public Workout(WorkoutDto workoutDto, AppUser appUser) {
+
+        this.date = workoutDto.getDate();
+        this.user = appUser;
+
+        if(workoutDto.getConditioningWorkoutDto() != null) {
+            this.conditioningWorkout = new ConditioningWorkout(workoutDto.getConditioningWorkoutDto(), this);
+        }
+
+        if(workoutDto.getStrengthWorkoutDto() != null) {
+            this.strengthWorkout = new StrengthWorkout(workoutDto.getStrengthWorkoutDto(), this);
+        }
+
+        if(workoutDto.getReview() != null) {
+            this.review = new Review(workoutDto.getReview(), this, appUser);
+        }
+
+    }
 
     public void initWorkout(StrengthWorkout strengthWorkout,
                             ConditioningWorkout conditioningWorkout,

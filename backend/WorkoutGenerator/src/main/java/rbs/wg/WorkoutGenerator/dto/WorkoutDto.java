@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.poi.poifs.crypt.temp.SXSSFWorkbookWithCustomZipEntrySource;
 import rbs.wg.WorkoutGenerator.model.Workout;
 
 import java.util.Date;
@@ -46,6 +47,5 @@ public class WorkoutDto {
         }
 
     }
-
 
 }

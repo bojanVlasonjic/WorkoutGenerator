@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import rbs.wg.WorkoutGenerator.dto.ConditioningWorkoutDto;
 import rbs.wg.WorkoutGenerator.dto.WorkoutProcessingDto;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @NoArgsConstructor
@@ -40,6 +42,23 @@ public class ConditioningWorkout {
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Exercise> exercises;
+
+    public ConditioningWorkout(ConditioningWorkoutDto conditioningWorkoutDto, Workout workout) {
+
+        this.workout = workout;
+        this.workInterval = conditioningWorkoutDto.getWorkInterval();
+        this.restInterval = conditioningWorkoutDto.getRestInterval();
+        this.numberOfIntervals = conditioningWorkoutDto.getNumberOfIntervals();
+        this.numberOfRounds = conditioningWorkoutDto.getNumberOfRounds();
+        this.restBetweenRounds = conditioningWorkoutDto.getRestBetweenRounds();
+
+        this.exercises = conditioningWorkoutDto
+                .getExercises()
+                .stream()
+                .map(dto -> new Exercise(dto))
+                .collect(Collectors.toList());
+
+    }
 
     public ConditioningWorkout(Workout workout,
                                WorkoutProcessingDto workoutProcessingDto,

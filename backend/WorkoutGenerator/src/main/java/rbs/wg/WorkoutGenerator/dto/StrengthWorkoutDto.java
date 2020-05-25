@@ -5,7 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import rbs.wg.WorkoutGenerator.model.StrengthRegime;
 import rbs.wg.WorkoutGenerator.model.StrengthWorkout;
+import rbs.wg.WorkoutGenerator.model.Workout;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,6 +38,5 @@ public class StrengthWorkoutDto {
                 .map(sr -> new StrengthRegimeDto(sr))
                 .collect(Collectors.toList());
     }
-
 
 }

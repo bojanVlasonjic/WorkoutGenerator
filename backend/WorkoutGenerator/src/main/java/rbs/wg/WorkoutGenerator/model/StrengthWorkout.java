@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import rbs.wg.WorkoutGenerator.dto.StrengthWorkoutDto;
 import rbs.wg.WorkoutGenerator.dto.WorkoutProcessingDto;
 
 import javax.persistence.*;
@@ -29,6 +30,17 @@ public class StrengthWorkout {
 
     @OneToOne(mappedBy = "strengthWorkout", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Workout workout;
+
+
+    public StrengthWorkout(StrengthWorkoutDto strengthWorkoutDto, Workout workout) {
+        this.restBetweenSets = strengthWorkoutDto.getRestBetweenSets();
+        this.workout = workout;
+
+        this.strengthRegime = strengthWorkoutDto.getStrengthRegimes()
+                .stream()
+                .map(reg -> new StrengthRegime(reg, this))
+                .collect(Collectors.toList());
+    }
 
     public StrengthWorkout(Workout workout,
                            WorkoutProcessingDto workoutProcessing,

@@ -4,21 +4,54 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rbs.wg.WorkoutGenerator.dto.WorkoutDto;
 import rbs.wg.WorkoutGenerator.dto.WorkoutProcessingDto;
+import rbs.wg.WorkoutGenerator.exception.ApiNotFoundException;
 import rbs.wg.WorkoutGenerator.model.*;
+import rbs.wg.WorkoutGenerator.repository.AppUserRepository;
 import rbs.wg.WorkoutGenerator.repository.WorkoutRepository;
 
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class WorkoutService {
 
-
     @Autowired
     private WorkoutRepository workoutRepository;
 
+    @Autowired
+    private AppUserRepository appUserRepository;
 
+
+    public List<WorkoutDto> getUserWorkouts(Long userId) {
+
+        return workoutRepository
+                .findByUserId(userId)
+                .stream()
+                .map(WorkoutDto::new)
+                .collect(Collectors.toList());
+
+    }
+
+    public WorkoutDto createUserWorkout(WorkoutDto workoutDto) {
+
+        AppUser user = this.appUserRepository
+                .findById(workoutDto.getUserId())
+                .orElseThrow(() -> new ApiNotFoundException("User not found"));
+
+        Workout workout = new Workout(workoutDto, user);
+        workout.setTemporaryId(null); // no need for this anymore
+        workout = workoutRepository.save(workout);
+
+        return new WorkoutDto(workout);
+
+    }
+
+
+    /** *****
+     * Workout generating
+     ** *****/
 
     public WorkoutDto createStrengthWorkout(List<Exercise> exercises,
                                             WorkoutProcessingDto workoutProcessing,

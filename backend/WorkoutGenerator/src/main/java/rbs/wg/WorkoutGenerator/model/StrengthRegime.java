@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import rbs.wg.WorkoutGenerator.dto.StrengthRegimeDto;
 import rbs.wg.WorkoutGenerator.dto.WorkoutProcessingDto;
 
 import javax.persistence.*;
@@ -33,6 +34,16 @@ public class StrengthRegime {
 
     @Column
     private int workLoad;
+
+    public StrengthRegime(StrengthRegimeDto strengthRegimeDto, StrengthWorkout strengthWorkout) {
+
+        this.strengthWorkout = strengthWorkout;
+        this.exercise = new Exercise(strengthRegimeDto.getExerciseDto());
+        this.repetitions = strengthRegimeDto.getRepetitions();
+        this.numberOfSets = strengthRegimeDto.getNumberOfSets();
+        this.workLoad = strengthRegimeDto.getWorkLoad();
+
+    }
 
     public StrengthRegime(StrengthWorkout strengthWorkout,
                           WorkoutProcessingDto workoutProcessing,
