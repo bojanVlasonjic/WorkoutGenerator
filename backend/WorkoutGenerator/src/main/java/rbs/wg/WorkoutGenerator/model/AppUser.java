@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -34,9 +34,9 @@ public class AppUser extends Person {
     private UserLevel userLevel;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private Set<Equipment> equipment;
+    private List<Equipment> equipment;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Workout> workouts;
+    private List<Workout> workouts;
 
 }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import rbs.wg.WorkoutGenerator.dto.WorkoutProcessingDto;
+import rbs.wg.WorkoutGenerator.dto.WorkoutDto;
 import rbs.wg.WorkoutGenerator.dto.WorkoutRequestDto;
 import rbs.wg.WorkoutGenerator.service.WorkoutRequestService;
 
@@ -21,7 +21,7 @@ public class UserController {
     private WorkoutRequestService workoutRequestService;
 
     @PostMapping("/process-workout")
-    public ResponseEntity<WorkoutProcessingDto> processWorkout(@Valid @RequestBody WorkoutRequestDto workoutRequest) {
+    public ResponseEntity<WorkoutDto> processWorkout(@Valid @RequestBody WorkoutRequestDto workoutRequest) {
 
         return new ResponseEntity<>(
                 this.workoutRequestService.processWorkout(workoutRequest),

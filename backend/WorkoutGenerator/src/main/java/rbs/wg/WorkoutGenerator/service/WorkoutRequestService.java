@@ -5,8 +5,10 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import rbs.wg.WorkoutGenerator.dto.WorkoutDto;
 import rbs.wg.WorkoutGenerator.dto.WorkoutProcessingDto;
 import rbs.wg.WorkoutGenerator.dto.WorkoutRequestDto;
+import rbs.wg.WorkoutGenerator.exception.ApiBadRequestException;
 import rbs.wg.WorkoutGenerator.exception.ApiNotFoundException;
 import rbs.wg.WorkoutGenerator.model.*;
 import rbs.wg.WorkoutGenerator.repository.AppUserRepository;
@@ -21,6 +23,9 @@ public class WorkoutRequestService {
     private KieContainer kieContainer;
 
     @Autowired
+    private WorkoutService workoutService;
+
+    @Autowired
     private AppUserRepository userRepo;
 
     @Autowired
@@ -30,7 +35,7 @@ public class WorkoutRequestService {
     private Random random;
 
 
-    public WorkoutProcessingDto processWorkout(WorkoutRequestDto workoutRequest) {
+    public WorkoutDto processWorkout(WorkoutRequestDto workoutRequest) {
 
         AppUser user = this.userRepo
                 .findById(workoutRequest.getUserId())
@@ -48,39 +53,58 @@ public class WorkoutRequestService {
         workoutSession.insert(user);
         workoutSession.insert(workoutProcessing);
         workoutSession.insert(workoutRequest);
-        workoutSession.fireAllRules();
 
-        // create workout based on triggered rules
-        workoutProcessing.setSelectedExercises(createWorkout(workoutRequest, workoutProcessing));
+        workoutSession.fireAllRules();
         workoutSession.dispose();
 
-        return workoutProcessing;
+        return createWorkout(workoutRequest, workoutProcessing, user);
     }
 
-    public List<Exercise> createWorkout(WorkoutRequestDto workoutRequest, WorkoutProcessingDto workoutProcessing) {
+    public WorkoutDto createWorkout(WorkoutRequestDto workoutRequest,
+                                    WorkoutProcessingDto workoutProcessing,
+                                    AppUser user) {
 
-        Map<Equipment, List<Exercise>> equipmentExercises = new HashMap<>();
+        Map<Equipment, List<Exercise>> equipmentExercises;
 
         switch(workoutRequest.getWorkoutType()) {
             case STRENGTH:
-                workoutProcessing.setNextMuscleGroup(workoutRequest.getTargetedMuscle()); // temporary, rules will determine
+                workoutProcessing.setNextMuscleGroup(workoutRequest.getTargetedMuscle()); //temporary
                 equipmentExercises = getStrengthExercises(workoutRequest, workoutProcessing);
-                break;
+                return workoutService.createStrengthWorkout(
+                        selectExercises(equipmentExercises, workoutProcessing.getNumOfExercises()),
+                        workoutProcessing,
+                        user
+                );
 
             case CONDITIONING:
-                equipmentExercises = getConditioningExercises(workoutRequest, workoutProcessing);
-                break;
+                equipmentExercises = getConditioningExercises(workoutRequest);
+                return workoutService.createConditioningWorkout(
+                        selectExercises(equipmentExercises, workoutProcessing.getNumOfIntervals()/2),
+                        workoutProcessing,
+                        user
+                );
+
+            case COMBO:
+                workoutProcessing.setNextMuscleGroup(workoutRequest.getTargetedMuscle()); //temporary
+                equipmentExercises = getConditioningExercises(workoutRequest);
+                List<Exercise> conditioningExercises = selectExercises(
+                        equipmentExercises, workoutProcessing.getNumOfIntervals()/2);
+
+                equipmentExercises = getStrengthExercises(workoutRequest, workoutProcessing);
+                List<Exercise> strengthExercises = selectExercises(
+                        equipmentExercises, workoutProcessing.getNumOfExercises());
+
+                return workoutService.createComboWorkout(strengthExercises, conditioningExercises,
+                        workoutProcessing, user);
 
             default:
-                break;
+                throw new ApiBadRequestException("Workout type not recognized");
         }
 
-
-        return selectExercises(equipmentExercises, workoutProcessing.getNumOfExercises());
     }
 
-    public Map<Equipment, List<Exercise>> getConditioningExercises(WorkoutRequestDto workoutRequest,
-                                                                   WorkoutProcessingDto workoutProcessing) {
+    public Map<Equipment, List<Exercise>> getConditioningExercises(WorkoutRequestDto workoutRequest) {
+
         Map<Equipment, List<Exercise>> equipmentExercises = new HashMap<>();
         List<Exercise> matchingExercises;
 
@@ -88,7 +112,7 @@ public class WorkoutRequestService {
 
             matchingExercises = ListUtils.union(
                     exerciseRepo
-                            .findByEquipmentAndExerciseType(equipment, workoutRequest.getWorkoutType()),
+                            .findByEquipmentAndExerciseType(equipment, ExerciseType.CONDITIONING),
                     exerciseRepo
                             .findByEquipmentAndExerciseType(equipment, ExerciseType.COMBO)
             );
@@ -109,7 +133,7 @@ public class WorkoutRequestService {
             matchingExercises = ListUtils.union(
                     exerciseRepo
                             .findByEquipmentAndExerciseTypeAndTargetedMusclesContaining(equipment,
-                                    workoutRequest.getWorkoutType(), workoutProcessing.getNextMuscleGroup()),
+                                    ExerciseType.STRENGTH, workoutProcessing.getNextMuscleGroup()),
                     exerciseRepo
                             .findByEquipmentAndExerciseTypeAndTargetedMusclesContaining(equipment,
                                     ExerciseType.COMBO, workoutProcessing.getNextMuscleGroup())

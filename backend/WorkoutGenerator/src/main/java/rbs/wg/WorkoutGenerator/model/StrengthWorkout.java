@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import rbs.wg.WorkoutGenerator.dto.WorkoutProcessingDto;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @NoArgsConstructor
@@ -23,9 +25,22 @@ public class StrengthWorkout {
     private int restBetweenSets;
 
     @OneToMany(mappedBy = "strengthWorkout", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<StrengthRegime> strengthRegime;
+    private List<StrengthRegime> strengthRegime;
 
-    @OneToOne(mappedBy = "strengthWorkout")
+    @OneToOne(mappedBy = "strengthWorkout", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Workout workout;
+
+    public StrengthWorkout(Workout workout,
+                           WorkoutProcessingDto workoutProcessing,
+                           List<Exercise> exercises) {
+
+        this.restBetweenSets = workoutProcessing.getRestBetweenSets();
+        this.workout = workout;
+
+        this.strengthRegime = exercises
+                .stream()
+                .map(ex -> new StrengthRegime(this, workoutProcessing, ex))
+                .collect(Collectors.toList());
+    }
 
 }

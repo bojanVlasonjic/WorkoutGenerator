@@ -7,7 +7,7 @@ import org.kie.api.definition.rule.All;
 import rbs.wg.WorkoutGenerator.dto.ExerciseDto;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Getter
@@ -33,7 +33,7 @@ public class Exercise {
     private ExerciseType exerciseType;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private Set<MuscleGroup> targetedMuscles;
+    private List<MuscleGroup> targetedMuscles;
 
     public Exercise(ExerciseDto exerciseDto) {
         updateExercise(exerciseDto);

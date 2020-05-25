@@ -10,6 +10,7 @@ import rbs.wg.WorkoutGenerator.model.MuscleGroup;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -32,7 +33,7 @@ public class ExerciseDto {
     private ExerciseType exerciseType;
 
     @NotNull(message = "Targeted muscles are required")
-    private Set<MuscleGroup> targetedMuscles;
+    private List<MuscleGroup> targetedMuscles;
 
     public ExerciseDto(Exercise exercise) {
         this.id = exercise.getId();

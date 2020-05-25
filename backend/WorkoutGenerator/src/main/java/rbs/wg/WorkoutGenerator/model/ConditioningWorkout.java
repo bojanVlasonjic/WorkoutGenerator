@@ -4,9 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import rbs.wg.WorkoutGenerator.dto.WorkoutProcessingDto;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -34,10 +35,24 @@ public class ConditioningWorkout {
     @Column(nullable = false)
     private int restBetweenRounds;
 
-    @OneToOne(mappedBy = "conditioningWorkout")
+    @OneToOne(mappedBy = "conditioningWorkout", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Workout workout;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private Set<Exercise> exercises;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    private List<Exercise> exercises;
+
+    public ConditioningWorkout(Workout workout,
+                               WorkoutProcessingDto workoutProcessingDto,
+                               List<Exercise> exercises) {
+
+        this.workout = workout;
+        this.workInterval = workoutProcessingDto.getWorkInterval();
+        this.restInterval = workoutProcessingDto.getRestInterval();
+        this.numberOfIntervals = workoutProcessingDto.getNumOfIntervals();
+        this.numberOfRounds = workoutProcessingDto.getNumOfRounds();
+        this.restBetweenRounds = workoutProcessingDto.getRestBetweenRounds();
+        this.exercises = exercises;
+
+    }
 
 }
