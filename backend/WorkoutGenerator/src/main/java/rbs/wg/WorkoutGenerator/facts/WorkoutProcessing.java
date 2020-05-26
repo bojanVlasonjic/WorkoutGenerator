@@ -1,19 +1,16 @@
-package rbs.wg.WorkoutGenerator.dto;
+package rbs.wg.WorkoutGenerator.facts;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import rbs.wg.WorkoutGenerator.model.Exercise;
+import org.kie.api.definition.type.PropertyReactive;
 import rbs.wg.WorkoutGenerator.model.MuscleGroup;
-
-import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
-public class WorkoutProcessingDto {
+public class WorkoutProcessing {
 
-    private MuscleGroup nextMuscleGroup;
+    private int[] nextMuscleGroups;
     private int numOfExercises;
 
     // strength workout data
@@ -28,5 +25,11 @@ public class WorkoutProcessingDto {
     private int numOfRounds;
     private int restBetweenRounds;
 
-    private List<Exercise> selectedExercises;
+    public WorkoutProcessing() {
+        this.nextMuscleGroups = new int[2];
+    }
+
+    public void setMuscleGroup(int index, int muscleGroup) {
+        this.nextMuscleGroups[index] = muscleGroup;
+    }
 }

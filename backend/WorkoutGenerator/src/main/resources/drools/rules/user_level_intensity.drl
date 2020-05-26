@@ -1,20 +1,20 @@
 package drools.rules
 
-import rbs.wg.WorkoutGenerator.model.AppUser;
+import rbs.wg.WorkoutGenerator.facts.UserInformation;
 import rbs.wg.WorkoutGenerator.model.UserLevel;
-import rbs.wg.WorkoutGenerator.dto.WorkoutProcessingDto;
+import rbs.wg.WorkoutGenerator.facts.WorkoutProcessing;
 import java.util.Random;
 
 global Random random;
 
 rule "User is beginner, set workout intensity accordingly"
     when
-        $user: AppUser(userLevel == UserLevel.BEGINNER)
-        $woPr: WorkoutProcessingDto(numOfExercises == 0)
+        $user: UserInformation(userLevel == UserLevel.BEGINNER)
+        $woPr: WorkoutProcessing(numOfExercises == 0)
     then
         System.out.println("User is beginner, set workout intensity accordingly");
         modify($woPr) {
-            setNumOfExercises(4 * $user.getNumOfExercisesFactor()),
+            setNumOfExercises(3 * $user.getNumOfExercisesFactor()),
             setWorkInterval(20 + $user.getWorkIntervalFactor()),
             setRestInterval($woPr.getWorkInterval()/2),
             setReps((random.nextInt(5)+4) * $user.getRepetitionFactor());
@@ -23,12 +23,12 @@ end
 
 rule "User is intermediate, set workout intensity accordingly"
     when
-        $user: AppUser(userLevel == UserLevel.INTERMEDIATE)
-        $woPr: WorkoutProcessingDto(numOfExercises == 0)
+        $user: UserInformation(userLevel == UserLevel.INTERMEDIATE)
+        $woPr: WorkoutProcessing(numOfExercises == 0)
     then
         System.out.println("User is intermediate, set workout intensity accordingly");
         modify($woPr) {
-            setNumOfExercises(5 * $user.getNumOfExercisesFactor()),
+            setNumOfExercises(4 * $user.getNumOfExercisesFactor()),
             setWorkInterval(30 + $user.getWorkIntervalFactor()),
             setRestInterval($woPr.getWorkInterval()/2),
             setReps((random.nextInt(5)+6) * $user.getRepetitionFactor());
@@ -38,12 +38,12 @@ end
 
 rule "User is advanced, set workout intensity accordingly"
     when
-        $user: AppUser(userLevel == UserLevel.ADVANCED)
-        $woPr: WorkoutProcessingDto(numOfExercises == 0)
+        $user: UserInformation(userLevel == UserLevel.ADVANCED)
+        $woPr: WorkoutProcessing(numOfExercises == 0)
     then
         System.out.println("User is advanced, set workout intensity accordingly");
         modify($woPr) {
-            setNumOfExercises(6 * $user.getNumOfExercisesFactor()),
+            setNumOfExercises(5 * $user.getNumOfExercisesFactor()),
             setWorkInterval(40 + $user.getWorkIntervalFactor()),
             setRestInterval($woPr.getWorkInterval()/2),
             setReps((random.nextInt(5)+8) * $user.getRepetitionFactor());

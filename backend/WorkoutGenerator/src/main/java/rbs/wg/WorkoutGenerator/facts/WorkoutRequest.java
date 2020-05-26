@@ -1,4 +1,4 @@
-package rbs.wg.WorkoutGenerator.dto;
+package rbs.wg.WorkoutGenerator.facts;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class WorkoutRequestDto {
+public class WorkoutRequest {
 
     @NotNull(message = "User identification is required")
     private Long userId;

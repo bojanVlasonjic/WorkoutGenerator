@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import rbs.wg.WorkoutGenerator.dto.StrengthWorkoutDto;
-import rbs.wg.WorkoutGenerator.dto.WorkoutProcessingDto;
+import rbs.wg.WorkoutGenerator.facts.WorkoutProcessing;
 
 import javax.persistence.*;
 import java.util.List;
@@ -43,7 +43,7 @@ public class StrengthWorkout {
     }
 
     public StrengthWorkout(Workout workout,
-                           WorkoutProcessingDto workoutProcessing,
+                           WorkoutProcessing workoutProcessing,
                            List<Exercise> exercises) {
 
         this.restBetweenSets = workoutProcessing.getRestBetweenSets();

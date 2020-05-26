@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import rbs.wg.WorkoutGenerator.dto.ConditioningWorkoutDto;
-import rbs.wg.WorkoutGenerator.dto.WorkoutProcessingDto;
+import rbs.wg.WorkoutGenerator.facts.WorkoutProcessing;
 
 import javax.persistence.*;
 import java.util.List;
@@ -61,7 +61,7 @@ public class ConditioningWorkout {
     }
 
     public ConditioningWorkout(Workout workout,
-                               WorkoutProcessingDto workoutProcessingDto,
+                               WorkoutProcessing workoutProcessingDto,
                                List<Exercise> exercises) {
 
         this.workout = workout;

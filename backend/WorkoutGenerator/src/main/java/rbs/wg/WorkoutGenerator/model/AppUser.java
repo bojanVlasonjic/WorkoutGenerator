@@ -30,6 +30,9 @@ public class AppUser extends Person {
     @Column(nullable = false)
     private int workIntervalFactor = 0;
 
+    @Column(nullable = false)
+    private boolean upperBodyWorked; // whether the user worked upper body or lower body last time
+
     @Enumerated(EnumType.ORDINAL)
     private UserLevel userLevel;
 

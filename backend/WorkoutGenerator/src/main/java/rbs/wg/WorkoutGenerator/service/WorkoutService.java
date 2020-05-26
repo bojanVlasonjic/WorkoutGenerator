@@ -3,8 +3,8 @@ package rbs.wg.WorkoutGenerator.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rbs.wg.WorkoutGenerator.dto.WorkoutDto;
-import rbs.wg.WorkoutGenerator.dto.WorkoutProcessingDto;
 import rbs.wg.WorkoutGenerator.exception.ApiNotFoundException;
+import rbs.wg.WorkoutGenerator.facts.WorkoutProcessing;
 import rbs.wg.WorkoutGenerator.model.*;
 import rbs.wg.WorkoutGenerator.repository.AppUserRepository;
 import rbs.wg.WorkoutGenerator.repository.WorkoutRepository;
@@ -44,6 +44,12 @@ public class WorkoutService {
         workout.setTemporaryId(null); // no need for this anymore
         workout = workoutRepository.save(workout);
 
+        // if strength workout switch to lower/upper body for next workout
+        if(workoutDto.getStrengthWorkoutDto() != null) {
+            user.setUpperBodyWorked(!user.isUpperBodyWorked());
+            appUserRepository.save(user);
+        }
+
         return new WorkoutDto(workout);
 
     }
@@ -54,7 +60,7 @@ public class WorkoutService {
      ** *****/
 
     public WorkoutDto createStrengthWorkout(List<Exercise> exercises,
-                                            WorkoutProcessingDto workoutProcessing,
+                                            WorkoutProcessing workoutProcessing,
                                             AppUser user) {
 
         Workout workout = new Workout();
@@ -68,7 +74,7 @@ public class WorkoutService {
     }
 
     public WorkoutDto createConditioningWorkout(List<Exercise> exercises,
-                                                WorkoutProcessingDto workoutProcessing,
+                                                WorkoutProcessing workoutProcessing,
                                                 AppUser user) {
 
         Workout workout = new Workout();
@@ -83,7 +89,7 @@ public class WorkoutService {
 
     public WorkoutDto createComboWorkout(List<Exercise> strengthExercises,
                                          List<Exercise> conditioningExercises,
-                                         WorkoutProcessingDto workoutProcessing,
+                                         WorkoutProcessing workoutProcessing,
                                          AppUser user) {
 
         Workout workout = new Workout();
