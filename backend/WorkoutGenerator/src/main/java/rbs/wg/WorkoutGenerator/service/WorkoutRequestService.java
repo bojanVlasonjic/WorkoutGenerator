@@ -102,10 +102,12 @@ public class WorkoutRequestService {
                 );
 
             case COMBO:
+                // choose conditioning exercises
                 equipmentExercises = getConditioningExercises(workoutRequest);
                 List<Exercise> conditioningExercises = selectExercises(
                         equipmentExercises, workoutProcessing.getNumOfIntervals()/2);
 
+                // choose strength exercises for first muscle group
                 equipmentExercises = getStrengthExercises(workoutRequest,
                         muscleGroups[workoutProcessing.getNextMuscleGroups()[0]]);
                 List<Exercise> strengthExercises = selectExercises(

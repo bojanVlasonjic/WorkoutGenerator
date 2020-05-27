@@ -3,6 +3,7 @@ package drools.rules
 import rbs.wg.WorkoutGenerator.facts.WorkoutProcessing;
 import rbs.wg.WorkoutGenerator.facts.WorkoutRequest;
 import rbs.wg.WorkoutGenerator.model.ExerciseType;
+import java.lang.Math;
 
 rule "Strength workout chosen, set workout intensity accordingly"
 
@@ -39,7 +40,7 @@ rule "Combo workout chosen, set workout intensity accordingly"
     then
         System.out.println("Combo workout chosen, set workout intensity accordingly");
         modify($woPr) {
-            setNumOfExercises($woPr.getNumOfExercises()/2),
+            setNumOfExercises((int)(Math.round($woPr.getNumOfExercises()/2))),
             setSets(5),
             setRestBetweenSets(60),
             setNumOfIntervals(8),

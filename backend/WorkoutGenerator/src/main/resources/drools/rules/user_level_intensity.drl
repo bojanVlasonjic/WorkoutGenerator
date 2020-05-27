@@ -4,6 +4,7 @@ import rbs.wg.WorkoutGenerator.facts.UserInformation;
 import rbs.wg.WorkoutGenerator.model.UserLevel;
 import rbs.wg.WorkoutGenerator.facts.WorkoutProcessing;
 import java.util.Random;
+import java.lang.Math;
 
 global Random random;
 
@@ -14,10 +15,10 @@ rule "User is beginner, set workout intensity accordingly"
     then
         System.out.println("User is beginner, set workout intensity accordingly");
         modify($woPr) {
-            setNumOfExercises(3 * $user.getNumOfExercisesFactor()),
+            setNumOfExercises((int)(Math.round(3 * $user.getNumOfExercisesFactor()))),
             setWorkInterval(20 + $user.getWorkIntervalFactor()),
             setRestInterval($woPr.getWorkInterval()/2),
-            setReps((random.nextInt(5)+4) * $user.getRepetitionFactor());
+            setReps((int)(Math.round((random.nextInt(5)+4) * $user.getRepetitionFactor())));
         }
 end
 
@@ -28,10 +29,10 @@ rule "User is intermediate, set workout intensity accordingly"
     then
         System.out.println("User is intermediate, set workout intensity accordingly");
         modify($woPr) {
-            setNumOfExercises(4 * $user.getNumOfExercisesFactor()),
+            setNumOfExercises((int)(Math.round(4 * $user.getNumOfExercisesFactor()))),
             setWorkInterval(30 + $user.getWorkIntervalFactor()),
             setRestInterval($woPr.getWorkInterval()/2),
-            setReps((random.nextInt(5)+6) * $user.getRepetitionFactor());
+            setReps((int)(Math.round((random.nextInt(5)+6) * $user.getRepetitionFactor())));
         }
 end
 
@@ -43,10 +44,10 @@ rule "User is advanced, set workout intensity accordingly"
     then
         System.out.println("User is advanced, set workout intensity accordingly");
         modify($woPr) {
-            setNumOfExercises(5 * $user.getNumOfExercisesFactor()),
+            setNumOfExercises((int)(Math.round(5 * $user.getNumOfExercisesFactor()))),
             setWorkInterval(40 + $user.getWorkIntervalFactor()),
             setRestInterval($woPr.getWorkInterval()/2),
-            setReps((random.nextInt(5)+8) * $user.getRepetitionFactor());
+            setReps((int)(Math.round((random.nextInt(5)+8) * $user.getRepetitionFactor())));
         }
 end
 

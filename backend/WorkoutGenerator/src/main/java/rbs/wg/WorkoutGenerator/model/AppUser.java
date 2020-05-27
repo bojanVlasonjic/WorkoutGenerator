@@ -16,16 +16,16 @@ import java.util.List;
 public class AppUser extends Person {
 
     @Column(nullable = false)
-    private int weight;
+    private double weight;
 
     @Column(nullable = false)
-    private int repetitionFactor = 1;
+    private double repetitionFactor = 1;
 
     @Column(nullable = false)
-    private int numOfExercisesFactor = 1;
+    private double numOfExercisesFactor = 1;
 
     @Column(nullable = false)
-    private int workloadFactor = 1;
+    private double workloadFactor = 1;
 
     @Column(nullable = false)
     private int workIntervalFactor = 0;

@@ -17,11 +17,11 @@ public class UserInformation {
 
     private boolean upperBodyWorked;
     private UserLevel userLevel;
-    private int weight;
+    private double weight;
 
-    private int repetitionFactor;
-    private int numOfExercisesFactor;
-    private int workloadFactor;
+    private double repetitionFactor;
+    private double numOfExercisesFactor;
+    private double workloadFactor;
     private int workIntervalFactor;
 
     public UserInformation(AppUser user) {
