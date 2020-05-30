@@ -67,12 +67,12 @@ Za pravilan rad sistema bih trebao da znam kako ću skalirati ponavljanja i optr
 
 ## Primer-rezonovanja:
 Recimo da imamo scenario u kom je iskusniji korisnik prosledio sledeće činjenice:
-- 	Na prošlom treningu je vežbao donji deo tela.
--	Korisnik je od opreme odabrao šipku za zgibove i šipku sa tegovima.
--	Korisnikova telesna masa je 70kg.
--	Korisnikov nivo spremnosti je rekreativac (srednji nivo).
--	Opredelio se za kombinovan trening snage i kondicije.
--   	U prethodnoj anketi je tražio povećanje vremenskog intervala za kružni trening.
+  - Na prošlom treningu je vežbao donji deo tela.
+  - Korisnik je od opreme odabrao šipku za zgibove i šipku sa tegovima.
+  - Korisnikova telesna masa je 70kg.
+  - Korisnikov nivo spremnosti je rekreativac (srednji nivo).
+  - Opredelio se za kombinovan trening snage i kondicije.
+  - U prethodnoj anketi je tražio povećanje vremenskog intervala za kružni trening.
 
 Na osnovu ovih činjenica, pokreće se rezoner i redom sledeća pravila se okidaju:
 - Pravila za određivanje sledeće dve grupe mišića koju bi korisnik trebao da trenira:
