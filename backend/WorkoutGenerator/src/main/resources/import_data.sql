@@ -1,6 +1,6 @@
 
 ------ USERS ------
-insert into app_user(id, email, first_name, last_name, password, weight, user_level, repetition_factor, num_of_exercises_factor, workload_factor, work_interval_factor, upper_body_worked) values (-1, "user@email.com", "dummy", "dummy", "password", 70, 1, 1, 1, 1, 0, false)
+insert into app_user(id, email, first_name, last_name, password, weight, user_level, repetition_factor, workload_factor, work_interval_factor, upper_body_worked) values (-1, "user@email.com", "dummy", "dummy", "password", 70, 1, 1, 1, 0, false)
 
 
 ----- BARBELL EXERCISES -----
@@ -41,6 +41,13 @@ insert into exercise(id, name, equipment, exercise_type, description) values (-1
 insert into exercise_targeted_muscles(exercise_id, targeted_muscles) values (-18, 4)
 insert into exercise_targeted_muscles(exercise_id, targeted_muscles) values (-18, 6)
 insert into exercise_targeted_muscles(exercise_id, targeted_muscles) values (-18, 8)
+
+
+insert into exercise(id, name, equipment, exercise_type, description) values (-37, "Seated calf raises", 1, 0, "Sit on a bench. Place a barbell above your knees. Put a towel or pillow beneath the bar if you feel uncomfortable. Keep your legs bent at a 90 degree angle, and place your toes on an elevated object (a brick of example). Raise your heels so that they are above your toes. Hold for 2 seconds, then slowly descend until your heels reach the floor. Repeat.")
+insert into exercise_targeted_muscles(exercise_id, targeted_muscles) values (-37, 9)
+
+insert into exercise(id, name, equipment, exercise_type, description) values (-38, "Standing calf raises", 1, 0, "Stand on the edge of an elevated surface (small step, brick, plates) with a barbell placed behind your neck. Stand tall with your abdominals pulled in, the balls of your feet firmly planted on the step, and your heels hanging over the edge. Raise your heels a few inches above the edge of the step so that you’re on your tiptoes. Hold the position for a moment, and then lower your heels below the platform, feeling a stretch in your calf muscles.")
+insert into exercise_targeted_muscles(exercise_id, targeted_muscles) values (-38, 9)
 
 ----- PULL UP BAR EXERCISES -----
 insert into exercise(id, name, equipment, exercise_type, description) values (-9, "Chin ups", 2, 0, "Grab bar with palm and fingers facing towards yourself. Hang from the bar, pull yourself up to the top so that your chin is above the bar. Slowly descend to lock out. Stay in hang position for a second. Repeat.")
@@ -141,8 +148,16 @@ insert into exercise_targeted_muscles(exercise_id, targeted_muscles) values (-33
 insert into exercise_targeted_muscles(exercise_id, targeted_muscles) values (-33, 5)
 insert into exercise_targeted_muscles(exercise_id, targeted_muscles) values (-33, 6)
 
+insert into exercise(id, name, equipment, exercise_type, description) values (-34, "Calf raises", 0, 0, "Stand on the edge of a step or elevated surface. Stand tall with your abdominals pulled in, the balls of your feet firmly planted on the step, and your heels hanging over the edge. Raise your heels a few inches above the edge of the step so that you’re on your tiptoes. Hold the position for a moment, and then lower your heels below the platform, feeling a stretch in your calf muscles.")
+insert into exercise_targeted_muscles(exercise_id, targeted_muscles) values (-34, 9)
 
+insert into exercise(id, name, equipment, exercise_type, description) values (-35, "Single leg calf raises", 0, 0, "Stand on the edge of a step or elevated surface. Stand tall with your abdominals pulled in, with one foot planted on the step, and your heels hanging over the edge. Raise your heel a few inches above the edge of the step so that you’re on your tiptoes. Hold the position for a moment, and then lower your heel below the platform, feeling a stretch in your calf muscles.")
+insert into exercise_targeted_muscles(exercise_id, targeted_muscles) values (-35, 9)
 
-
+-- Jump rope exercises --
+insert into exercise(id, name, equipment, exercise_type, description) values (-36, "Single unders", 6, 1, "Jump over the rope with both feet slightly apart. Keep your core tight, back straight, legs slightly bent. Jump using both feet and land on your toes.")
+insert into exercise_targeted_muscles(exercise_id, targeted_muscles) values (-36, 0 )
+insert into exercise_targeted_muscles(exercise_id, targeted_muscles) values (-36, 5)
+insert into exercise_targeted_muscles(exercise_id, targeted_muscles) values (-36, 9)
 
 

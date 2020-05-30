@@ -40,6 +40,7 @@ public class Exercise {
     }
 
     public void updateExercise(ExerciseDto exerciseDto) {
+        this.id = exerciseDto.getId();
         this.name = exerciseDto.getName();
         this.description = exerciseDto.getDescription();
         this.equipment = exerciseDto.getEquipment();

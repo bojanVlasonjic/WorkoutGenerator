@@ -22,9 +22,6 @@ public class AppUser extends Person {
     private double repetitionFactor = 1;
 
     @Column(nullable = false)
-    private double numOfExercisesFactor = 1;
-
-    @Column(nullable = false)
     private double workloadFactor = 1;
 
     @Column(nullable = false)

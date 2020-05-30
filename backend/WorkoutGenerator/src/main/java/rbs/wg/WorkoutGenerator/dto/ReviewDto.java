@@ -4,7 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import rbs.wg.WorkoutGenerator.facts.ReviewComplaint;
 import rbs.wg.WorkoutGenerator.model.Review;
+
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,6 +21,8 @@ public class ReviewDto {
 
     private int exertionLevel;
     private int rating;
+
+    private List<ReviewComplaint> complaints;
 
     public ReviewDto(Review review){
         this.id = review.getId();

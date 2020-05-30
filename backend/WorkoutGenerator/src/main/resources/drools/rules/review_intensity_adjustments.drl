@@ -1,0 +1,92 @@
+package drools.rules
+
+import rbs.wg.WorkoutGenerator.dto.ReviewDto;
+import rbs.wg.WorkoutGenerator.model.AppUser;
+import rbs.wg.WorkoutGenerator.facts.ReviewComplaint;
+import rbs.wg.WorkoutGenerator.facts.UserInformation;
+
+
+rule "Workout too easy and user complained on repetitions, increase repetition factor"
+    agenda-group "review"
+    no-loop true
+    when
+        $review: ReviewDto(exertionLevel < 3 && complaints contains ReviewComplaint.REPETITIONS)
+        $user: AppUser(repetitionFactor < 1.5)
+    then
+        System.out.println("----> Workout too easy and user complained on repetitions, increase repetition factor");
+        modify($user) {
+            setRepetitionFactor($user.getRepetitionFactor() + 0.05);
+        }
+end
+
+
+rule "Workout too hard and user complained on repetitions, decrease repetition factor"
+    agenda-group "review"
+    no-loop true
+    when
+        $review: ReviewDto(exertionLevel > 8 && complaints contains ReviewComplaint.REPETITIONS)
+        $user: AppUser(repetitionFactor > 0.5)
+    then
+        System.out.println("----> Workout too hard and user complained on repetitions, decrease repetition factor");
+        modify($user) {
+            setRepetitionFactor($user.getRepetitionFactor() - 0.05);
+        }
+end
+
+
+
+rule "Workout too easy and user complained on workload, increase workload factor"
+    agenda-group "review"
+    no-loop true
+    when
+        $review: ReviewDto(exertionLevel < 3 && complaints contains ReviewComplaint.WORK_LOAD)
+        $user: AppUser(workloadFactor < 1.5)
+    then
+        System.out.println("----> Workout too easy and user complained on workload, increase workload factor");
+        modify($user) {
+            setWorkloadFactor($user.getWorkloadFactor() + 0.05);
+        }
+end
+
+
+rule "Workout too hard and user complained on workload, decrease workload factor"
+    agenda-group "review"
+    no-loop true
+    when
+        $review: ReviewDto(exertionLevel > 8 && complaints contains ReviewComplaint.WORK_LOAD)
+        $user: AppUser(workloadFactor > 0.5)
+    then
+        System.out.println("----> Workout too hard and user complained on workload, decrease workload factor");
+        modify($user) {
+            setWorkloadFactor($user.getWorkloadFactor() - 0.05);
+        }
+end
+
+
+
+rule "Workout too easy and user complained on work interval, increase work interval factor"
+    agenda-group "review"
+    no-loop true
+    when
+        $review: ReviewDto(exertionLevel < 3 && complaints contains ReviewComplaint.WORK_INTERVAL)
+        $user: AppUser(workIntervalFactor < 10)
+    then
+        System.out.println("----> Workout too easy and user complained on work interval, increase work interval factor");
+        modify($user) {
+            setWorkIntervalFactor($user.getWorkIntervalFactor() + 5);
+        }
+end
+
+
+rule "Workout too hard and user complained on work interval, decrease work interval factor"
+    agenda-group "review"
+    no-loop true
+    when
+        $review: ReviewDto(exertionLevel > 8 && complaints contains ReviewComplaint.WORK_INTERVAL)
+        $user: AppUser(workIntervalFactor > -10)
+    then
+        System.out.println("----> Workout too hard and user complained on work interval, decrease work interval factor");
+        modify($user) {
+            setWorkIntervalFactor($user.getWorkIntervalFactor() - 5);
+        }
+end

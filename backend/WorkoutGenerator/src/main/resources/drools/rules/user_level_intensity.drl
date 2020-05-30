@@ -9,13 +9,14 @@ import java.lang.Math;
 global Random random;
 
 rule "User is beginner, set workout intensity accordingly"
+    agenda-group "workout"
     when
         $user: UserInformation(userLevel == UserLevel.BEGINNER)
         $woPr: WorkoutProcessing(numOfExercises == 0)
     then
-        System.out.println("User is beginner, set workout intensity accordingly");
+        System.out.println("----> User is beginner, set workout intensity accordingly");
         modify($woPr) {
-            setNumOfExercises((int)(Math.round(3 * $user.getNumOfExercisesFactor()))),
+            setNumOfExercises(3),
             setWorkInterval(20 + $user.getWorkIntervalFactor()),
             setRestInterval($woPr.getWorkInterval()/2),
             setReps((int)(Math.round((random.nextInt(5)+4) * $user.getRepetitionFactor())));
@@ -23,13 +24,14 @@ rule "User is beginner, set workout intensity accordingly"
 end
 
 rule "User is intermediate, set workout intensity accordingly"
+    agenda-group "workout"
     when
         $user: UserInformation(userLevel == UserLevel.INTERMEDIATE)
         $woPr: WorkoutProcessing(numOfExercises == 0)
     then
-        System.out.println("User is intermediate, set workout intensity accordingly");
+        System.out.println("----> User is intermediate, set workout intensity accordingly");
         modify($woPr) {
-            setNumOfExercises((int)(Math.round(4 * $user.getNumOfExercisesFactor()))),
+            setNumOfExercises(4),
             setWorkInterval(30 + $user.getWorkIntervalFactor()),
             setRestInterval($woPr.getWorkInterval()/2),
             setReps((int)(Math.round((random.nextInt(5)+6) * $user.getRepetitionFactor())));
@@ -38,13 +40,14 @@ end
 
 
 rule "User is advanced, set workout intensity accordingly"
+    agenda-group "workout"
     when
         $user: UserInformation(userLevel == UserLevel.ADVANCED)
         $woPr: WorkoutProcessing(numOfExercises == 0)
     then
-        System.out.println("User is advanced, set workout intensity accordingly");
+        System.out.println("----> User is advanced, set workout intensity accordingly");
         modify($woPr) {
-            setNumOfExercises((int)(Math.round(5 * $user.getNumOfExercisesFactor()))),
+            setNumOfExercises(5),
             setWorkInterval(40 + $user.getWorkIntervalFactor()),
             setRestInterval($woPr.getWorkInterval()/2),
             setReps((int)(Math.round((random.nextInt(5)+8) * $user.getRepetitionFactor())));

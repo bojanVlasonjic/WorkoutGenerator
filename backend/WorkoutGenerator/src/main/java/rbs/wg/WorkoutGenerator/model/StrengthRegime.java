@@ -20,7 +20,7 @@ public class StrengthRegime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch = FetchType.LAZY)
     private Exercise exercise;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -37,6 +37,7 @@ public class StrengthRegime {
 
     public StrengthRegime(StrengthRegimeDto strengthRegimeDto, StrengthWorkout strengthWorkout) {
 
+        this.id = strengthRegimeDto.getId();
         this.strengthWorkout = strengthWorkout;
         this.exercise = new Exercise(strengthRegimeDto.getExerciseDto());
         this.repetitions = strengthRegimeDto.getRepetitions();
@@ -45,9 +46,11 @@ public class StrengthRegime {
 
     }
 
+    // user when generating workout
     public StrengthRegime(StrengthWorkout strengthWorkout,
                           WorkoutProcessing workoutProcessing,
                           Exercise exercise) {
+
         this.exercise = exercise;
         this.strengthWorkout = strengthWorkout;
 

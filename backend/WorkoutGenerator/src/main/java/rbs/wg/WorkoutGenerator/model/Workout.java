@@ -30,7 +30,7 @@ public class Workout {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private StrengthWorkout strengthWorkout;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Review review;
 
     @Column(nullable = false)
@@ -41,6 +41,7 @@ public class Workout {
 
     public Workout(WorkoutDto workoutDto, AppUser appUser) {
 
+        this.id = workoutDto.getId();
         this.date = workoutDto.getDate();
         this.user = appUser;
 
@@ -58,6 +59,7 @@ public class Workout {
 
     }
 
+    // user when generating workout
     public void initWorkout(StrengthWorkout strengthWorkout,
                             ConditioningWorkout conditioningWorkout,
                             AppUser user, Date date) {

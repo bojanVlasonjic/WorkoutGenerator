@@ -11,6 +11,7 @@ import rbs.wg.WorkoutGenerator.repository.WorkoutRepository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,7 @@ public class WorkoutService {
     private WorkoutRepository workoutRepository;
 
     @Autowired
-    private AppUserRepository appUserRepository;
+    private AppUserService appUserService;
 
 
     public List<WorkoutDto> getUserWorkouts(Long userId) {
@@ -36,8 +37,8 @@ public class WorkoutService {
 
     public WorkoutDto createUserWorkout(WorkoutDto workoutDto) {
 
-        AppUser user = this.appUserRepository
-                .findById(workoutDto.getUserId())
+        AppUser user = this.appUserService
+                .findUserById(workoutDto.getUserId())
                 .orElseThrow(() -> new ApiNotFoundException("User not found"));
 
         Workout workout = new Workout(workoutDto, user);
@@ -47,11 +48,19 @@ public class WorkoutService {
         // if strength workout switch to lower/upper body for next workout
         if(workoutDto.getStrengthWorkoutDto() != null) {
             user.setUpperBodyWorked(!user.isUpperBodyWorked());
-            appUserRepository.save(user);
+            appUserService.saveUser(user);
         }
 
         return new WorkoutDto(workout);
 
+    }
+
+
+    /** *****
+     * Repository method implementations
+     ** *****/
+    public Optional<Workout> findWorkoutById(Long workoutId) {
+        return workoutRepository.findById(workoutId);
     }
 
 

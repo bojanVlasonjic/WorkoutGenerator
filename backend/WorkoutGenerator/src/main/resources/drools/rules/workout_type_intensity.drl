@@ -6,12 +6,12 @@ import rbs.wg.WorkoutGenerator.model.ExerciseType;
 import java.lang.Math;
 
 rule "Strength workout chosen, set workout intensity accordingly"
-
+    agenda-group "workout"
     when
         $woReq: WorkoutRequest(workoutType == ExerciseType.STRENGTH)
         $woPr: WorkoutProcessing(numOfExercises > 0)
     then
-        System.out.println("Strength workout chosen, set workout intensity accordingly");
+        System.out.println("----> Strength workout chosen, set workout intensity accordingly");
         modify($woPr) {
             setSets(3),
             setRestBetweenSets(90);
@@ -19,12 +19,12 @@ rule "Strength workout chosen, set workout intensity accordingly"
 end
 
 rule "Conditioning workout, set workout intensity accordingly"
-
+    agenda-group "workout"
     when
         $woReq: WorkoutRequest(workoutType == ExerciseType.CONDITIONING)
         $woPr: WorkoutProcessing(numOfExercises > 0)
     then
-        System.out.println("Conditioning workout chosen, set workout intensity accordingly");
+        System.out.println("----> Conditioning workout chosen, set workout intensity accordingly");
         modify($woPr) {
             setNumOfIntervals(8),
             setNumOfRounds(4),
@@ -33,12 +33,13 @@ rule "Conditioning workout, set workout intensity accordingly"
 end
 
 rule "Combo workout chosen, set workout intensity accordingly"
+    agenda-group "workout"
     no-loop true
     when
             $woReq: WorkoutRequest(workoutType == ExerciseType.COMBO)
             $woPr: WorkoutProcessing(numOfExercises > 0)
     then
-        System.out.println("Combo workout chosen, set workout intensity accordingly");
+        System.out.println("----> Combo workout chosen, set workout intensity accordingly");
         modify($woPr) {
             setNumOfExercises((int)(Math.round($woPr.getNumOfExercises()/2))),
             setSets(5),

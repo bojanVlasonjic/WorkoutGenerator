@@ -7,7 +7,6 @@ import org.kie.api.definition.type.PropertyReactive;
 import rbs.wg.WorkoutGenerator.model.AppUser;
 import rbs.wg.WorkoutGenerator.model.UserLevel;
 
-import javax.persistence.Column;
 
 @NoArgsConstructor
 @Getter
@@ -30,7 +29,6 @@ public class UserInformation {
         this.weight = user.getWeight();
 
         this.repetitionFactor = user.getRepetitionFactor();
-        this.numOfExercisesFactor = user.getNumOfExercisesFactor();
         this.workloadFactor = user.getWorkloadFactor();
         this.workIntervalFactor = user.getWorkIntervalFactor();
     }

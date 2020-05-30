@@ -33,6 +33,7 @@ public class StrengthWorkout {
 
 
     public StrengthWorkout(StrengthWorkoutDto strengthWorkoutDto, Workout workout) {
+        this.id = strengthWorkoutDto.getId();
         this.restBetweenSets = strengthWorkoutDto.getRestBetweenSets();
         this.workout = workout;
 
@@ -42,6 +43,7 @@ public class StrengthWorkout {
                 .collect(Collectors.toList());
     }
 
+    // user when generating workout
     public StrengthWorkout(Workout workout,
                            WorkoutProcessing workoutProcessing,
                            List<Exercise> exercises) {

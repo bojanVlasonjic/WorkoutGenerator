@@ -58,6 +58,7 @@ public class WorkoutRequestService {
         workoutSession.insert(workoutRequest);
 
         // trigger rules and destroy session
+        workoutSession.getAgenda().getAgendaGroup("workout").setFocus();
         workoutSession.fireAllRules();
         workoutSession.dispose();
 

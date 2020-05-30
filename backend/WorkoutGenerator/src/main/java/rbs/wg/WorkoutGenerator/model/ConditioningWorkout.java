@@ -40,11 +40,12 @@ public class ConditioningWorkout {
     @OneToOne(mappedBy = "conditioningWorkout", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Workout workout;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Exercise> exercises;
 
     public ConditioningWorkout(ConditioningWorkoutDto conditioningWorkoutDto, Workout workout) {
 
+        this.id = conditioningWorkoutDto.getId();
         this.workout = workout;
         this.workInterval = conditioningWorkoutDto.getWorkInterval();
         this.restInterval = conditioningWorkoutDto.getRestInterval();
@@ -60,6 +61,7 @@ public class ConditioningWorkout {
 
     }
 
+    // user when generating workout
     public ConditioningWorkout(Workout workout,
                                WorkoutProcessing workoutProcessingDto,
                                List<Exercise> exercises) {
