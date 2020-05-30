@@ -30,10 +30,10 @@ Kako bi korisniku ponudio odgovarajuće rešenje, zahtevaću sledeće podatke:
 Oprema koju korisnik poseduje:
 -	Nikakva oprema (vežbe sa sopstvenom težinom) – podrazumevano
 -	Šipka sa tegovima
--	Benč klupa
 -	Bučice sa tegovima
 -	Rusko  zvono
 -	Šipka za zgibove
+- 	Šipka za propadanja
 -	Vijača
 
 Nivo spremnosti korisnika:
@@ -67,24 +67,23 @@ Za pravilan rad sistema bih trebao da znam kako ću skalirati ponavljanja i optr
 
 ## Primer-rezonovanja:
 Recimo da imamo scenario u kom je iskusniji korisnik prosledio sledeće činjenice:
+- 	Na prošlom treningu je vežbao donji deo tela.
 -	Korisnik je od opreme odabrao šipku za zgibove i šipku sa tegovima.
 -	Korisnikova telesna masa je 70kg.
 -	Korisnikov nivo spremnosti je rekreativac (srednji nivo).
 -	Opredelio se za kombinovan trening snage i kondicije.
--   U prethodnoj anketi je tražio povećanje vremenskog intervala za kružni trening.
+-   	U prethodnoj anketi je tražio povećanje vremenskog intervala za kružni trening.
 
 Na osnovu ovih činjenica, pokreće se rezoner i redom sledeća pravila se okidaju:
-- Pravila za određivanje sledeće grupe mišića koju bi korisnik trebao da trenira:
-  - Prethodni trening su rađene grudi, na redu su npr. noge.
+- Pravila za određivanje sledeće dve grupe mišića koju bi korisnik trebao da trenira:
+  - Na prethodnom treningu je korisnik vežbao gornji deo tela, nasumično odaberi dve grupe mišića za donji deo tela.
 
 - Pravila koja određuju intenzitet treninga na osnovu nivoa spremnosti korisnika i korisničkih faktora:
   - Korisnik je srednjeg nivoa spremnosti, za kružne treninge će mu vremenski interval rada biti 35 sekundi (30 + 5 sekundi uvećanja). Broj vežbi koje bi trebao da uradi po treningu je 5, a broj ponavljanja između 6 i 10 (uračunavaju se korisnički faktori dobijeni na osnovu anketa).
   
 - Pravila za određivanje intenziteta na osnovu vrste treninga i korisničkih faktora:
-  - Tip treninga koji je korisnik odabrao je kombinacija snage i kružnog treninga. Broj vežbi za snagu i kružni trening prepolovimo, množimo sa odgovarajućim faktorom i zaokružimo. Recimo da smo dobili 3 vežbe. Za snagu će raditi 5 serija, a za kružni trening 8 intervala u 2 runde. Odmaraće 2 minuta između rundi u kružnom treningu i 1 minut između vežbi snage.
+  - Tip treninga koji je korisnik odabrao je kombinacija snage i kružnog treninga i broj vežbi je određen na osnovu prethodne grupe pravila. Broj vežbi za snagu i kružni trening prepolovimo, množimo sa odgovarajućim faktorom i zaokružimo. Recimo da smo dobili 2 vežbe. Za snagu će raditi 5 serija, a za kružni trening 8 intervala u 2 runde. Odmaraće 2 minuta između rundi u kružnom treningu i 1 minut između vežbi snage.
 
-- Pravila koja određuju opterećenja na osnovu odabrane opreme i nivoa spremnosti:
-  - Korisnik je srednjeg nivoa spremnosti, odabrao je šipku sa tegovima kao deo opreme - opterećenje za vežbe će biti 45-65% od telesne mase.
 
 Od svih vežbi, korisnik će za svaki artikal opreme dobiti izlistano po nekoliko vežbi. Moći će da odabere neke koje bi želeo da radi i time kreira svoj trening. Sa druge strane može pokrenuti i nasumičan odabir čime će se iz skupa odabrati određen broj vežbi na osnovu prethodnih pravila.
 
@@ -95,55 +94,40 @@ Kad se korisnik opredeli za neki trening i doda ga u kolekciju svojih treninga, 
 
 ## Spisak-pravila:
 
-- Pravila za određivanje sledeće grupe mišića koju bi korisnik trebao da trenira: ???
-	- Prethodni trening nije pronađen, na prvom treningu će korisnik vežbati ramena.
-	- Na prethodnom treningu su rađene vežbe za ramena - sledeća grupa mišića su leđa.
-	- Na prethodnom treningu su rađene vežbe za leđa - sledeća grupa mišića su grudi.
-	- Na prethodnom treningu su rađene vežbe za grudi - sledeća grupa mišića su listovi i zadnja loža. 
-	- Na prethodnom treningu su rađene vežbe za listove i zadnju ložu - sledeća grupa mišića su ruke.
-	- Na prethodnom treningu su rađene vežbe za ruke - sledeća grupa mišića su kvadricepsi.
-	- Na prethodnom treningu su rađene vežbe za kvadricepsi - sledeća grupa mišića su trbušnjaci. 
-	- Na prethodnom treningu su rađene vežbe za trbušnjake - sledeća grupa mišića su ramena. 
+Pravila su odvojena u posebne datoteke, u zavisnosti od logike na koju se odnose. U načelu, postoje dve grupe pravila:
+	- Pravila koja se odnose na pravljenje treninga (agenda-group "workout")
+	- Pravila koja se odnose na ocenjivanje treninga (agenda-group "review")
 
 
-- Pravila koja određuju intenzitet treninga na osnovu nivoa spremnosti korisnika i korisničkih faktora:
-	- Korisnik je početnik - vremenski intervali rada će biti postavljeni na 20 sekundi. Radiće 4 vežbe po treningu. Broj ponavljanja će biti između 4 i 8 (uračunaj odgovarajuće faktore dobijene na osnovu anketa).
-	- Korisnik je rekreativac - vremenski intervali rada će biti postavljeni na 30 sekundi. Radiće 5 vežbi po treningu. Broj ponavljanja će biti između 6 i 10 (uračunaj odgovarajuće faktore dobijene na osnovu anketa).
-	- Korisnik je napredan - vremenski intervali rada će biti postavljeni na 30 sekundi. Radiće 6 vežbi po treningu. Broj ponavljanja će biti između 8 i 12 (uračunaj odgovarajuće faktore dobijene na osnovu anketa).
+- Pravila za određivanje sledeće dve grupe mišića koju bi korisnik trebao da trenira (agenda-group "workout"):
+	- Na prethodnom treningu je korisnik vežbao gornji deo tela, nasumišno odaberi dve grupe mišića za donji deo tela.
+	- Na prethodnom treningu je korisnik vežbao donji deo tela, nasumično odaberi dve grupe mišića za gornji deo tela.
 
 
-- Pravila koja određuju opterećenja na osnovu odabrane opreme i nivoa spremnosti: ???
-	- Korisnik je početnog nivoa spremnosti, odabrao je šipku sa tegovima kao deo opreme - opterećenje za vežbe sa šipkom će biti 35-50% od telesne mase.
-	- Korisnik je početnog nivoa spremnosti, odabrao je bučice sa tegovima kao deo opreme - opterećenje za vežbe sa bučicama će biti 5-12% od telesne mase.
-	- Korisnik je srednjeg nivoa spremnosti, odabrao je šipku sa tegovima kao deo opreme - opterećenje za vežbe sa šipkom će biti 45-65% od telesne mase.
-	- Korisnik je srednjeg nivoa spremnosti, oodabrao je bučice tegovima kao deo opreme - opterećenje za vežbe sa bučicama će biti 10-18% od telesne mase.
-	- Korisnik je naprednog nivoa spremnosti, odabrao je šipku sa tegovima kao deo opreme - opterećenje za vežbe sa šipkom će biti 55-70% od telesne mase.
-	- Korisnik je naprednog nivoa spremnosti, odabrao je bučice sa tegovima kao deo opreme - opterećenje za vežbe sa bučicama će biti 15-25% od telesne mase.
-	
-	
-- Pravila koja za odabrane vežbe skaliraju ponavljanja i opterećenje na osnovu opreme za tu vežbu i grupe mišića ???
+- Pravila koja određuju intenzitet treninga na osnovu nivoa spremnosti korisnika i korisničkih faktora (agenda-group "workout"):
+	- Korisnik je početnik - vremenski intervali rada će biti postavljeni na 20 sekundi, a odmor na 10 sekundi. Radiće 4 vežbe po treningu. Broj ponavljanja će biti između 4 i 8 (uračunaj odgovarajuće faktore dobijene na osnovu anketa).
+	- Korisnik je rekreativac - vremenski intervali rada će biti postavljeni na 30 sekundi, a odmor na 15 sekundi. Radiće 5 vežbi po treningu. Broj ponavljanja će biti između 6 i 10 (uračunaj odgovarajuće faktore dobijene na osnovu anketa).
+	- Korisnik je napredan - vremenski intervali rada će biti postavljeni na 40 sekundi, a odmor na 20 sekundi. Radiće 6 vežbi po treningu. Broj ponavljanja će biti između 8 i 12 (uračunaj odgovarajuće faktore dobijene na osnovu anketa).
 
 
-- Pravila za određivanje intenziteta na osnovu vrste treninga:
+- Pravila za određivanje intenziteta na osnovu vrste treninga (agenda-group "workout") -> Izvrše se nakon prethodne grupe pravila, na osnovu uslova da se  promenio broj vežbi po treningu:
 	- Odabran je kružni trening - broj intervala će biti 8. Broj rundi će biti 4. Odmaraće 2 minuta između rundi.
 	- Odabran je trening snage - broj serija će biti 3. Odmaraće 2 minuta između vežbi.
 	- Odabrana je kombinacija snage i kružnog treninga - prepolovi broj vežbi po treningu. Postavi broj serija na 5. Broj intervala za kružni trening biti 8. Broj rundi će biti 2. Odmaraće 1 minut između vežbi snage, a 2 minuta između rundi u kružnom treningu.
 	
 
-- Pravila za modifikaciju korisničkih faktora na osnovu ocene.
-	- Ocena je manja od 3, požalio se na broj ponavljanja - uvećaj faktor za ponavljanja za 0.1.
-	- Ocena je manja od 3, požalio se na broj vežbi - uvećaj faktor za broj vežbi za 0.1.
-	- Ocena je manja od 3, požalio se na opterećenje - uvećaj faktor za opterećenje za 0.1.
-	- Ocena je manja od 3, požalio se na vr. interval - uvećaj faktor za vr. interval za 5 sekundi.
-	- Ocena je veća od 8, požalio se na broj ponavljanja - umanji faktor za ponavljanja za 0.1.
-	- Ocena je veća od 8, požalio se na broj vežbi - umanji faktor za broj vežbi za 0.1.
-	- Ocena je veća od 8, požalio se na opterećenje - umanji faktor za opterećenje za 0.1.
-	- Ocena je veća od 8, požalio se na vr. interval - umanji faktor za vr. interval za 5 sekundi.
+- Pravila za modifikaciju korisničkih faktora na osnovu ocene (agenda-group "review").
+	- Ocena je manja od 3, požalio se na broj ponavljanja - uvećaj faktor za ponavljanja.
+	- Ocena je manja od 3, požalio se na opterećenje - uvećaj faktor za opterećenje.
+	- Ocena je manja od 3, požalio se na vr. interval - uvećaj faktor za vr. interval rada.
+	- Ocena je veća od 8, požalio se na broj ponavljanja - umanji faktor za ponavljanja.
+	- Ocena je veća od 8, požalio se na opterećenje - umanji faktor za opterećenje.
+	- Ocena je veća od 8, požalio se na vr. interval - umanji faktor za vr. interval rada.
 
 
 ## Reference:
 Nisam pronašao literaturu, ali bih naveo u nastavku neke od aplikacija koje su me inspirisale da pokušam da napravim svoje rešenje:
--	https://wger.de/en/software/api - API koji bih koristio
+-	https://wger.de/en/software/api - API iz kog sam izvukao pojedine vežbe.
 -	http://www.thewodgenerator.com/category/wod-generator-by-equipment/ - aplikacija koja generiše trening na osnovu odabrane opreme.
 -	https://www.jefit.com/exercises/ - aplikacija koja prikaže vežbe na osnovu opreme.
 
