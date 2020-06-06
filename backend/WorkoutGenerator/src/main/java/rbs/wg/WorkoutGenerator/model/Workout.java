@@ -21,9 +21,6 @@ public class Workout {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
-    private UUID temporaryId;
-
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private ConditioningWorkout conditioningWorkout;
 

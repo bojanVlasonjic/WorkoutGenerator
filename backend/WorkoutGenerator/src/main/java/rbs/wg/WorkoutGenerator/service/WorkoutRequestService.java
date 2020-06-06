@@ -62,8 +62,6 @@ public class WorkoutRequestService {
         workoutSession.fireAllRules();
         workoutSession.dispose();
 
-        System.out.println(workoutProcessing.getNextMuscleGroups()[0] + " " + workoutProcessing.getNextMuscleGroups()[1]);
-
         return createWorkout(workoutRequest, workoutProcessing, user);
     }
 

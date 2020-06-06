@@ -17,7 +17,6 @@ import java.util.UUID;
 public class WorkoutDto {
 
     private Long id;
-    private UUID temporaryId;
     private Long userId;
 
     private ConditioningWorkoutDto conditioningWorkoutDto;
@@ -31,7 +30,6 @@ public class WorkoutDto {
 
         this.id = workout.getId();
         this.userId = workout.getUser().getId();
-        this.temporaryId = workout.getTemporaryId();
         this.date = workout.getDate();
 
         if(workout.getReview() != null) {

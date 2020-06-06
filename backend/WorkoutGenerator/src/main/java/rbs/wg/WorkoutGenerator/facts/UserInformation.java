@@ -20,7 +20,7 @@ public class UserInformation {
 
     private double repetitionFactor;
     private double numOfExercisesFactor;
-    private double workloadFactor;
+    private double workLoadFactor;
     private int workIntervalFactor;
 
     public UserInformation(AppUser user) {
@@ -29,7 +29,7 @@ public class UserInformation {
         this.weight = user.getWeight();
 
         this.repetitionFactor = user.getRepetitionFactor();
-        this.workloadFactor = user.getWorkloadFactor();
+        this.workLoadFactor = user.getWorkLoadFactor();
         this.workIntervalFactor = user.getWorkIntervalFactor();
     }
 }

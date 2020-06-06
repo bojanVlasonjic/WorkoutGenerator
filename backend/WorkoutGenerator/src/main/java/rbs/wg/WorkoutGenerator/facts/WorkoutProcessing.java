@@ -17,6 +17,7 @@ public class WorkoutProcessing {
     private int reps;
     private int sets;
     private int restBetweenSets;
+    private int workLoad;
 
     // conditioning workout data
     private int workInterval;

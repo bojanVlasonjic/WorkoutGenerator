@@ -12,13 +12,9 @@ rule "Previous workout was upper body, choose two lower body muscle groups"
         $woPr: WorkoutProcessing()
     then
         System.out.println("----> Previous workout was upper body, choose two lower body muscle groups");
-        modify($user) {
-            setUpperBodyWorked(false);
-        }
-
         modify($woPr) {
-            setMuscleGroup(0, random.nextInt(10-6)+6),
-            setMuscleGroup(1, random.nextInt(10-6)+6);
+            setMuscleGroup(0, random.nextInt(4)+6),
+            setMuscleGroup(1, random.nextInt(4)+6);
         }
 end
 
@@ -30,10 +26,6 @@ rule "Previous workout was lower body, choose two upper body muscle groups"
         $woPr: WorkoutProcessing()
     then
         System.out.println("----> Previous workout was lower body, choose two upper body muscle groups");
-        modify($user) {
-            setUpperBodyWorked(true);
-        }
-
         modify($woPr) {
             setMuscleGroup(0, random.nextInt(6)),
             setMuscleGroup(1, random.nextInt(6));

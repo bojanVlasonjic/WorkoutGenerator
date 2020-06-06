@@ -1,0 +1,122 @@
+package drools.rules;
+
+import rbs.wg.WorkoutGenerator.model.StrengthRegime;
+import rbs.wg.WorkoutGenerator.facts.UserInformation;
+import rbs.wg.WorkoutGenerator.model.UserLevel;
+import rbs.wg.WorkoutGenerator.model.ExerciseType;
+import rbs.wg.WorkoutGenerator.model.Equipment;
+
+global Random random;
+
+
+rule "User is beginner and the exercise requires a barbell with plates, set workload accordingly"
+    agenda-group "workLoad"
+    when
+       $user: UserInformation(userLevel == UserLevel.BEGINNER)
+       $sReg: StrengthRegime(exercise.getEquipment() == Equipment.BARBELL_WITH_PLATES)
+    then
+       System.out.println("----> User is beginner and the exercise requires a barbell with plates, set workload accordingly");
+       modify($sReg) {
+           setWorkLoad((int)((random.nextInt(15)+35)/100.0 * $user.getWeight() * $user.getWorkLoadFactor()));
+       }
+end
+
+rule "User is beginner and the exercise requires a dumbbells, set workload accordingly"
+    agenda-group "workLoad"
+    when
+       $user: UserInformation(userLevel == UserLevel.BEGINNER)
+       $sReg: StrengthRegime(exercise.getEquipment() == Equipment.DUMBBELLS_WITH_PLATES)
+    then
+       System.out.println("----> User is beginner and the exercise requires a dumbbells, set workload accordingly");
+       modify($sReg) {
+           setWorkLoad((int)((random.nextInt(4)+8)/100.0 * $user.getWeight() * $user.getWorkLoadFactor()));
+       }
+end
+
+rule "User is beginner and the exercise requires a kettlebell, set workload accordingly"
+    agenda-group "workLoad"
+    when
+       $user: UserInformation(userLevel == UserLevel.BEGINNER)
+       $sReg: StrengthRegime(exercise.getEquipment() == Equipment.KETTLEBELL)
+    then
+       System.out.println("----> User is beginner and the exercise requires a kettlebell, set workload accordingly");
+       modify($sReg) {
+           setWorkLoad((int)((random.nextInt(5)+15)/100.0 * $user.getWeight() * $user.getWorkLoadFactor()));
+       }
+end
+
+
+
+rule "User is intermediate and the exercise requires a barbell with plates, set workload accordingly"
+    agenda-group "workLoad"
+    when
+       $user: UserInformation(userLevel == UserLevel.INTERMEDIATE)
+       $sReg: StrengthRegime(exercise.getEquipment() == Equipment.BARBELL_WITH_PLATES)
+    then
+       System.out.println("----> User is intermediate and the exercise requires a barbell with plates, set workload accordingly");
+       modify($sReg) {
+           setWorkLoad((int)((random.nextInt(20)+45)/100.0 * $user.getWeight() * $user.getWorkLoadFactor()));
+       }
+end
+
+rule "User is intermediate and the exercise requires a dumbbells, set workload accordingly"
+    agenda-group "workLoad"
+    when
+       $user: UserInformation(userLevel == UserLevel.INTERMEDIATE)
+       $sReg: StrengthRegime(exercise.getEquipment() == Equipment.DUMBBELLS_WITH_PLATES)
+    then
+       System.out.println("----> User is intermediate and the exercise requires a dumbbells, set workload accordingly");
+       modify($sReg) {
+           setWorkLoad((int)((random.nextInt(5)+10)/100.0 * $user.getWeight() * $user.getWorkLoadFactor()));
+       }
+end
+
+rule "User is intermediate and the exercise requires a kettlebell, set workload accordingly"
+    agenda-group "workLoad"
+    when
+       $user: UserInformation(userLevel == UserLevel.INTERMEDIATE)
+       $sReg: StrengthRegime(exercise.getEquipment() == Equipment.KETTLEBELL)
+    then
+       System.out.println("----> User is intermediate and the exercise requires a kettlebell, set workload accordingly");
+       modify($sReg) {
+           setWorkLoad((int)((random.nextInt(6)+22)/100.0 * $user.getWeight() * $user.getWorkLoadFactor()));
+       }
+end
+
+
+
+rule "User is advanced and the exercise requires a barbell with plates, set workload accordingly"
+    agenda-group "workLoad"
+    when
+       $user: UserInformation(userLevel == UserLevel.ADVANCED)
+       $sReg: StrengthRegime(exercise.getEquipment() == Equipment.BARBELL_WITH_PLATES)
+    then
+       System.out.println("----> User is advanced and the exercise requires a barbell with plates, set workload accordingly");
+       modify($sReg) {
+           setWorkLoad((int)((random.nextInt(25)+50)/100.0 * $user.getWeight() * $user.getWorkLoadFactor()));
+       }
+end
+
+rule "User is advanced and the exercise requires a dumbbells, set workload accordingly"
+    agenda-group "workLoad"
+    when
+       $user: UserInformation(userLevel == UserLevel.ADVANCED)
+       $sReg: StrengthRegime(exercise.getEquipment() == Equipment.DUMBBELLS_WITH_PLATES)
+    then
+       System.out.println("----> User is advanced and the exercise requires a dumbbells, set workload accordingly");
+       modify($sReg) {
+           setWorkLoad((int)((random.nextInt(5)+15)/100.0 * $user.getWeight() * $user.getWorkLoadFactor()));
+       }
+end
+
+rule "User is advanced and the exercise requires a kettlebell, set workload accordingly"
+    agenda-group "workLoad"
+    when
+       $user: UserInformation(userLevel == UserLevel.ADVANCED)
+       $sReg: StrengthRegime(exercise.getEquipment() == Equipment.KETTLEBELL)
+    then
+       System.out.println("----> User is advanced and the exercise requires a kettlebell, set workload accordingly");
+       modify($sReg) {
+           setWorkLoad((int)((random.nextInt(8)+24)/100.0 * $user.getWeight() * $user.getWorkLoadFactor()));
+       }
+end

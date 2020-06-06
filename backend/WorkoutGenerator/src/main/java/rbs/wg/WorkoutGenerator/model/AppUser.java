@@ -22,7 +22,7 @@ public class AppUser extends Person {
     private double repetitionFactor = 1;
 
     @Column(nullable = false)
-    private double workloadFactor = 1;
+    private double workLoadFactor = 1;
 
     @Column(nullable = false)
     private int workIntervalFactor = 0;

@@ -1,6 +1,6 @@
 
 ------ USERS ------
-insert into app_user(id, email, first_name, last_name, password, weight, user_level, repetition_factor, workload_factor, work_interval_factor, upper_body_worked) values (-1, "user@email.com", "dummy", "dummy", "password", 70, 1, 1, 1, 0, false)
+insert into app_user(id, email, first_name, last_name, password, weight, user_level, repetition_factor, work_load_factor, work_interval_factor, upper_body_worked) values (-1, "user@email.com", "dummy", "dummy", "password", 70, 1, 1, 1, 0, false)
 
 
 ----- BARBELL EXERCISES -----

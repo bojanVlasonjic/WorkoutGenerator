@@ -6,7 +6,6 @@ import rbs.wg.WorkoutGenerator.dto.WorkoutDto;
 import rbs.wg.WorkoutGenerator.exception.ApiNotFoundException;
 import rbs.wg.WorkoutGenerator.facts.WorkoutProcessing;
 import rbs.wg.WorkoutGenerator.model.*;
-import rbs.wg.WorkoutGenerator.repository.AppUserRepository;
 import rbs.wg.WorkoutGenerator.repository.WorkoutRepository;
 
 import java.util.Date;
@@ -20,6 +19,9 @@ public class WorkoutService {
 
     @Autowired
     private WorkoutRepository workoutRepository;
+
+    @Autowired
+    private StrengthRegimeService strengthRegimeService;
 
     @Autowired
     private AppUserService appUserService;
@@ -42,7 +44,6 @@ public class WorkoutService {
                 .orElseThrow(() -> new ApiNotFoundException("User not found"));
 
         Workout workout = new Workout(workoutDto, user);
-        workout.setTemporaryId(null); // no need for this anymore
         workout = workoutRepository.save(workout);
 
         // if strength workout switch to lower/upper body for next workout
@@ -73,11 +74,13 @@ public class WorkoutService {
                                             AppUser user) {
 
         Workout workout = new Workout();
-        workout.setTemporaryId(UUID.randomUUID());
 
         StrengthWorkout strengthWorkout = new StrengthWorkout(workout, workoutProcessing, exercises);
-        workout.initWorkout(strengthWorkout,null, user, new Date());
+        strengthWorkout.setStrengthRegime(
+                strengthRegimeService.determineWorkLoad(strengthWorkout.getStrengthRegime(), user)
+        );
 
+        workout.initWorkout(strengthWorkout,null, user, new Date());
         return new WorkoutDto(workout);
 
     }
@@ -87,7 +90,6 @@ public class WorkoutService {
                                                 AppUser user) {
 
         Workout workout = new Workout();
-        workout.setTemporaryId(UUID.randomUUID());
 
         ConditioningWorkout conditioningWorkout = new ConditioningWorkout(workout, workoutProcessing, exercises);
         workout.initWorkout(null, conditioningWorkout, user, new Date());
@@ -102,9 +104,11 @@ public class WorkoutService {
                                          AppUser user) {
 
         Workout workout = new Workout();
-        workout.setTemporaryId(UUID.randomUUID());
 
         StrengthWorkout strengthWorkout = new StrengthWorkout(workout, workoutProcessing, strengthExercises);
+        strengthWorkout.setStrengthRegime(
+                strengthRegimeService.determineWorkLoad(strengthWorkout.getStrengthRegime(), user)
+        );
         ConditioningWorkout conditioningWorkout = new ConditioningWorkout(workout,
                 workoutProcessing, conditioningExercises);
 
