@@ -87,7 +87,7 @@ Na osnovu ovih činjenica, pokreće se rezoner i redom sledeća pravila se okida
 
 Od svih vežbi, korisnik će za svaki artikal opreme dobiti izlistano po nekoliko vežbi. Moći će da odabere neke koje bi želeo da radi i time kreira svoj trening. Sa druge strane može pokrenuti i nasumičan odabir čime će se iz skupa odabrati određen broj vežbi na osnovu prethodnih pravila.
 
-U slučaju nasumičnog odabira vežbi, za svaku od vežbi se odredi opterećenje ukoliko se vežba izvodi upotrebom šipke, bučica ili ruskog zvona. Recimo da je jedna od vežbi snage zadnji čučanj šipkom:
+U slučaju nasumičnog odabira vežbi, za svaku od vežbi snage se odredi opterećenje ukoliko se vežba izvodi upotrebom šipke, bučica ili ruskog zvona. Recimo da je jedna od vežbi snage zadnji čučanj šipkom:
   - Korisnik je srednjeg nivoa spremnosti, vežba se izvodi sa šipkom - skaliraj opterećenje na 45-65% telesne mase.
 
 Kad se korisnik opredeli za neki trening i doda ga u kolekciju svojih treninga, nudi mu se mogućnost da popuni odgovarajuće ankete. Recimo da je korisnik ocenio trening kao izuzetno težak (9/10) i požalio se na opterećenje. U tom slučaju se okida pravilo iz sledeće grupe pravila:
@@ -127,10 +127,10 @@ U nastavku su navedena sva pravila po njihovim grupama.
 	- Korisnik je početnog nivoa spremnosti, vežba se izvodi ruskim zvonom - skaliraj opterećenje za tu vežbu na 15-20% telesne mase.
 	- Korisnik je srednjeg nivoa spremnosti, vežba se izvodi šipkom - skaliraj opterećenje za tu vežbu na 45-65% telesne mase.
 	- Korisnik je srednjeg nivoa spremnosti, vežba se izvodi bučicama - skaliraj opterećenje za tu vežbu na 12-16% telesne mase.
-	- Korisnik je srednjeg nivoa spremnosti, vežba se izvodi ruskim zvonom - skaliraj opterećenje za tu vežbu na 22-28% telesne 
+	- Korisnik je srednjeg nivoa spremnosti, vežba se izvodi ruskim zvonom - skaliraj opterećenje za tu vežbu na 22-28% telesne mase.
 	- Korisnik je naprednog nivoa spremnosti, vežba se izvodi šipkom - skaliraj opterećenje za tu vežbu na 55-70% telesne mase.
 	- Korisnik je naprednog nivoa spremnosti, vežba se izvodi bučicama - skaliraj opterećenje za tu vežbu na 15-20% telesne mase.
-	- Korisnik je naprednog nivoa spremnosti, vežba se izvodi ruskim zvonom - skaliraj opterećenje za tu vežbu na 24-32% telesne 
+	- Korisnik je naprednog nivoa spremnosti, vežba se izvodi ruskim zvonom - skaliraj opterećenje za tu vežbu na 24-32% telesne mase. 
 	
 
 - Pravila za modifikaciju korisničkih faktora na osnovu ocene (agenda-group "review").
