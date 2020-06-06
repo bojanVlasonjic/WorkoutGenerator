@@ -87,6 +87,9 @@ Na osnovu ovih činjenica, pokreće se rezoner i redom sledeća pravila se okida
 
 Od svih vežbi, korisnik će za svaki artikal opreme dobiti izlistano po nekoliko vežbi. Moći će da odabere neke koje bi želeo da radi i time kreira svoj trening. Sa druge strane može pokrenuti i nasumičan odabir čime će se iz skupa odabrati određen broj vežbi na osnovu prethodnih pravila.
 
+U slučaju nasumičnog odabira vežbi, za svaku od vežbi se odredi opterećenje ukoliko se vežba izvodi upotrebom šipke, bučica ili ruskog zvona. Recimo da je jedna od vežbi snage zadnji čučanj šipkom:
+  - Korisnik je srednjeg nivoa spremnosti, vežba se izvodi sa šipkom - skaliraj opterećenje na 45-65% telesne mase.
+
 Kad se korisnik opredeli za neki trening i doda ga u kolekciju svojih treninga, nudi mu se mogućnost da popuni odgovarajuće ankete. Recimo da je korisnik ocenio trening kao izuzetno težak (9/10) i požalio se na opterećenje. U tom slučaju se okida pravilo iz sledeće grupe pravila:
 
 - Pravila za modifikaciju korisničkih faktora na osnovu ocene.
@@ -94,10 +97,12 @@ Kad se korisnik opredeli za neki trening i doda ga u kolekciju svojih treninga, 
 
 ## Spisak-pravila:
 
-Pravila su odvojena u posebne datoteke, u zavisnosti od logike na koju se odnose. U načelu, postoje dve grupe pravila:
-	- Pravila koja se odnose na pravljenje treninga (agenda-group "workout")
-	- Pravila koja se odnose na ocenjivanje treninga (agenda-group "review")
+Pravila su odvojena u posebne datoteke, u zavisnosti od logike na koju se odnose. U načelu, postoje tri grupe pravila:
+  1. Pravila koja se odnose na pravljenje treninga (agenda-group "workout")
+  2. Pravila koja se odnose na ocenjivanje treninga (agenda-group "review")
+  3. Pravila koja za svaku vežbu snage određuju opterećenja (agenda-group "workLoad")
 
+U nastavku su navedena sva pravila po njihovim grupama.
 
 - Pravila za određivanje sledeće dve grupe mišića koju bi korisnik trebao da trenira (agenda-group "workout"):
 	- Na prethodnom treningu je korisnik vežbao gornji deo tela, nasumišno odaberi dve grupe mišića za donji deo tela.
@@ -114,6 +119,18 @@ Pravila su odvojena u posebne datoteke, u zavisnosti od logike na koju se odnose
 	- Odabran je kružni trening - broj intervala će biti 8. Broj rundi će biti 4. Odmaraće 2 minuta između rundi.
 	- Odabran je trening snage - broj serija će biti 3. Odmaraće 2 minuta između vežbi.
 	- Odabrana je kombinacija snage i kružnog treninga - prepolovi broj vežbi po treningu. Postavi broj serija na 5. Broj intervala za kružni trening biti 8. Broj rundi će biti 2. Odmaraće 1 minut između vežbi snage, a 2 minuta između rundi u kružnom treningu.
+	
+	
+- Pravila koja određuju opterećenja za prosleđenu vežbu snage u zavisnosti od nivoa spremnosti korisnika i opreme kojom se vežba izvodi (agenda-group "workLoad"):
+	- Korisnik je početnog nivoa spremnosti, vežba se izvodi šipkom - skaliraj opterećenje za tu vežbu na 35-50% telesne mase.
+	- Korisnik je početnog nivoa spremnosti, vežba se izvodi bučicama - skaliraj opterećenje za tu vežbu na 8-12% telesne mase.
+	- Korisnik je početnog nivoa spremnosti, vežba se izvodi ruskim zvonom - skaliraj opterećenje za tu vežbu na 15-20% telesne mase.
+	- Korisnik je srednjeg nivoa spremnosti, vežba se izvodi šipkom - skaliraj opterećenje za tu vežbu na 45-65% telesne mase.
+	- Korisnik je srednjeg nivoa spremnosti, vežba se izvodi bučicama - skaliraj opterećenje za tu vežbu na 12-16% telesne mase.
+	- Korisnik je srednjeg nivoa spremnosti, vežba se izvodi ruskim zvonom - skaliraj opterećenje za tu vežbu na 22-28% telesne 
+	- Korisnik je naprednog nivoa spremnosti, vežba se izvodi šipkom - skaliraj opterećenje za tu vežbu na 55-70% telesne mase.
+	- Korisnik je naprednog nivoa spremnosti, vežba se izvodi bučicama - skaliraj opterećenje za tu vežbu na 15-20% telesne mase.
+	- Korisnik je naprednog nivoa spremnosti, vežba se izvodi ruskim zvonom - skaliraj opterećenje za tu vežbu na 24-32% telesne 
 	
 
 - Pravila za modifikaciju korisničkih faktora na osnovu ocene (agenda-group "review").
