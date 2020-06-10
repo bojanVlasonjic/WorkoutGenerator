@@ -6,4 +6,8 @@
         <ksession name="WGSession" />
     </kbase>
 
+    <kbase name="WorkoutGeneratorCep" eventProcessingMode="stream" packages="drools.cep">
+        <ksession name="CEPSession" />
+    </kbase>
+
 </kmodule>
