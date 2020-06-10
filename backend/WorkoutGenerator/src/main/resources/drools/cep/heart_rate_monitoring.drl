@@ -6,30 +6,31 @@ import rbs.wg.WorkoutGenerator.events.NotificationMessage;
 
 rule "Last 3 heart rates during workout are low, notify user to pick up the pace"
     when
-        $hr1: HeartRateEvent(heartRate < goal)
-        Number(intValue % 3 == 0) from accumulate(
-            $hr2: HeartRateEvent(
-                this != $hr1,
-                heartRate < goal
-            ),
+        $msg: NotificationMessage(message == null)
+        $hr1: HeartRateEvent($goal: goal)
+        Number(intValue == 3) from accumulate(
+            $hr2: HeartRateEvent(this != $hr1, heartRate < $goal) over window:length(3),
             count($hr2)
         )
     then
         System.out.println("--->Last 3 heart rates during workout are LOW, notify user to pick up the pace");
+        modify($msg) {
+            setMessage("Pick up the pace!");
+        }
 end
 
 
 rule "Last 3 heart rates during workout are high, notify user to maintain pace"
     when
-        $hr1: HeartRateEvent(heartRate >= goal)
-        Number(intValue % 3 == 0) from accumulate(
-            $hr2: HeartRateEvent(
-                this != $hr1,
-                heartRate >= goal
-            ),
+        $msg: NotificationMessage(message == null)
+        $hr1: HeartRateEvent($goal: goal)
+        Number(intValue ==  3) from accumulate(
+            $hr2: HeartRateEvent(this != $hr1, heartRate >= $goal) over window:length(3),
             count($hr2)
         )
     then
         System.out.println("--->Last 3 heart rates during workout are HIGH, notify user to maintain pace");
-
+         modify($msg) {
+            setMessage("Good work, keep maintaining this pace!");
+         }
 end

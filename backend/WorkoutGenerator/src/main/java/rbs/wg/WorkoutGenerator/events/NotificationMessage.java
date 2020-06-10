@@ -8,7 +8,7 @@ import org.kie.api.definition.type.PropertyReactive;
 import org.kie.api.definition.type.Role;
 
 
-@Role(Role.Type.EVENT)
+@PropertyReactive
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

@@ -8,7 +8,7 @@ import org.kie.api.definition.type.PropertyReactive;
 import org.kie.api.definition.type.Role;
 import rbs.wg.WorkoutGenerator.dto.HeartRateDto;
 
-@PropertyReactive
+@Role(Role.Type.EVENT)
 @NoArgsConstructor
 @Getter
 @Setter
