@@ -49,14 +49,14 @@ public class HeartRateService {
         FactHandle msgFact = userSession.insert(new NotificationMessage());
         userSession.insert(new HeartRateEvent(heartRateDto));
         userSession.fireAllRules();
-        
+
         // extract message
         Collection<?> messages = userSession.getObjects(new ClassObjectFilter(NotificationMessage.class));
         Optional<NotificationMessage> msg = (Optional<NotificationMessage>) messages.stream().findFirst();
 
         // if the message was extracted, send it back to the user
         msg.ifPresent(notificationMessage -> heartRateDto.setNotificationMessage(notificationMessage.getMessage()));
-        userSession.delete(msgFact); // delete the message
+        userSession.delete(msgFact);
 
         return heartRateDto;
 
