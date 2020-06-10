@@ -8,6 +8,8 @@
   * [Izlazi iz sistema](#izlazi-iz-sistema)
   * [Baza znanja](#baza-znanja)
 * [Primer rezonovanja](#primer-rezonovanja)
+  * [Osnovna pravila](#osnovna-pravila)
+  * [Kompleksno procesiranje događaja](#kompleksno-procesiranje-događaja)
 * [Spisak pravila](#spisak-pravila)
 * [Reference](#reference)
 
@@ -97,6 +99,8 @@ Kad se korisnik opredeli za neki trening i doda ga u kolekciju svojih treninga, 
 
 ## Spisak-pravila:
 
+### Osnovna-pravila:
+
 Pravila su odvojena u posebne datoteke, u zavisnosti od logike na koju se odnose. U načelu, postoje tri grupe pravila:
   1. Pravila koja se odnose na pravljenje treninga (agenda-group "workout")
   2. Pravila koja se odnose na ocenjivanje treninga (agenda-group "review")
@@ -140,6 +144,30 @@ U nastavku su navedena sva pravila po njihovim grupama.
 	- Ocena je veća od 8, požalio se na broj ponavljanja - umanji faktor za ponavljanja.
 	- Ocena je veća od 8, požalio se na opterećenje - umanji faktor za opterećenje.
 	- Ocena je veća od 8, požalio se na vr. interval - umanji faktor za vr. interval rada.
+
+
+### Kompleksno-procesiranje-događaja:
+
+Osnovna ideja je da korisnik unese sledeće podatke:
+- Godine
+- Jutarnji puls
+- Intenzitet treninga
+
+Potom se izračuna koliki puls bi korisnik trebao da održi tokom treninga kako bi dostigao željeni intenzitet.
+
+Pokretanjem simulatora se inicijalizuje sesija za *cep*<sup>*</sup> i na *backend* će se u određenom vremenskom intervalu slati trenutni puls i ciljana vrednost pulsa.
+
+Puls će biti inicijalizovan, recimo na 70, i korisnik će moći da ga uvećava ili umanjuje tokom simulacije.
+
+Kao rezultat pravila bi trebale da se izlistaju poslednje 3 poslate vrednosti i da se vrati odgovarajuća poruka korisniku.
+
+Pravila za praćenje rada srca tokom treninga:
+  - Ukoliko su poslednje 3 poslate vrednosti manje od zadatog praga za puls, obavesti korisnika da ubrza tempo rada.
+  - Ukoliko su poslednje 3 poslate vrednosti veće ili jednake zadatom pragu, obavesti korisnika da održi tempo rada.
+  
+  
+Prekidom simulacije se obustavlja slanje podataka uništava se korisnikova sesija za *cep*<sup>*</sup> .
+
 
 
 ## Reference:
