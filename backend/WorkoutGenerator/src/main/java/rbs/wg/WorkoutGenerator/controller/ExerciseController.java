@@ -3,6 +3,7 @@ package rbs.wg.WorkoutGenerator.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import rbs.wg.WorkoutGenerator.dto.ExerciseDto;
 import rbs.wg.WorkoutGenerator.service.ExerciseService;
@@ -11,6 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@Secured({"ROLE_ADMIN"})
 @RequestMapping("api/exercise")
 public class ExerciseController {
 

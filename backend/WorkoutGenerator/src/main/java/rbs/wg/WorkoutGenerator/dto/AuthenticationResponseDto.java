@@ -8,6 +8,7 @@ import lombok.Getter;
 public class AuthenticationResponseDto {
 
     private final String jwt;
+    private final String role;
 
 
 }
