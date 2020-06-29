@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.config.authentication.UserServiceBeanDefinitionParser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import rbs.wg.WorkoutGenerator.dto.UserDto;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -36,6 +38,14 @@ public abstract class Person implements UserDetails {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Authority> authorities;
+
+    public Person(UserDto userDto, Set<Authority> authorities) {
+        this.email = userDto.getEmail();
+        this.password = userDto.getPassword();
+        this.firstName = userDto.getFirstName();
+        this.lastName = userDto.getLastName();
+        this.authorities = authorities;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

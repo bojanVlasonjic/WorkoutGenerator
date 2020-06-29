@@ -1,0 +1,39 @@
+
+.nav-item {
+    color: white;
+    margin-right: 1em;
+    padding: 1ex;
+}
+
+.nav-item:hover {
+    background: lightgray;
+    color: black;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.navbar-brand {
+    margin-right: 3em;
+}
+
+
+/* Toaster */
+#toaster {
+    position: fixed;
+    top: 0;
+    left: 40%;
+    height: 0;
+    z-index: 999999;
+    max-width: 25rem;
+    -webkit-transition: height 0.5s;
+    transition: height 0.5s;
+    overflow: hidden;
+}
+
+#toaster-header {
+    font-size: 19px;
+}
+
+#toaster-message {
+    font-size: 17px;
+}

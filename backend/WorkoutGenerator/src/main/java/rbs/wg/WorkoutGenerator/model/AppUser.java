@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import rbs.wg.WorkoutGenerator.dto.UserDto;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -38,5 +40,30 @@ public class AppUser extends Person {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Workout> workouts;
+
+
+    public AppUser(UserDto userDto, Set<Authority> authorities) {
+
+        super(userDto, authorities);
+        this.weight = userDto.getWeight();
+        this.userLevel = userDto.getUserLevel();
+        this.equipment = userDto.getEquipment();
+
+        this.setFactors(userDto);
+    }
+
+    private void setFactors(UserDto userDto) {
+
+        if(userDto.getRepetitionFactor() != 0) {
+            this.repetitionFactor = userDto.getRepetitionFactor();
+        }
+
+        if(userDto.getWorkLoadFactor() != 0) {
+            this.workLoadFactor = userDto.getWorkLoadFactor();
+        }
+
+        this.workIntervalFactor = userDto.getWorkIntervalFactor();
+
+    }
 
 }

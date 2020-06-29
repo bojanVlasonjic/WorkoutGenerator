@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import rbs.wg.WorkoutGenerator.dto.UserDto;
 import rbs.wg.WorkoutGenerator.dto.WorkoutDto;
 import rbs.wg.WorkoutGenerator.facts.WorkoutRequest;
-import rbs.wg.WorkoutGenerator.service.WorkoutRequestService;
+import rbs.wg.WorkoutGenerator.service.AppUserService;
 
 import javax.validation.Valid;
 
@@ -18,14 +19,14 @@ import javax.validation.Valid;
 public class UserController {
 
     @Autowired
-    private WorkoutRequestService workoutRequestService;
+    private AppUserService userService;
 
-    @PostMapping("/process-workout")
-    public ResponseEntity<WorkoutDto> processWorkout(@Valid @RequestBody WorkoutRequest workoutRequest) {
+    @PostMapping
+    public ResponseEntity<UserDto> registerUser(@Valid @RequestBody UserDto userDto) {
 
         return new ResponseEntity<>(
-                this.workoutRequestService.processWorkout(workoutRequest),
-                HttpStatus.ACCEPTED);
+                userService.registerUser(userDto),
+                HttpStatus.CREATED);
     }
 
 
