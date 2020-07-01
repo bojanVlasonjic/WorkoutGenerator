@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { GenerateWorkoutComponent } from './components/generate-workout/generate-workout.component';
+import { MyWorkoutsComponent } from './components/my-workouts/my-workouts.component';
 
 
 const routes: Routes = [
@@ -23,6 +25,14 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent
   },
+  {
+    path: 'generate-workout',
+    component: GenerateWorkoutComponent
+  },
+  {
+    path: 'my-workouts',
+    component: MyWorkoutsComponent
+  }
 ];
 
 @NgModule({

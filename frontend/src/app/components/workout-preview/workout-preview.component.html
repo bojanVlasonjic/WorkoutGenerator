@@ -1,0 +1,61 @@
+
+<div class="workout-holder">
+<div class="row" *ngIf="workout != null">
+
+    <div class="col-sm-6" *ngIf="workout.strengthWorkoutDto != null">
+
+        <div class="card text-white bg-dark mb-3" style="max-width: 23rem;">
+            <div class="card-header"> Strength workout </div>
+            <div class="card-body">
+                <label> Sets per exercise: {{ workout.strengthWorkoutDto.strengthRegimes[0].numberOfSets }} </label>
+                <ul *ngFor="let strengthRegime of workout.strengthWorkoutDto.strengthRegimes">
+
+                    <li *ngIf="strengthRegime.workLoad == 0" class="list-item-exercise" 
+                        (click)="displayExercise(strengthRegime.exerciseDto)">
+                        {{ strengthRegime.repetitions}} {{ strengthRegime.exerciseDto.name }}
+                    </li>
+    
+                    <li *ngIf="strengthRegime.workLoad != 0" class="list-item-exercise"
+                        (click)="displayExercise(strengthRegime.exerciseDto)">
+                        {{ strengthRegime.repetitions}} {{ strengthRegime.exerciseDto.name }}
+                        with {{ strengthRegime.workLoad }} kg
+                    </li>
+                
+                </ul>
+                <label> Rest for {{ workout.strengthWorkoutDto.restBetweenSets }} seconds between rounds </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6" *ngIf="workout.conditioningWorkoutDto != null">
+
+        <div class="card text-white bg-dark mb-3" style="max-width: 23rem;">
+            <div class="card-header"> Conditioning workout </div>
+            <div class="card-body">
+                <label> {{ workout.conditioningWorkoutDto.numberOfIntervals }} intervals </label>
+                <br/>
+                <label> 
+                    {{ workout.conditioningWorkoutDto.workInterval }} sec on,
+                    {{ workout.conditioningWorkoutDto.restInterval }} sec off
+                </label>
+
+                <ul>
+                    <li *ngFor="let exercise of workout.conditioningWorkoutDto.exercises" class="list-item-exercise"
+                        (click)="displayExercise(exercise)">
+                        {{ exercise.name }}
+                    </li> 
+                </ul>
+        
+                <label> 
+                    Repeat for {{ workout.conditioningWorkoutDto.numberOfRounds}} rounds
+                </label>
+
+                <label>
+                    Rest {{ workout.conditioningWorkoutDto.restBetweenRounds }} sec between rounds
+                </label>
+        
+            </div>
+        </div>  
+    </div>
+</div>
+</div>

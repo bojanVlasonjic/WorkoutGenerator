@@ -36,11 +36,11 @@ public class WorkoutRequestService {
     private Random random;
 
 
-    public WorkoutDto processWorkout(WorkoutRequest workoutRequest) {
+    public WorkoutDto generateWorkout(WorkoutRequest workoutRequest) {
 
         AppUser user = this.userRepo
-                .findById(workoutRequest.getUserId())
-                .orElseThrow(() -> new ApiNotFoundException("Failed to find user with id " + workoutRequest.getUserId()));
+                .findByEmail(workoutRequest.getEmail())
+                .orElseThrow(() -> new ApiNotFoundException("Failed to find user with email " + workoutRequest.getEmail()));
 
         // default equipment is none
         workoutRequest.getSpecifiedEquipment().add(Equipment.NONE);
@@ -172,7 +172,7 @@ public class WorkoutRequestService {
 
         // if no exercises were found
         if(equipmentSize == 0) {
-            throw new ApiNotFoundException("Failed to find exercises");
+            throw new ApiNotFoundException("Failed to find exercises. Please try again, or use more equipment.");
         }
 
         for(int i = 0; i < numOfExercises; i++) {

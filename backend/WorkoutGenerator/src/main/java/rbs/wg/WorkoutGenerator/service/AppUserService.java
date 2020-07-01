@@ -42,6 +42,10 @@ public class AppUserService {
         return userRepo.findById(userId);
     }
 
+    public Optional<AppUser> findUserByEmail(String email) {
+        return userRepo.findByEmail(email);
+    }
+
     public AppUser saveUser(AppUser user) {
         return userRepo.save(user);
     }

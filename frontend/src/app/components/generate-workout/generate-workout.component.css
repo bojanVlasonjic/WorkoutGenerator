@@ -1,0 +1,30 @@
+
+.form-holder {
+    position: relative;
+    top: 10ex;
+    width: 60%;
+    left: 20%;
+    margin-bottom: 10ex;
+}
+
+.heading {
+    margin-bottom: 2ex;
+}
+
+.custom-control {
+    padding: 5px;
+}
+
+.wide-btn {
+    margin-top: 4ex;
+    margin-bottom: 4ex;
+    width: 100%;
+}
+
+.header {
+    text-align: center;
+    margin-top: 2ex;
+}
+
+
+

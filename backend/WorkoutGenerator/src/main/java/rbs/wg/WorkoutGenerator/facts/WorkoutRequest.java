@@ -7,6 +7,7 @@ import rbs.wg.WorkoutGenerator.model.Equipment;
 import rbs.wg.WorkoutGenerator.model.ExerciseType;
 import rbs.wg.WorkoutGenerator.model.MuscleGroup;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -15,8 +16,8 @@ import java.util.List;
 @Setter
 public class WorkoutRequest {
 
-    @NotNull(message = "User identification is required")
-    private Long userId;
+    @NotEmpty(message = "User email is required")
+    private String email;
 
     @NotNull(message = "Specified equipment is required")
     private List<Equipment> specifiedEquipment;
@@ -24,5 +25,4 @@ public class WorkoutRequest {
     @NotNull(message = "User identification is required")
     private ExerciseType workoutType;
 
-    private MuscleGroup targetedMuscle;
 }

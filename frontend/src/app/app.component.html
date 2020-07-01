@@ -8,7 +8,7 @@
   </button>
   <div [ngClass]="isNavbarCollapsed ? 'collapse navbar-collapse show' : 'collapse navbar-collapse'" id="wgNavBar">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active" routerLink="/home">
+      <li class="nav-item" routerLink="/home">
         Home 
       </li>
       <li class="nav-item" routerLink="/my-workouts">
@@ -39,6 +39,8 @@
 <div class="container">  
   <router-outlet></router-outlet>
 </div>
+
+<app-exercise-preview></app-exercise-preview>
 
 
 <!-- Toaster used to display messages -->

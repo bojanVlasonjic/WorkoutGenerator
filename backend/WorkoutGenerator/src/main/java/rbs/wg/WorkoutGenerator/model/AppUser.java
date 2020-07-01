@@ -35,9 +35,6 @@ public class AppUser extends Person {
     @Enumerated(EnumType.ORDINAL)
     private UserLevel userLevel;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    private List<Equipment> equipment;
-
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Workout> workouts;
 
@@ -47,7 +44,6 @@ public class AppUser extends Person {
         super(userDto, authorities);
         this.weight = userDto.getWeight();
         this.userLevel = userDto.getUserLevel();
-        this.equipment = userDto.getEquipment();
 
         this.setFactors(userDto);
     }

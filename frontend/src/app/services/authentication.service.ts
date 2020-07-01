@@ -16,18 +16,19 @@ export class AuthenticationService {
   }
 
   isUserSignedIn(): boolean {
-    return window.localStorage.getItem('token') != null &&
-      window.localStorage.getItem('role') != null; 
+    return window.localStorage.getItem('user') != null;
+  }
+
+  getCurrentUser(): AuthenticationResponseDto {
+    return JSON.parse(window.localStorage.getItem('user'));
   }
 
   rememberUser(authResponse: AuthenticationResponseDto): void {
-    window.localStorage.setItem('token', authResponse.jwt);
-    window.localStorage.setItem('role', authResponse.role);
+    window.localStorage.setItem('user', JSON.stringify(authResponse));
   }
 
   clearUser(): void {
-    window.localStorage.removeItem('token');
-    window.localStorage.removeItem('role');
+    window.localStorage.removeItem('user');
   }
 
 

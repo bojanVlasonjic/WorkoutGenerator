@@ -1,0 +1,21 @@
+
+<div [ngClass]="wrapperClass" (click)="hidePopUp()">
+</div>
+<div [ngClass]="modalClass" *ngIf="exercise != null">
+
+    <h5> {{ exercise.name }} </h5>
+
+    <p> {{ exercise.description }}</p>
+
+    <br/>
+
+    <label> Required equipment: {{ exercise.equipment }} </label>
+
+    <br/> <br/>
+
+    <label> Targeted muscles: </label>
+    <ul *ngFor="let muscle of exercise.targetedMuscles">
+        <li> {{ muscle }} </li> 
+    </ul>
+
+</div>

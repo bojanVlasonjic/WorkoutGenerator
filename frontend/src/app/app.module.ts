@@ -1,19 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
+import { GenerateWorkoutComponent } from './components/generate-workout/generate-workout.component';
+import { TokenInterceptor } from './interceptor/token.interceptor';
+import { MyWorkoutsComponent } from './components/my-workouts/my-workouts.component';
+import { WorkoutPreviewComponent } from './components/workout-preview/workout-preview.component';
+import { ExercisePreviewComponent } from './components/exercise-preview/exercise-preview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    GenerateWorkoutComponent,
+    MyWorkoutsComponent,
+    WorkoutPreviewComponent,
+    ExercisePreviewComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +30,13 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

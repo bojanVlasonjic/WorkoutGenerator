@@ -4,12 +4,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import rbs.wg.WorkoutGenerator.model.AppUser;
-import rbs.wg.WorkoutGenerator.model.Equipment;
 import rbs.wg.WorkoutGenerator.model.UserLevel;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -40,7 +38,6 @@ public class UserDto {
     private double workLoadFactor;
     private int workIntervalFactor;
 
-    private List<Equipment> equipment;
 
     public UserDto(AppUser user) {
 
@@ -55,6 +52,5 @@ public class UserDto {
         this.workLoadFactor = user.getWorkLoadFactor();
         this.workIntervalFactor = user.getWorkIntervalFactor();
 
-        this.equipment = user.getEquipment();
     }
 }

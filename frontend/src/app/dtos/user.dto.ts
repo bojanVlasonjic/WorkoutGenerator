@@ -13,9 +13,7 @@ export class UserDto {
     workLoadFactor: number;
     workIntervalFactor: number;
 
-    equipment: Array<number>;
 
     constructor() {
-        this.equipment = [];
     }
 }

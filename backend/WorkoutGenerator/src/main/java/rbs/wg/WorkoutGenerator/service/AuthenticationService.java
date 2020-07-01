@@ -45,7 +45,7 @@ public class AuthenticationService {
                 .findFirst()
                 .orElseThrow(() -> new ApiNotFoundException("Failed to find user role"));
 
-        return new AuthenticationResponseDto(token, authority.getRole());
+        return new AuthenticationResponseDto(authRequest.getEmail(), token, authority.getRole());
     }
 
 

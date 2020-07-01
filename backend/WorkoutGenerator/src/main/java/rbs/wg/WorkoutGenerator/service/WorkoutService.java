@@ -27,10 +27,14 @@ public class WorkoutService {
     private AppUserService appUserService;
 
 
-    public List<WorkoutDto> getUserWorkouts(Long userId) {
+    public List<WorkoutDto> getUserWorkouts(String email) {
+
+        AppUser user = this.appUserService
+                .findUserByEmail(email)
+                .orElseThrow(() -> new ApiNotFoundException("User not found"));
 
         return workoutRepository
-                .findByUserId(userId)
+                .findByUserId(user.getId())
                 .stream()
                 .map(WorkoutDto::new)
                 .collect(Collectors.toList());
