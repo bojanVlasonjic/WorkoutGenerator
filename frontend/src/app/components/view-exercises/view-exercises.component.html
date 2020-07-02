@@ -1,0 +1,40 @@
+<table class="table exercise-table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Equipment</th>
+        <th scope="col">Exercise type</th>
+        <th scope="col" colspan="3">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let exercise of exercises; index as i">
+
+            <td> {{ i + 1 }} </td>
+            <td> {{ exercise.name }} </td>
+            <td> {{ exercise.equipment }} </td>
+            <td> {{ exercise.exerciseType }} </td>
+            <td>
+                <button class="btn btn-secondary" (click)="viewExercise(exercise)">
+                    View
+                </button>
+            </td>
+
+            <td>
+                <button class="btn btn-secondary" (click)="redirectToUpdate(exercise.id)"> 
+                    Update
+                </button>
+            </td>
+
+            <td>
+                <button class="btn btn-danger" (click)="deleteExercise(exercise)"> 
+                    Delete
+                </button>
+            </td>
+        </tr>
+
+    </tbody>
+
+</table>

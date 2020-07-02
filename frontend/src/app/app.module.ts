@@ -13,6 +13,8 @@ import { MyWorkoutsComponent } from './components/my-workouts/my-workouts.compon
 import { WorkoutPreviewComponent } from './components/workout-preview/workout-preview.component';
 import { ExercisePreviewComponent } from './components/exercise-preview/exercise-preview.component';
 import { HrSimulationComponent } from './components/hr-simulation/hr-simulation.component';
+import { ManageExerciseComponent } from './components/manage-exercise/manage-exercise.component';
+import { ViewExercisesComponent } from './components/view-exercises/view-exercises.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { HrSimulationComponent } from './components/hr-simulation/hr-simulation.
     MyWorkoutsComponent,
     WorkoutPreviewComponent,
     ExercisePreviewComponent,
-    HrSimulationComponent
+    HrSimulationComponent,
+    ManageExerciseComponent,
+    ViewExercisesComponent
   ],
   imports: [
     BrowserModule,

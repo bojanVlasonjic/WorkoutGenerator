@@ -1,0 +1,135 @@
+<div class="form-holder">
+
+    <h3 class="heading"> Manage exercise </h3>
+
+    <form (ngSubmit)="manageExercise()" #exForm="ngForm" novalidate>
+        <div class="form-group">
+            <label>Exercise name: </label>
+            <input type="text" class="form-control" placeholder="Enter name" [(ngModel)]="exercise.name"
+                name="exerciseName" #exerciseName="ngModel" autocomplete="off" required>
+            <small *ngIf="exForm.submitted && exerciseName.errors?.required" class="error-message">
+                Exercise name is required
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label>Exercise description: </label>
+            <textarea class="form-control" rows="5" placeholder="Enter description" name="exerciseDescr"
+                [(ngModel)]="exercise.description" #exerciseDescr="ngModel" autocomplete="off" required>
+            </textarea>
+            <small *ngIf="exForm.submitted && exerciseDescr.errors?.required" class="error-message">
+                Exercise description is required
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label>Exercise type </label>
+            <select class="custom-select" name="exerciseType" [(ngModel)]="exercise.exerciseType">
+                <option value="STRENGTH">Strength</option>
+                <option value="CONDITIONING">Conditioning</option>
+                <option value="COMBO">Combo</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Equipment </label>
+            <select class="custom-select" name="equipment" [(ngModel)]="exercise.equipment">
+                <option value="NONE">None</option>
+                <option value="BARBELL_WITH_PLATES">Barbell with plates</option>
+                <option value="PULL_UP_BAR">Pull up bar</option>
+                <option value="DIP_BAR">Dip bar</option>
+                <option value="DUMBBELLS_WITH_PLATES">Dumbbells</option>
+                <option value="KETTLEBELL">Kettlebell</option>
+                <option value="JUMP_ROPE">Jump rope</option>
+            </select>
+        </div>
+
+        <!--  Muscle group checkboxes -->
+        <h5> Targeted muscles: </h5>
+        <div class="row checkbox-holder">
+            <div class="col-md-6">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="shouldersCheck" (change)="muscleGroupChecked(0)">
+                    <label class="custom-control-label" for="shouldersCheck">Shoulders</label>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="tricepsCheck" (change)="muscleGroupChecked(1)">
+                    <label class="custom-control-label" for="tricepsCheck">Triceps</label>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="bicepsCheck" (change)="muscleGroupChecked(2)">
+                    <label class="custom-control-label" for="bicepsCheck">Biceps</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="chestCheck" (change)="muscleGroupChecked(3)">
+                    <label class="custom-control-label" for="chestCheck">Chest</label>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="backCheck" (change)="muscleGroupChecked(4)">
+                    <label class="custom-control-label" for="backCheck"> Back </label>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="coreCheck" (change)="muscleGroupChecked(5)">
+                    <label class="custom-control-label" for="coreCheck"> Core </label>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="quadsCheck" (change)="muscleGroupChecked(6)">
+                    <label class="custom-control-label" for="quadsCheck"> Quads </label>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="hamstringsCheck" (change)="muscleGroupChecked(7)">
+                    <label class="custom-control-label" for="hamstringsCheck"> Hamstrings </label>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="gluteusCheck" (change)="muscleGroupChecked(8)">
+                    <label class="custom-control-label" for="gluteusCheck"> Gluteus </label>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="calvesCheck" (change)="muscleGroupChecked(9)">
+                    <label class="custom-control-label" for="calvesCheck"> Calves </label>
+                </div>
+            </div>
+
+            <div class="col-md-8 offset-md-2" *ngIf="exForm.submitted && exercise.targetedMuscles.length == 0">
+                <small class="error-message">
+                    You need to select at least 1 muscle group
+                </small>
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-dark wide-btn" *ngIf="!isEditing">
+            Create
+        </button>
+
+        <button type="submit" class="btn btn-dark wide-btn" *ngIf="isEditing">
+            Update
+        </button>
+    </form>
+</div>

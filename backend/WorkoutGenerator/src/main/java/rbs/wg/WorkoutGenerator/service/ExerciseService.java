@@ -27,6 +27,15 @@ public class ExerciseService {
                 .collect(Collectors.toList());
     }
 
+    public ExerciseDto getExerciseById(Long id) {
+
+        return exerciseRepository
+                .findById(id)
+                .map(ExerciseDto::new)
+                .orElseThrow(() -> new ApiNotFoundException("Exercise not found"));
+
+    }
+
     public ExerciseDto createNewExercise(ExerciseDto newExercise) {
 
          Exercise ex = new Exercise(newExercise);
@@ -50,6 +59,16 @@ public class ExerciseService {
         exercise.updateExercise(exerciseDto);
         exerciseRepository.save(exercise);
         return exerciseDto;
+    }
+
+    public boolean deleteExercise(Long exerciseId) {
+
+        Exercise exercise = exerciseRepository
+                .findById(exerciseId)
+                .orElseThrow(() -> new ApiNotFoundException("Exercise not found"));
+
+        exerciseRepository.delete(exercise);
+        return true;
     }
 
 

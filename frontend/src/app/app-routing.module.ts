@@ -6,6 +6,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { GenerateWorkoutComponent } from './components/generate-workout/generate-workout.component';
 import { MyWorkoutsComponent } from './components/my-workouts/my-workouts.component';
 import { HrSimulationComponent } from './components/hr-simulation/hr-simulation.component';
+import { ViewExercisesComponent } from './components/view-exercises/view-exercises.component';
+import { ManageExerciseComponent } from './components/manage-exercise/manage-exercise.component';
 
 
 const routes: Routes = [
@@ -37,6 +39,18 @@ const routes: Routes = [
   {
     path: 'hr-simulation',
     component: HrSimulationComponent
+  },
+  {
+    path: 'view-exercises',
+    component: ViewExercisesComponent
+  },
+  {
+    path: 'manage-exercise',
+    component: ManageExerciseComponent
+  },
+  {
+    path: 'manage-exercise/:id',
+    component: ManageExerciseComponent
   }
 ];
 

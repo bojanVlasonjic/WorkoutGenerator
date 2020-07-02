@@ -24,6 +24,11 @@ public class ExerciseController {
         return new ResponseEntity<>(exerciseService.getAllExercises(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ExerciseDto> getExercise(@PathVariable Long id) {
+        return new ResponseEntity<>(exerciseService.getExerciseById(id), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<ExerciseDto> createNewExercise(@RequestBody @Valid ExerciseDto newExercise) {
         return new ResponseEntity<>(
@@ -36,6 +41,14 @@ public class ExerciseController {
     public ResponseEntity<ExerciseDto> updateExercise(@RequestBody @Valid ExerciseDto exercise) {
         return new ResponseEntity<>(
                 exerciseService.updateExercise(exercise),
+                HttpStatus.OK
+        );
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> deleteExercise(@PathVariable Long id) {
+        return new ResponseEntity<>(
+                exerciseService.deleteExercise(id),
                 HttpStatus.OK
         );
     }
