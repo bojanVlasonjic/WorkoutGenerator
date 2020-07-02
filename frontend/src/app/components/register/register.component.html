@@ -29,20 +29,11 @@
         </div>
 
         <div class="form-group">
-            <label>First name: </label>
-            <input type="text" name="firstname" class="form-control" placeholder="First name"
-                [(ngModel)]="userData.firstName" #firstname="ngModel" required>
-            <small *ngIf="rf.submitted && firstname.errors?.required" class="error-message">
-                First name is required
-            </small>
-        </div>
-
-        <div class="form-group">
-            <label>Last name: </label>
-            <input type="text" name="lastname" class="form-control" placeholder="Last name" 
-                [(ngModel)]="userData.lastName" #lastname="ngModel" required>
-            <small *ngIf="rf.submitted && lastname.errors?.required" class="error-message">
-                Last name is required
+            <label>Name: </label>
+            <input type="text" name="userName" class="form-control" placeholder="Enter name"
+                [(ngModel)]="userData.name" #userName="ngModel" required>
+            <small *ngIf="rf.submitted && userName.errors?.required" class="error-message">
+                Name is required
             </small>
         </div>
 

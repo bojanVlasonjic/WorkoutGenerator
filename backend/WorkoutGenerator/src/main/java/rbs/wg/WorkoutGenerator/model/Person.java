@@ -31,10 +31,7 @@ public abstract class Person implements UserDetails {
     private String password;
 
     @Column(nullable = false)
-    private String firstName;
-
-    @Column(nullable = false)
-    private String lastName;
+    private String name;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Authority> authorities;
@@ -42,8 +39,7 @@ public abstract class Person implements UserDetails {
     public Person(UserDto userDto, Set<Authority> authorities) {
         this.email = userDto.getEmail();
         this.password = userDto.getPassword();
-        this.firstName = userDto.getFirstName();
-        this.lastName = userDto.getLastName();
+        this.name = userDto.getName();
         this.authorities = authorities;
     }
 

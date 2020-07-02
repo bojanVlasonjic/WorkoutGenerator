@@ -2,10 +2,10 @@ INSERT INTO authority(id, role) VALUES (-1, "ROLE_ADMIN")
 INSERT INTO authority(id, role) VALUES (-2, "ROLE_USER")
 
 ------ USERS ------
-insert into app_user(id, email, first_name, last_name, password, weight, user_level, repetition_factor, work_load_factor, work_interval_factor, upper_body_worked) values (-1, "user@email.com", "dummy", "dummy", "password", 70, 1, 1, 1, 0, false)
+insert into app_user(id, email, name, password, weight, user_level, repetition_factor, work_load_factor, work_interval_factor, upper_body_worked, is_banned) values (-1, "user@email.com", "dummy", "password", 70, 1, 1, 1, 0, false, false)
 insert into app_user_authorities(app_user_id, authorities_id) values (-1, -2)
 
-insert into admin(id, email, first_name, last_name, password) values (-1, "admin@email.com", "admin", "admin", "admin")
+insert into admin(id, email, name, password) values (-1, "admin@email.com", "admin", "admin")
 insert into admin_authorities(admin_id, authorities_id) values (-1, -1)
 
 ----- BARBELL EXERCISES -----

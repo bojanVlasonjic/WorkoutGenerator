@@ -22,17 +22,16 @@ public class UserDto {
     @NotEmpty(message = "Password is required")
     private String password;
 
-    @NotEmpty(message = "First name is required")
-    private String firstName;
-
-    @NotEmpty(message = "Last name is required")
-    private String lastName;
+    @NotEmpty(message = "Name is required")
+    private String name;
 
     @NotNull(message = "Weight is required")
     private double weight;
 
     @NotNull(message = "User level is required")
     private UserLevel userLevel;
+
+    private boolean isBanned;
 
     private double repetitionFactor;
     private double workLoadFactor;
@@ -41,16 +40,18 @@ public class UserDto {
 
     public UserDto(AppUser user) {
 
+        this.id = user.getId();
         this.email = user.getEmail();
         this.password = user.getPassword();
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
+        this.name = user.getName();
         this.weight = user.getWeight();
         this.userLevel = user.getUserLevel();
 
         this.repetitionFactor = user.getRepetitionFactor();
         this.workLoadFactor = user.getWorkLoadFactor();
         this.workIntervalFactor = user.getWorkIntervalFactor();
+
+        this.isBanned = user.isBanned();
 
     }
 }

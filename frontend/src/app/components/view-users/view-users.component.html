@@ -1,0 +1,33 @@
+<table class="table users-table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Email</th>
+        <th scope="col">Name</th>
+        <th scope="col">User level</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let user of users; index as i">
+
+            <td> {{ i + 1 }} </td>
+            <td> {{ user.email }} </td>
+            <td> {{ user.name }} </td>
+            <td> {{ user.userLevel }} </td>
+            <td *ngIf="!user.banned">
+                <button class="btn btn-danger" (click)="changeUserStatus(user)"> 
+                    Ban user
+                </button>
+            </td>
+            <td *ngIf="user.banned">
+                <button class="btn btn-primary" (click)="changeUserStatus(user)"> 
+                    Restore user
+                </button>
+            </td>
+        </tr>
+
+    </tbody>
+
+</table>

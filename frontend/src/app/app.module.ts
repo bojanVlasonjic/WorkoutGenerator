@@ -15,6 +15,7 @@ import { ExercisePreviewComponent } from './components/exercise-preview/exercise
 import { HrSimulationComponent } from './components/hr-simulation/hr-simulation.component';
 import { ManageExerciseComponent } from './components/manage-exercise/manage-exercise.component';
 import { ViewExercisesComponent } from './components/view-exercises/view-exercises.component';
+import { ViewUsersComponent } from './components/view-users/view-users.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ViewExercisesComponent } from './components/view-exercises/view-exercis
     ExercisePreviewComponent,
     HrSimulationComponent,
     ManageExerciseComponent,
-    ViewExercisesComponent
+    ViewExercisesComponent,
+    ViewUsersComponent
   ],
   imports: [
     BrowserModule,

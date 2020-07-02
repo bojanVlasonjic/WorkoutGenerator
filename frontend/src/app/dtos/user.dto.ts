@@ -4,10 +4,10 @@ export class UserDto {
     id: number;
     email: string;
     password: string;
-    firstName: string;
-    lastName: string;
+    name: string;
     weight: number;
     userLevel: number;
+    isBanned: boolean;
 
     repetitionFactor: number;
     workLoadFactor: number;

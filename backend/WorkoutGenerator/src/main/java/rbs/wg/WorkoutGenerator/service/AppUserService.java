@@ -4,15 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rbs.wg.WorkoutGenerator.dto.UserDto;
 import rbs.wg.WorkoutGenerator.exception.ApiBadRequestException;
+import rbs.wg.WorkoutGenerator.exception.ApiNotFoundException;
 import rbs.wg.WorkoutGenerator.model.AppUser;
 import rbs.wg.WorkoutGenerator.model.Authority;
 import rbs.wg.WorkoutGenerator.repository.AppUserRepository;
 import rbs.wg.WorkoutGenerator.repository.AuthorityRepository;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class AppUserService {
@@ -23,6 +22,25 @@ public class AppUserService {
     @Autowired
     private AuthorityRepository authorityRepo;
 
+
+    public List<UserDto> getAllUsers() {
+        return userRepo
+                .findAll()
+                .stream()
+                .map(UserDto::new)
+                .collect(Collectors.toList());
+    }
+
+    public UserDto getUserByEmail(String email) {
+
+        Optional<AppUser> optUser = this.findUserByEmail(email);
+
+        if(optUser.isPresent()) {
+            return new UserDto(optUser.get());
+        }
+
+        throw new ApiNotFoundException("User not found");
+    }
 
     public UserDto registerUser(UserDto userDto) {
 
@@ -35,6 +53,17 @@ public class AppUserService {
 
         AppUser user = userRepo.save(new AppUser(userDto, userAuthorities));
         return new UserDto(user);
+
+    }
+
+    public UserDto changeStatus(Long userId) {
+
+        AppUser user = userRepo
+                .findById(userId)
+                .orElseThrow(() -> new ApiNotFoundException("User not found"));
+
+        user.setBanned(!user.isBanned());
+        return new UserDto(this.saveUser(user));
 
     }
 

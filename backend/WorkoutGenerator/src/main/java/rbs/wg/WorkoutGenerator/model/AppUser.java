@@ -21,6 +21,9 @@ public class AppUser extends Person {
     private double weight;
 
     @Column(nullable = false)
+    private boolean isBanned = false;
+
+    @Column(nullable = false)
     private double repetitionFactor = 1;
 
     @Column(nullable = false)
