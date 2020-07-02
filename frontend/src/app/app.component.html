@@ -11,15 +11,31 @@
       <li class="nav-item" routerLink="/home">
         Home 
       </li>
-      <li class="nav-item" routerLink="/my-workouts">
+
+      <!-- User menu -->
+      <li class="nav-item" routerLink="/my-workouts" *ngIf="userRole() == 'ROLE_USER'">
         My Workouts 
       </li>
-      <li class="nav-item" routerLink="/generate-workout">
+      <li class="nav-item" routerLink="/generate-workout" *ngIf="userRole() == 'ROLE_USER'">
         Generate workout
       </li>
-      <li class="nav-item" routerLink="/hr-simulation">
+      <li class="nav-item" routerLink="/hr-simulation" *ngIf="userRole() == 'ROLE_USER'">
         HR Simulation
       </li>
+
+      <!-- Admin menu -->
+      <li class="nav-item" *ngIf="userRole() == 'ROLE_ADMIN'">
+        Exercises 
+      </li>
+
+      <li class="nav-item" *ngIf="userRole() == 'ROLE_ADMIN'">
+        Users
+      </li>
+
+      <li class="nav-item" *ngIf="userRole() == 'ROLE_ADMIN'">
+        Rules
+      </li>
+
     </ul>
 
     <ul class="navbar-nav">

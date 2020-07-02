@@ -3,19 +3,24 @@
 </div>
 <div [ngClass]="modalClass" *ngIf="exercise != null">
 
-    <h5> {{ exercise.name }} </h5>
+    <div class="modal-content">
+        <h5> {{ exercise.name }} </h5>
 
-    <p> {{ exercise.description }}</p>
+        <p> {{ exercise.description  }}</p>
 
-    <br/>
+        <br/>
 
-    <label> Required equipment: {{ exercise.equipment }} </label>
+        <label> Required equipment: {{ exercise.equipment }} </label>
 
-    <br/> <br/>
+        <br/> <br/>
 
-    <label> Targeted muscles: </label>
-    <ul *ngFor="let muscle of exercise.targetedMuscles">
-        <li> {{ muscle }} </li> 
-    </ul>
+        <label> Targeted muscles: </label>
+        <ul *ngFor="let muscle of exercise.targetedMuscles">
+            <li> {{ muscle }} </li> 
+        </ul>
+
+    </div>
+
+    
 
 </div>

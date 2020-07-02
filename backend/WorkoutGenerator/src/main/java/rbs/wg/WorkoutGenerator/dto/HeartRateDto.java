@@ -12,7 +12,7 @@ public class HeartRateDto {
     private int heartRate;
     private int goal;
 
-    private Long userId;
+    private String userEmail;
     private String notificationMessage;
 
 

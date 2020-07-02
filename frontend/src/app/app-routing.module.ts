@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { GenerateWorkoutComponent } from './components/generate-workout/generate-workout.component';
 import { MyWorkoutsComponent } from './components/my-workouts/my-workouts.component';
+import { HrSimulationComponent } from './components/hr-simulation/hr-simulation.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'my-workouts',
     component: MyWorkoutsComponent
+  },
+  {
+    path: 'hr-simulation',
+    component: HrSimulationComponent
   }
 ];
 

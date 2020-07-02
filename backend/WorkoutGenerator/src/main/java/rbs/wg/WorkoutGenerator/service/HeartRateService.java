@@ -22,30 +22,30 @@ public class HeartRateService {
     @Autowired
     private KieContainer kieContainer;
 
-    private Map<Long, KieSession> userSessions = new HashMap<>();
+    private Map<String, KieSession> userSessions = new HashMap<>();
 
 
-    public boolean startSimulation(Long userId) {
+    public boolean startSimulation(String email) {
 
-        if(userSessions.containsKey(userId)) {
+        if(userSessions.containsKey(email)) {
             return false;
         }
 
-        userSessions.put(userId, kieContainer.newKieSession("CEPSession"));
+        userSessions.put(email, kieContainer.newKieSession("CEPSession"));
         return true;
     }
 
     public HeartRateDto sendHeartRate(HeartRateDto heartRateDto) {
 
-        if(heartRateDto.getUserId() == null) {
-            throw new ApiBadRequestException("User id not valid");
+        if(heartRateDto.getUserEmail() == null) {
+            throw new ApiBadRequestException("User email is not valid");
         }
 
-        if(!userSessions.containsKey(heartRateDto.getUserId())) {
+        if(!userSessions.containsKey(heartRateDto.getUserEmail())) {
             throw new ApiBadRequestException("Simulation not started");
         }
 
-        KieSession userSession = userSessions.get(heartRateDto.getUserId());
+        KieSession userSession = userSessions.get(heartRateDto.getUserEmail());
         FactHandle msgFact = userSession.insert(new NotificationMessage());
         userSession.insert(new HeartRateEvent(heartRateDto));
         userSession.fireAllRules();
@@ -62,12 +62,12 @@ public class HeartRateService {
 
     }
 
-    public boolean stopSimulation(Long userId) {
+    public boolean stopSimulation(String email) {
 
-        if(userSessions.containsKey(userId)) {
+        if(userSessions.containsKey(email)) {
             // remove session
-            userSessions.get(userId).dispose();
-            userSessions.remove(userId);
+            userSessions.get(email).dispose();
+            userSessions.remove(email);
 
             return true;
         }

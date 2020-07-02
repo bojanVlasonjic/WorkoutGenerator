@@ -1,49 +1,13 @@
 
+<div class="row">
+    <div class="col-xl-6 workout-column" *ngFor="let workout of userWorkouts; index as i">
 
-<table class="table workout-table">
-    <thead class="thead-dark">
-    <tr>
-        <th scope="col">Date</th>
-        <th scope="col">Type</th>
-        <th scope="col" colspan="2">Action</th>
-    </tr>
-    </thead>
-    <tbody>
+        <div class="centered-text">
+            <h4>  Workout {{ i+1 }}</h4>
+            <label class="identificator"> Added on:</label>
+            <label> {{ workout.date | date: 'dd.MM.yyyy - hh:mm a' }} </label>
+        </div>
+        <app-workout-preview [workout]="workout"></app-workout-preview>
 
-        <tr *ngFor="let workout of userWorkouts; index as i">
-           
-            <td> {{ workout.date | date: 'dd.MM.yyyy - hh:mm a' }} </td>
-
-            <td *ngIf="workout.strengthWorkoutDto != null && workout.conditioningWorkoutDto != null">
-                Combo workout
-            </td>
-
-            <td *ngIf="workout.strengthWorkoutDto == null && workout.conditioningWorkoutDto != null">
-                Conditioning workout
-            </td>
-
-            <td *ngIf="workout.strengthWorkoutDto != null && workout.conditioningWorkoutDto == null">
-                Strength workout
-            </td>
-
-            <td>
-                <button class="btn btn-secondary" (click)="viewWorkout(workout)">
-                    View
-                </button>
-            </td>
-
-            <td *ngIf="workout.review == null">
-                <button class="btn btn-secondary"> Add review</button>
-            </td>
-
-        </tr>
-
-    </tbody>
-
-</table>
-
-<div [ngClass]="wrapperClass" (click)="hidePopUps()">
-</div>
-<div [ngClass]="modalClass">
-    <app-workout-preview [workout]="workoutToView" *ngIf="workoutToView != null"></app-workout-preview>
+    </div>
 </div>

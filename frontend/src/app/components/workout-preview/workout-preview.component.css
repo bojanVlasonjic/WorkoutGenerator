@@ -1,9 +1,4 @@
 
-.workout-holder {
-    position: relative;
-    width: 60%;
-    left: 20%;
-}
 
 .list-item-exercise:hover {
     text-decoration: underline;

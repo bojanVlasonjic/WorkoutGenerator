@@ -12,6 +12,7 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
 import { MyWorkoutsComponent } from './components/my-workouts/my-workouts.component';
 import { WorkoutPreviewComponent } from './components/workout-preview/workout-preview.component';
 import { ExercisePreviewComponent } from './components/exercise-preview/exercise-preview.component';
+import { HrSimulationComponent } from './components/hr-simulation/hr-simulation.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ExercisePreviewComponent } from './components/exercise-preview/exercise
     GenerateWorkoutComponent,
     MyWorkoutsComponent,
     WorkoutPreviewComponent,
-    ExercisePreviewComponent
+    ExercisePreviewComponent,
+    HrSimulationComponent
   ],
   imports: [
     BrowserModule,

@@ -17,10 +17,10 @@ public class HeartRateController {
     @Autowired
     HeartRateService heartRateService;
 
-    @GetMapping("/start/{userId}")
-    public ResponseEntity<Boolean> startSimulation(@PathVariable Long userId) {
+    @GetMapping("/start/{userEmail}")
+    public ResponseEntity<Boolean> startSimulation(@PathVariable String userEmail) {
 
-        return new ResponseEntity<>(heartRateService.startSimulation(userId), HttpStatus.OK);
+        return new ResponseEntity<>(heartRateService.startSimulation(userEmail), HttpStatus.OK);
     }
 
 
@@ -31,10 +31,10 @@ public class HeartRateController {
 
     }
 
-    @GetMapping("/stop/{userId}")
-    public ResponseEntity<Boolean> stopSimulation(@PathVariable Long userId) {
+    @GetMapping("/stop/{userEmail}")
+    public ResponseEntity<Boolean> stopSimulation(@PathVariable String userEmail) {
 
-        return new ResponseEntity<>(heartRateService.stopSimulation(userId), HttpStatus.OK);
+        return new ResponseEntity<>(heartRateService.stopSimulation(userEmail), HttpStatus.OK);
     }
 
 

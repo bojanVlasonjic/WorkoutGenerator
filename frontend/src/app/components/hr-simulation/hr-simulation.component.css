@@ -1,0 +1,36 @@
+.form-holder {
+    position: relative;
+    top: 5ex;
+    width: 50%;
+    left: 25%;
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 2ex;
+}
+
+.simulation-holder {
+    position: relative;
+    top: 10ex;
+    width: 70%;
+    left: 15%;
+    text-align: center;
+}
+
+.icon-button {
+    margin: 1ex;
+}
+
+.centered-display {
+    padding: 1ex;
+    font-size: 18px;
+}
+
+.hidden-content {
+    visibility: hidden;
+}
+
+.visible-content {
+    visibility: visible;
+}

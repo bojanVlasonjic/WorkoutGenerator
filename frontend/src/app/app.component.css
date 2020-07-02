@@ -28,7 +28,7 @@
     -webkit-transition: height 0.5s;
     transition: height 0.5s;
     overflow: hidden;
-    border: none;
+    border: 1px solid black;
 }
 
 #toaster-header {

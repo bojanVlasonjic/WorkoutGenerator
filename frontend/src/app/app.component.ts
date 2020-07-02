@@ -21,6 +21,12 @@ export class AppComponent {
     return this.authService.isUserSignedIn();
   }
 
+  userRole(): string {
+    if(this.authService.isUserSignedIn()) {
+      return this.authService.getCurrentUser().role;
+    }
+  }
+
   logout(): void {
     this.authService.clearUser();
     this.router.navigate(['/home']);

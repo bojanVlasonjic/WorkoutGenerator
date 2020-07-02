@@ -19,8 +19,13 @@
     background-color: whitesmoke;
     border-radius: 20px;
     z-index: 2;
-    padding: 5ex;
-    overflow-y: auto;
+    padding: 3ex;
+}
+
+.modal-content {
+    overflow-y: scroll;
+    height: 100%;
+    border: none;
 }
 
 .hidden-content {

@@ -1,17 +1,20 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ExerciseDto } from 'src/app/dtos/exercise.dto';
 import { ExercisePreviewService } from 'src/app/services/exercise-preview.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-exercise-preview',
   templateUrl: './exercise-preview.component.html',
   styleUrls: ['./exercise-preview.component.css']
 })
-export class ExercisePreviewComponent implements OnInit {
+export class ExercisePreviewComponent implements OnInit, OnDestroy {
 
   exercise: ExerciseDto;
   wrapperClass: string;
   modalClass: string;
+
+  svcSubscription: Subscription;
 
   constructor(private exercisePreviewSvc: ExercisePreviewService) {
     this.hidePopUp();
@@ -19,7 +22,7 @@ export class ExercisePreviewComponent implements OnInit {
 
   ngOnInit() {
 
-    this.exercisePreviewSvc.getExercise().subscribe(
+    this.svcSubscription = this.exercisePreviewSvc.getExercise().subscribe(
       data => {
         this.displayExercise(data);
       },
@@ -39,6 +42,10 @@ export class ExercisePreviewComponent implements OnInit {
   hidePopUp(): void {
     this.wrapperClass = 'hidden-content';
     this.modalClass = 'hidden-content';
+  }
+
+  ngOnDestroy() {
+    this.svcSubscription.unsubscribe();
   }
 
 }
