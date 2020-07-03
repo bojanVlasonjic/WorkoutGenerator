@@ -114,9 +114,9 @@ U nastavku su navedena sva pravila po njihovim grupama.
 
 
 - Pravila koja određuju intenzitet treninga na osnovu nivoa spremnosti korisnika i korisničkih faktora (agenda-group "workout"):
-	- Korisnik je početnik - vremenski intervali rada će biti postavljeni na 20 sekundi, a odmor na 10 sekundi. Radiće 4 vežbe po treningu. Broj ponavljanja će biti između 4 i 8 (uračunaj odgovarajuće faktore dobijene na osnovu anketa).
-	- Korisnik je rekreativac - vremenski intervali rada će biti postavljeni na 30 sekundi, a odmor na 15 sekundi. Radiće 5 vežbi po treningu. Broj ponavljanja će biti između 6 i 10 (uračunaj odgovarajuće faktore dobijene na osnovu anketa).
-	- Korisnik je napredan - vremenski intervali rada će biti postavljeni na 40 sekundi, a odmor na 20 sekundi. Radiće 6 vežbi po treningu. Broj ponavljanja će biti između 8 i 12 (uračunaj odgovarajuće faktore dobijene na osnovu anketa).
+	- Korisnik je početnik - vremenski intervali rada će biti postavljeni na 20 sekundi, a odmor na 10 sekundi. Radiće 3 vežbe po treningu. Broj ponavljanja će biti između 4 i 8 (uračunaj odgovarajuće faktore dobijene na osnovu anketa).
+	- Korisnik je rekreativac - vremenski intervali rada će biti postavljeni na 30 sekundi, a odmor na 15 sekundi. Radiće 4 vežbi po treningu. Broj ponavljanja će biti između 6 i 10 (uračunaj odgovarajuće faktore dobijene na osnovu anketa).
+	- Korisnik je napredan - vremenski intervali rada će biti postavljeni na 40 sekundi, a odmor na 20 sekundi. Radiće 5 vežbi po treningu. Broj ponavljanja će biti između 8 i 12 (uračunaj odgovarajuće faktore dobijene na osnovu anketa).
 
 
 - Pravila za određivanje intenziteta na osnovu vrste treninga (agenda-group "workout") -> Izvrše se nakon prethodne grupe pravila, na osnovu uslova da se  promenio broj vežbi po treningu:
