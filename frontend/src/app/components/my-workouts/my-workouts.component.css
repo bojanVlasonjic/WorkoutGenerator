@@ -18,4 +18,14 @@
     text-align: center;
 }
 
+.notification {
+    margin-top: 5ex;
+}
+
+.wide-btn {
+    margin-top: 2ex;
+    margin-bottom: 2ex;
+    width: 100%;
+}
+
 

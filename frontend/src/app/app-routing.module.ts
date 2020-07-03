@@ -9,6 +9,9 @@ import { ViewExercisesComponent } from './components/view-exercises/view-exercis
 import { ManageExerciseComponent } from './components/manage-exercise/manage-exercise.component';
 import { ViewUsersComponent } from './components/view-users/view-users.component';
 import { ManageUserComponent } from './components/manage-user/manage-user.component';
+import { LoginGuard } from './guards/login.guard';
+import { RoleGuard } from './guards/role.guard';
+import { environment } from 'src/environments/environment';
 
 
 const routes: Routes = [
@@ -23,43 +26,61 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: 'register',
-    component: ManageUserComponent
+    component: ManageUserComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: 'profile',
-    component: ManageUserComponent
+    component: ManageUserComponent,
+    canActivate: [RoleGuard],
+    data: { permissions: [environment.roleUser]}
   },
   {
     path: 'generate-workout',
-    component: GenerateWorkoutComponent
+    component: GenerateWorkoutComponent,
+    canActivate: [RoleGuard],
+    data: { permissions: [environment.roleUser]}
   },
   {
     path: 'my-workouts',
-    component: MyWorkoutsComponent
+    component: MyWorkoutsComponent,
+    canActivate: [RoleGuard],
+    data: { permissions: [environment.roleUser]}
   },
   {
     path: 'hr-simulation',
-    component: HrSimulationComponent
+    component: HrSimulationComponent,
+    canActivate: [RoleGuard],
+    data: { permissions: [environment.roleUser]}
   },
   {
     path: 'view-exercises',
-    component: ViewExercisesComponent
+    component: ViewExercisesComponent,
+    canActivate: [RoleGuard],
+    data: { permissions: [environment.roleAdmin]}
   },
   {
     path: 'manage-exercise',
-    component: ManageExerciseComponent
+    component: ManageExerciseComponent,
+    canActivate: [RoleGuard],
+    data: { permissions: [environment.roleAdmin]}
   },
   {
     path: 'manage-exercise/:id',
-    component: ManageExerciseComponent
+    component: ManageExerciseComponent,
+    canActivate: [RoleGuard],
+    data: { permissions: [environment.roleAdmin]}
   },
   {
     path: 'view-users',
-    component: ViewUsersComponent
+    component: ViewUsersComponent,
+    canActivate: [RoleGuard],
+    data: { permissions: [environment.roleAdmin]}
   }
 ];
 

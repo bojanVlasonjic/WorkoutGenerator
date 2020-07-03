@@ -1,0 +1,76 @@
+
+<div class="modal-wrapper" *ngIf="workout != null" (click)="hidePopUp()">
+</div>
+<div class="review-modal" *ngIf="workout != null">
+
+    <div class="modal-content">
+        <h5> Review workout </h5>
+
+        <p> 
+            Our goal is to is to keep your workout's at about 80% difficulty. Based on the scores and complaints, we will
+            adjust the intensity for future workouts. You can always change your level in your profile to start over and adjust intensity.
+        </p>
+
+        <br/>
+
+        <p> Scores are ranked between 1 and 10. </p>
+
+        <div class="row form-holder">
+            <div class="col-sm">
+                <label> Exertion level: &nbsp; {{ review.exertionLevel }} </label>
+            </div>
+            <div class="col-sm">
+                <button class="btn btn-secondary" (click)="increaseExertion()">
+                    Increase exertion
+                </button>
+            </div>
+            <div class="col-sm">
+                <button class="btn btn-secondary" (click)="decreaseExertion()">
+                    Decrease exertion
+                </button>
+            </div>
+            
+        </div>
+
+        <div class="row form-holder">
+            <div class="col-sm">
+                <label> Rating: &nbsp; {{ review.rating }} </label>
+            </div>
+            <div class="col-sm">
+                <button class="btn btn-secondary" (click)="increaseRating()">
+                    Increase rating
+                </button>
+            </div>
+            <div class="col-sm">
+                <button class="btn btn-secondary" (click)="decreaseRating()">
+                    Decrease rating
+                </button>
+            </div> 
+        </div>
+
+        <label> What would you like to adjust? </label>
+        <div class="row form-holder">
+            <div class="col-sm">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="repetitionsCheck" (change)="complaintChecked(0)">
+                    <label class="custom-control-label" for="repetitionsCheck">Repetitions</label>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="workLoadCheck" (change)="complaintChecked(1)">
+                    <label class="custom-control-label" for="workLoadCheck">Weights</label>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="workIntervalCheck" (change)="complaintChecked(2)">
+                    <label class="custom-control-label" for="workIntervalCheck">Work interval</label>
+                </div>
+            </div> 
+        </div>
+
+        <button class="btn btn-dark wide-btn" (click)="addReview()"> Add review </button>
+
+    </div>
+</div>

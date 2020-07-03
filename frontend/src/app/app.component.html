@@ -13,30 +13,30 @@
       </li>
 
       <!-- User menu -->
-      <li class="nav-item" routerLink="/my-workouts" *ngIf="userRole() == 'ROLE_USER'">
+      <li class="nav-item" routerLink="/my-workouts" *ngIf="getUserRole() == userRole">
         My Workouts 
       </li>
-      <li class="nav-item" routerLink="/generate-workout" *ngIf="userRole() == 'ROLE_USER'">
+      <li class="nav-item" routerLink="/generate-workout" *ngIf="getUserRole() == userRole">
         Generate workout
       </li>
-      <li class="nav-item" routerLink="/hr-simulation" *ngIf="userRole() == 'ROLE_USER'">
+      <li class="nav-item" routerLink="/hr-simulation" *ngIf="getUserRole() == userRole">
         HR Simulation
       </li>
 
       <!-- Admin menu -->
-      <li class="nav-item" routerLink="/manage-exercise" *ngIf="userRole() == 'ROLE_ADMIN'">
+      <li class="nav-item" routerLink="/manage-exercise" *ngIf="getUserRole() == adminRole">
         New exercise 
       </li>
 
-      <li class="nav-item" routerLink="/view-exercises" *ngIf="userRole() == 'ROLE_ADMIN'">
+      <li class="nav-item" routerLink="/view-exercises" *ngIf="getUserRole() == adminRole">
         View exercises 
       </li>
 
-      <li class="nav-item" routerLink="/view-users" *ngIf="userRole() == 'ROLE_ADMIN'">
+      <li class="nav-item" routerLink="/view-users" *ngIf="getUserRole() == adminRole">
         Users
       </li>
 
-      <li class="nav-item" *ngIf="userRole() == 'ROLE_ADMIN'">
+      <li class="nav-item" *ngIf="getUserRole() == adminRole">
         Rules
       </li>
 
@@ -49,7 +49,7 @@
       <li class="nav-item" routerLink="/login" *ngIf="!isSignedIn">
         Login 
       </li>
-      <li class="nav-item" routerLink="/profile" *ngIf="userRole() == 'ROLE_USER'">
+      <li class="nav-item" routerLink="/profile" *ngIf="getUserRole() == userRole">
         Profile 
       </li>
       <li class="nav-item" *ngIf="isSignedIn" (click)="logout()"> 

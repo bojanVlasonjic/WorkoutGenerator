@@ -5,7 +5,7 @@ import { ExerciseDto } from '../dtos/exercise.dto';
 @Injectable({
   providedIn: 'root'
 })
-export class ExercisePreviewService {
+export class ExercisePreviewObservService {
 
   private exerciseSubject: Subject<ExerciseDto>;
 

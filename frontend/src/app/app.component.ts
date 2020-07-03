@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from './services/authentication.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,9 @@ export class AppComponent {
   title = 'Workout Generator';
   isNavBarCollapsed: boolean = false;
 
+  userRole: string = environment.roleUser;
+  adminRole: string = environment.roleAdmin;
+
   constructor(
     private authService: AuthenticationService,
     private router: Router
@@ -21,7 +25,7 @@ export class AppComponent {
     return this.authService.isUserSignedIn();
   }
 
-  userRole(): string {
+  getUserRole(): string {
     if(this.authService.isUserSignedIn()) {
       return this.authService.getCurrentUser().role;
     }

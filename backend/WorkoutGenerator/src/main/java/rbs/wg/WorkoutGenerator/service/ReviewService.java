@@ -55,10 +55,10 @@ public class ReviewService {
                 .findWorkoutById(reviewDto.getWorkoutId())
                 .orElseThrow(() -> new ApiNotFoundException("Workout not found"));
 
-        /*
+
         if(workout.getReview() != null) {
             throw new ApiBadRequestException("The workout has already been reviewed");
-        }*/
+        }
 
         AppUser user = appUserService
                 .findUserById(reviewDto.getUserId())
@@ -67,11 +67,6 @@ public class ReviewService {
         if(!workout.getUser().getId().equals(reviewDto.getUserId())) {
             throw new ApiBadRequestException("The given workout does not belong to user");
         }
-
-        /*
-        if(workout.getReview() != null) {
-            throw new ApiBadRequestException("The workout has already been reviewed");
-        }*/
 
         adjustIntensityWithReview(reviewDto, user);
 

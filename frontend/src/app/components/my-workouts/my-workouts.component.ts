@@ -3,6 +3,7 @@ import { WorkoutDto } from 'src/app/dtos/workout.dto';
 import { WorkoutService } from 'src/app/services/workout.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ToasterService } from 'src/app/services/toaster.service';
+import { WorkoutReviewObservService } from 'src/app/services/workout-review-observ.service';
 
 
 @Component({
@@ -14,12 +15,13 @@ import { ToasterService } from 'src/app/services/toaster.service';
 export class MyWorkoutsComponent implements OnInit {
 
   userWorkouts: Array<WorkoutDto>;
-  workoutToView: WorkoutDto;
 
   constructor(
     private workoutService: WorkoutService,
     private authService: AuthenticationService,
-    private toasterService: ToasterService
+    private toasterService: ToasterService,
+    private workoutReviewSvc: WorkoutReviewObservService
+
   ) {
     this.userWorkouts = [];
   }
@@ -39,6 +41,18 @@ export class MyWorkoutsComponent implements OnInit {
         this.toasterService.showErrorMessage(err);
       }
     );
+  }
+
+  toggleReviewDialog(workout: WorkoutDto) {
+    this.workoutReviewSvc.sendWorkout(workout);
+  }
+
+  receiveReview($event): void {
+    let workoutIndex = this.userWorkouts.indexOf($event);
+
+    if (workoutIndex > -1) {
+      this.userWorkouts[workoutIndex] = $event;
+    }
   }
 
 }

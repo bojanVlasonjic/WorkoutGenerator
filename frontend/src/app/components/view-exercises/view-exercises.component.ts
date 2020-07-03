@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ExerciseDto } from 'src/app/dtos/exercise.dto';
 import { ExerciseService } from 'src/app/services/exercise.service';
-import { ExercisePreviewService } from 'src/app/services/exercise-preview.service';
+import { ExercisePreviewObservService } from 'src/app/services/exercise-preview-observ.service';
 import { ToasterService } from 'src/app/services/toaster.service';
 import { Router } from '@angular/router';
 
@@ -17,7 +17,7 @@ export class ViewExercisesComponent implements OnInit {
   constructor(
     private router: Router,
     private exerciseService: ExerciseService,
-    private exercisePreviewSvc: ExercisePreviewService,
+    private exercisePreviewSvc: ExercisePreviewObservService,
     private toasterService: ToasterService
     ) {
     this.exercises = [];

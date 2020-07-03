@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { WorkoutDto } from 'src/app/dtos/workout.dto';
-import { ExercisePreviewService } from 'src/app/services/exercise-preview.service';
+import { ExercisePreviewObservService } from 'src/app/services/exercise-preview-observ.service';
 import { ExerciseDto } from 'src/app/dtos/exercise.dto';
 
 @Component({
@@ -12,7 +12,7 @@ export class WorkoutPreviewComponent implements OnInit {
 
   @Input() workout: WorkoutDto;
 
-  constructor(private exercisePreviewSvc: ExercisePreviewService) { 
+  constructor(private exercisePreviewSvc: ExercisePreviewObservService) { 
   }
 
   ngOnInit() {

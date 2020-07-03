@@ -12,6 +12,8 @@ export class ReviewDto {
 
     constructor() {
         this.complaints = [];
+        this.rating = 5;
+        this.exertionLevel = 5;
     }
 
 }

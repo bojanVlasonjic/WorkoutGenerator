@@ -16,6 +16,7 @@ import { ManageExerciseComponent } from './components/manage-exercise/manage-exe
 import { ViewExercisesComponent } from './components/view-exercises/view-exercises.component';
 import { ViewUsersComponent } from './components/view-users/view-users.component';
 import { ManageUserComponent } from './components/manage-user/manage-user.component';
+import { AddReviewComponent } from './components/add-review/add-review.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ManageUserComponent } from './components/manage-user/manage-user.compon
     HrSimulationComponent,
     ManageExerciseComponent,
     ViewExercisesComponent,
-    ViewUsersComponent
+    ViewUsersComponent,
+    AddReviewComponent
   ],
   imports: [
     BrowserModule,

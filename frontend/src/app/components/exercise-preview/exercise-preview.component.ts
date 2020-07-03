@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ExerciseDto } from 'src/app/dtos/exercise.dto';
-import { ExercisePreviewService } from 'src/app/services/exercise-preview.service';
+import { ExercisePreviewObservService } from 'src/app/services/exercise-preview-observ.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -16,7 +16,7 @@ export class ExercisePreviewComponent implements OnInit, OnDestroy {
 
   svcSubscription: Subscription;
 
-  constructor(private exercisePreviewSvc: ExercisePreviewService) {
+  constructor(private exercisePreviewSvc: ExercisePreviewObservService) {
     this.hidePopUp();
   }
 
