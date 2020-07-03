@@ -93,7 +93,7 @@ rule "User is advanced and the exercise requires a barbell with plates, set work
     then
        System.out.println("----> User is advanced and the exercise requires a barbell with plates, set workload accordingly");
        modify($sReg) {
-           setWorkLoad((int)((random.nextInt(25)+50)/100.0 * $user.getWeight() * $user.getWorkLoadFactor()));
+           setWorkLoad((int)((random.nextInt(15)+55)/100.0 * $user.getWeight() * $user.getWorkLoadFactor()));
        }
 end
 

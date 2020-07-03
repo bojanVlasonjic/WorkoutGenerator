@@ -7,9 +7,9 @@ import lombok.Setter;
 import rbs.wg.WorkoutGenerator.facts.ReviewComplaint;
 import rbs.wg.WorkoutGenerator.model.Review;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
@@ -23,6 +23,10 @@ public class ReviewDto {
     private int rating;
 
     private List<ReviewComplaint> complaints;
+
+    public ReviewDto() {
+        this.complaints = new ArrayList<>();
+    }
 
     public ReviewDto(Review review){
         this.id = review.getId();

@@ -46,7 +46,7 @@ rule "Combo workout chosen, set workout intensity accordingly"
             setRestBetweenSets(60),
             setNumOfIntervals(8),
             setRestBetweenRounds(120),
-            setNumOfRounds(4);
+            setNumOfRounds(2);
         }
 end
 

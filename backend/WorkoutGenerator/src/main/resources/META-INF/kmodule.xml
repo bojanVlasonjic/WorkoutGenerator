@@ -10,4 +10,8 @@
         <ksession name="CEPSession" />
     </kbase>
 
+    <kbase name="WorkoutGeneratorTestBase" packages="drools.rules">
+        <ksession name="WGTestSession" />
+    </kbase>
+
 </kmodule>

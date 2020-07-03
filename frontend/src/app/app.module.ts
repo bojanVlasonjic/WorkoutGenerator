@@ -17,6 +17,7 @@ import { ViewExercisesComponent } from './components/view-exercises/view-exercis
 import { ViewUsersComponent } from './components/view-users/view-users.component';
 import { ManageUserComponent } from './components/manage-user/manage-user.component';
 import { AddReviewComponent } from './components/add-review/add-review.component';
+import { AceEditorModule } from 'ng2-ace-editor';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AddReviewComponent } from './components/add-review/add-review.component
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AceEditorModule
   ],
   providers: [
     {

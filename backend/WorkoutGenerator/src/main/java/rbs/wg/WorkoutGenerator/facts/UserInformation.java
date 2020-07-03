@@ -8,7 +8,6 @@ import rbs.wg.WorkoutGenerator.model.AppUser;
 import rbs.wg.WorkoutGenerator.model.UserLevel;
 
 
-@NoArgsConstructor
 @Getter
 @Setter
 @PropertyReactive
@@ -19,9 +18,14 @@ public class UserInformation {
     private double weight;
 
     private double repetitionFactor;
-    private double numOfExercisesFactor;
     private double workLoadFactor;
     private int workIntervalFactor;
+
+    public UserInformation() {
+        this.repetitionFactor = 1;
+        this.workLoadFactor = 1;
+        this.workIntervalFactor = 0;
+    }
 
     public UserInformation(AppUser user) {
         this.upperBodyWorked = user.isUpperBodyWorked();
