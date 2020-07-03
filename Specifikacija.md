@@ -130,7 +130,7 @@ U nastavku su navedena sva pravila po njihovim grupama.
 	- Korisnik je početnog nivoa spremnosti, vežba se izvodi bučicama - skaliraj opterećenje za tu vežbu na 8-12% telesne mase.
 	- Korisnik je početnog nivoa spremnosti, vežba se izvodi ruskim zvonom - skaliraj opterećenje za tu vežbu na 15-20% telesne mase.
 	- Korisnik je srednjeg nivoa spremnosti, vežba se izvodi šipkom - skaliraj opterećenje za tu vežbu na 45-65% telesne mase.
-	- Korisnik je srednjeg nivoa spremnosti, vežba se izvodi bučicama - skaliraj opterećenje za tu vežbu na 12-16% telesne mase.
+	- Korisnik je srednjeg nivoa spremnosti, vežba se izvodi bučicama - skaliraj opterećenje za tu vežbu na 10-15% telesne mase.
 	- Korisnik je srednjeg nivoa spremnosti, vežba se izvodi ruskim zvonom - skaliraj opterećenje za tu vežbu na 22-28% telesne mase.
 	- Korisnik je naprednog nivoa spremnosti, vežba se izvodi šipkom - skaliraj opterećenje za tu vežbu na 55-70% telesne mase.
 	- Korisnik je naprednog nivoa spremnosti, vežba se izvodi bučicama - skaliraj opterećenje za tu vežbu na 15-20% telesne mase.
