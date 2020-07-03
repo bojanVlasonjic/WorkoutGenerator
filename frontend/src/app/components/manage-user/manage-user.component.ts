@@ -58,6 +58,7 @@ export class ManageUserComponent implements OnInit {
 
   manageUser(): void {
     
+    this.checkPasswordMatch();
     if(!this.registerForm.valid || !this.passwordsMatch) {
       return;
     }

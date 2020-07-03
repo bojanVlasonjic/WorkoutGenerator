@@ -52,7 +52,12 @@
 
     <label class="centered-display">
         <u>Notification message:</u> &nbsp;
-        <b>{{ heartRateDto.notificationMessage }} </b>
+        <b *ngIf="heartRateDto.notificationMessage == null">
+            Keep going...
+        </b>
+        <b *ngIf="heartRateDto.notificationMessage != null">
+            {{ heartRateDto.notificationMessage }}
+        </b>
     </label>
 
     <canvas id="canvas"></canvas>

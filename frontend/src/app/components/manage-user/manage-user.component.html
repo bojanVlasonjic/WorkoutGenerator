@@ -23,7 +23,7 @@
         <div class="form-group">
             <label>Password</label>
             <input type="password" name="password" class="form-control" placeholder="Password"
-             [(ngModel)]="userData.password" #password="ngModel" required>
+             [(ngModel)]="userData.password" #password="ngModel" (focusout)="checkPasswordMatch()" required>
             <small *ngIf="rf.submitted && password.errors?.required" class="error-message">
                 Password is required
             </small>
@@ -32,7 +32,7 @@
         <div class="form-group">
             <label>Confirm password</label>
             <input type="password" name="confirmPassword" class="form-control" [(ngModel)]="confirmedPassword"
-                placeholder="Password" #confirmPassword="ngModel" (focusout)="checkPasswordMatch()" required>
+                placeholder="Password" #confirmPassword="ngModel" (keyup)="checkPasswordMatch()" required>
             <small *ngIf="rf.submitted && confirmPassword.errors?.required" class="error-message">
                 Password confirmation is required.
             </small>
