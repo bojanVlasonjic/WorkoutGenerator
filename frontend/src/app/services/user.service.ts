@@ -23,8 +23,12 @@ export class UserService {
     return this.http.post('api/user', userData);
   }
 
+  updateUser(userData: UserDto): Observable<any> {
+    return this.http.put('api/user', userData);
+  }
+
   changeUserStatus(userId: number): Observable<any> {
-    return this.http.put(`api/user/status/${userId}`, null);
+    return this.http.put(`api/user/${userId}`, null);
   }
   
 }

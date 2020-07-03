@@ -51,6 +51,23 @@ public class AppUser extends Person {
         this.setFactors(userDto);
     }
 
+    public void updateUser(UserDto userDto) {
+
+        this.setName(userDto.getName());
+        this.setPassword(userDto.getPassword());
+        this.setWeight(userDto.getWeight());
+
+        // if the user changed it's level, reset the intensity factors
+        if(this.userLevel != userDto.getUserLevel()) {
+            this.repetitionFactor = 1;
+            this.workLoadFactor = 1;
+            this.workIntervalFactor = 0;
+        }
+
+        this.userLevel = userDto.getUserLevel();
+
+    }
+
     private void setFactors(UserDto userDto) {
 
         if(userDto.getRepetitionFactor() != 0) {

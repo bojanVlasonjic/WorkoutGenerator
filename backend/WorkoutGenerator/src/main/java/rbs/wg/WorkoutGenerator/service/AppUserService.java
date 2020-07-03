@@ -56,6 +56,20 @@ public class AppUserService {
 
     }
 
+    public UserDto updateUser(UserDto userDto) {
+
+        Optional<AppUser> optUser = this.findUserByEmail(userDto.getEmail());
+
+        if(optUser.isPresent()) {
+            optUser.get().updateUser(userDto);
+            saveUser(optUser.get());
+            return userDto;
+        }
+
+        throw new ApiNotFoundException("User not found");
+
+    }
+
     public UserDto changeStatus(Long userId) {
 
         AppUser user = userRepo

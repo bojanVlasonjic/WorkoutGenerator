@@ -35,7 +35,12 @@ public class UserController {
                 HttpStatus.CREATED);
     }
 
-    @PutMapping("/status/{id}")
+    @PutMapping
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto) {
+        return ResponseEntity.ok(userService.updateUser(userDto));
+    }
+
+    @PutMapping("/{id}")
     public ResponseEntity<UserDto> changeBanStatus(@PathVariable Long id) {
         return ResponseEntity.ok(userService.changeStatus(id));
     }

@@ -1,8 +1,12 @@
 <div class="register-form-holder">
-    <h3 class="heading"> Register </h3>
 
-    <form name="registerForm" #rf="ngForm" (ngSubmit)="register()" novalidate>
-        <div class="form-group">
+    <h2 class="heading" *ngIf="!isEditing"> Register </h2>
+    <h2 class="heading" *ngIf="isEditing"> Profile </h2>
+
+    <form name="registerForm" #rf="ngForm" (ngSubmit)="manageUser()" novalidate>
+
+        <!-- Allow email change during registration -->
+        <div class="form-group" *ngIf="!isEditing">
             <label>Email address</label>
             <input type="email" name="email" class="form-control" placeholder="Email" 
                 [(ngModel)]="userData.email" #email="ngModel" required>
@@ -10,6 +14,12 @@
                 Email is required
             </small>
         </div>
+
+        <!-- Only display email when updating profile -->
+        <div class="email-holder" *ngIf="isEditing">
+            <label>Email address: &nbsp; {{ userData.email }}</label>
+        </div>
+
         <div class="form-group">
             <label>Password</label>
             <input type="password" name="password" class="form-control" placeholder="Password"
@@ -24,7 +34,10 @@
             <input type="password" name="confirmPassword" class="form-control" [(ngModel)]="confirmedPassword"
                 placeholder="Password" #confirmPassword="ngModel" (focusout)="checkPasswordMatch()" required>
             <small *ngIf="rf.submitted && confirmPassword.errors?.required" class="error-message">
-                Password confirmation is required
+                Password confirmation is required.
+            </small>
+            <small *ngIf="rf.submitted && !passwordsMatch" class="error-message">
+                Passwords do not match.
             </small>
         </div>
 
@@ -50,17 +63,21 @@
             <label> Workout level: </label>
             <select class="custom-select" name="userLevel" [(ngModel)]="userData.userLevel"
                 #userLevel="ngModel" required>
-                <option value="0">Beginner</option>
-                <option value="1">Intermediate</option>
-                <option value="2">Advanced</option>
+                <option value="BEGINNER">Beginner</option>
+                <option value="INTERMEDIATE">Intermediate</option>
+                <option value="ADVANCED">Advanced</option>
               </select>
             <small *ngIf="rf.submitted && userLevel.errors?.required" class="error-message">
                 Workout level is required
             </small>
         </div>
 
-        <button type="submit" id="register-btn" class="btn btn-dark">
+        <button type="submit" class="btn btn-dark" *ngIf="!isEditing && !submittingRequest">
             Register
+        </button>
+
+        <button type="submit" class="btn btn-dark" *ngIf="isEditing && !submittingRequest">
+            Update profile
         </button>
 
     </form>

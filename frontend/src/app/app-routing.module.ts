@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
 import { GenerateWorkoutComponent } from './components/generate-workout/generate-workout.component';
 import { MyWorkoutsComponent } from './components/my-workouts/my-workouts.component';
 import { HrSimulationComponent } from './components/hr-simulation/hr-simulation.component';
 import { ViewExercisesComponent } from './components/view-exercises/view-exercises.component';
 import { ManageExerciseComponent } from './components/manage-exercise/manage-exercise.component';
 import { ViewUsersComponent } from './components/view-users/view-users.component';
+import { ManageUserComponent } from './components/manage-user/manage-user.component';
 
 
 const routes: Routes = [
@@ -27,7 +27,11 @@ const routes: Routes = [
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: ManageUserComponent
+  },
+  {
+    path: 'profile',
+    component: ManageUserComponent
   },
   {
     path: 'generate-workout',
