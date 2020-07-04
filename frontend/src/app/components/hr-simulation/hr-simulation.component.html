@@ -1,64 +1,66 @@
+<div class="container">
+    <div class="form-holder">
 
-<div class="form-holder">
+        <h3 class="heading">Heart rate simulation</h3>
 
-    <h3 class="heading">Heart rate simulation</h3>
+        <form name="simulationForm" (ngSubmit)="calculateRequiredPulse()" #sf="ngForm" novalidate>
 
-    <form name="simulationForm" (ngSubmit)="calculateRequiredPulse()" #sf="ngForm" novalidate>
+            <div class="form-group">
+                <label>Age: </label>
+                <input type="number" class="form-control" placeholder="Enter your age" name="age"
+                    [(ngModel)]="age" #ageField="ngModel" required>
+                <small *ngIf="sf.submitted && ageField.errors?.required" class="error-message">
+                    Age is required
+                </small>
+            </div>
 
-        <div class="form-group">
-            <label>Age: </label>
-            <input type="number" class="form-control" placeholder="Enter your age" name="age"
-                [(ngModel)]="age" #ageField="ngModel" required>
-            <small *ngIf="sf.submitted && ageField.errors?.required" class="error-message">
-                Age is required
-            </small>
-        </div>
+            <div class="form-group">
+                <label>Morning pulse: </label>
+                <input type="number" class="form-control" placeholder="Enter your morning pulse"
+                    name="morningPulse" [(ngModel)]="morningPulse" #mp="ngModel" required>
+                <small *ngIf="sf.submitted && mp.errors?.required" class="error-message">
+                    Morning pulse is required
+                </small>
+            </div>
 
-        <div class="form-group">
-            <label>Morning pulse: </label>
-            <input type="number" class="form-control" placeholder="Enter your morning pulse"
-                name="morningPulse" [(ngModel)]="morningPulse" #mp="ngModel" required>
-            <small *ngIf="sf.submitted && mp.errors?.required" class="error-message">
-                Morning pulse is required
-            </small>
-        </div>
+            <button class="btn btn-dark" *ngIf="!simulationStarted"> Start training simulation </button>
+        </form>
 
-        <button class="btn btn-dark" *ngIf="!simulationStarted"> Start training simulation </button>
-    </form>
+        <button class="btn btn-dark" (click)="endSimulation()" *ngIf="simulationStarted"> End training simulation </button>
 
-    <button class="btn btn-dark" (click)="endSimulation()" *ngIf="simulationStarted"> End training simulation </button>
+    </div>
 
-</div>
+    <div [ngClass]="heartRateDto.goal == 100 ? 'simulation-holder hidden-content' : 'simulation-holder visible-content'">
 
-<div [ngClass]="heartRateDto.goal == 100 ? 'simulation-holder hidden-content' : 'simulation-holder visible-content'">
+        <p class="centered-display"> To reach the 80% effort of your traning zone, your pulse should be around {{ heartRateDto.goal }}</p>
 
-    <p class="centered-display"> To reach the 80% effort of your traning zone, your pulse should be around {{ heartRateDto.goal }}</p>
+        <label class="centered-display">
+            <u>Current heart rate:</u> &nbsp;
+            <b>{{ heartRateDto.heartRate }} </b>
+        </label>
 
-    <label class="centered-display">
-        <u>Current heart rate:</u> &nbsp;
-        <b>{{ heartRateDto.heartRate }} </b>
-    </label>
+        <br/>
 
-    <br/>
+        <button class="icon-button btn btn-secondary" (click)="increaseHeartRate()">
+            Increase
+        </button>
+        <button class="icon-button btn btn-secondary" (click)="decreaseHeartRate()">
+            Decrease
+        </button>
 
-    <button class="icon-button btn btn-secondary" (click)="increaseHeartRate()">
-        Increase
-    </button>
-    <button class="icon-button btn btn-secondary" (click)="decreaseHeartRate()">
-        Decrease
-    </button>
+        <br/>
 
-    <br/>
+        <label class="centered-display">
+            <u>Notification message:</u> &nbsp;
+            <b *ngIf="heartRateDto.notificationMessage == null">
+                Keep going...
+            </b>
+            <b *ngIf="heartRateDto.notificationMessage != null">
+                {{ heartRateDto.notificationMessage }}
+            </b>
+        </label>
 
-    <label class="centered-display">
-        <u>Notification message:</u> &nbsp;
-        <b *ngIf="heartRateDto.notificationMessage == null">
-            Keep going...
-        </b>
-        <b *ngIf="heartRateDto.notificationMessage != null">
-            {{ heartRateDto.notificationMessage }}
-        </b>
-    </label>
+        <canvas id="canvas"></canvas>
+    </div>
 
-    <canvas id="canvas"></canvas>
 </div>

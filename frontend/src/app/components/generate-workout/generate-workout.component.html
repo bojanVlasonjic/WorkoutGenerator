@@ -1,94 +1,97 @@
 
-<h1 class="header"> Generate workout </h1>
+<div class="container">
+    <h1 class="header"> Generate workout </h1>
 
-<div class="form-holder">
+    <div class="form-holder">
 
-    <form name="generateWorkoutForm" (ngSubmit)="generateWorkout()" #gwf="ngForm" novalidate>
+        <form name="generateWorkoutForm" (ngSubmit)="generateWorkout()" #gwf="ngForm" novalidate>
 
-        <div class="form-group">
-            <label> Workout type: </label>
-            <select class="custom-select" name="workoutType" [(ngModel)]="workoutRequest.workoutType">
-                <option value="0">Strength</option>
-                <option value="1">Conditioning</option>
-                <option value="2">Combo</option>
-              </select>
-        </div>
+            <div class="form-group">
+                <label> Workout type: </label>
+                <select class="custom-select" name="workoutType" [(ngModel)]="workoutRequest.workoutType">
+                    <option value="0">Strength</option>
+                    <option value="1">Conditioning</option>
+                    <option value="2">Combo</option>
+                </select>
+            </div>
 
-        <!--  Equipment checkboxes -->
-        <h5 class="heading"> Select equipment: </h5>
-        <div class="row checkbox-holder">
-            <div class="col-md-6">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="barbellCheck" (change)="equipmentChecked(1)">
-                    <label class="custom-control-label" for="barbellCheck">Barbell with plates</label>
+            <!--  Equipment checkboxes -->
+            <h5 class="heading"> Select equipment: </h5>
+            <div class="row checkbox-holder">
+                <div class="col-md-6">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="barbellCheck" (change)="equipmentChecked(1)">
+                        <label class="custom-control-label" for="barbellCheck">Barbell with plates</label>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="dumbbellsCheck" (change)="equipmentChecked(4)">
+                        <label class="custom-control-label" for="dumbbellsCheck">Dumbbells with plates</label>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="pullUpBarCheck" (change)="equipmentChecked(2)">
+                        <label class="custom-control-label" for="pullUpBarCheck">Pull up bar</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="dipBarCheck" (change)="equipmentChecked(3)">
+                        <label class="custom-control-label" for="dipBarCheck">Dip bars</label>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="kettlebellCheck" (change)="equipmentChecked(5)">
+                        <label class="custom-control-label" for="kettlebellCheck"> Kettlebell </label>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="jumpRopeCheck" (change)="equipmentChecked(6)">
+                        <label class="custom-control-label" for="jumpRopeCheck"> Jump rope </label>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-md-6">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="dumbbellsCheck" (change)="equipmentChecked(4)">
-                    <label class="custom-control-label" for="dumbbellsCheck">Dumbbells with plates</label>
-                </div>
-            </div>
+            <button type="submit" class="btn btn-dark wide-btn" *ngIf="!isWorkoutGenerating">
+                Generate workout
+            </button>
 
-            <div class="col-md-6">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="pullUpBarCheck" (change)="equipmentChecked(2)">
-                    <label class="custom-control-label" for="pullUpBarCheck">Pull up bar</label>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="dipBarCheck" (change)="equipmentChecked(3)">
-                    <label class="custom-control-label" for="dipBarCheck">Dip bars</label>
-                </div>
-            </div>
+            <button type="submit" class="btn btn-secondary wide-btn" *ngIf="isWorkoutGenerating" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Generate workout
+            </button>
 
-            <div class="col-md-6">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="kettlebellCheck" (change)="equipmentChecked(5)">
-                    <label class="custom-control-label" for="kettlebellCheck"> Kettlebell </label>
-                </div>
-            </div>
+        </form>
 
-            <div class="col-md-6">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="jumpRopeCheck" (change)="equipmentChecked(6)">
-                    <label class="custom-control-label" for="jumpRopeCheck"> Jump rope </label>
-                </div>
-            </div>
-        </div>
-
-        <button type="submit" class="btn btn-dark wide-btn" *ngIf="!isWorkoutGenerating">
-            Generate workout
-        </button>
-
-        <button type="submit" class="btn btn-secondary wide-btn" *ngIf="isWorkoutGenerating" disabled>
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            Generate workout
-        </button>
-
-    </form>
-
-</div>
-
-
-<h2 class="header" style="margin-bottom: 5ex;" *ngIf="workout != null"> Today's workout </h2>
-
-<div class="workout-holder">
-    <app-workout-preview [workout]="workout"></app-workout-preview>
-</div>
-
-<div class="row" *ngIf="workout != null">
-    <div class="col-md-6 offset-md-3">
-        <button class="btn btn-dark wide-btn" *ngIf="isWorkoutBeingSaved" disabled>
-            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-            Save workout
-        </button>
-
-        <button class="btn btn-dark wide-btn" (click)="saveWorkout()" *ngIf="!isWorkoutBeingSaved">
-            Save workout
-        </button>
     </div>
-  </div>
+
+
+    <h2 class="header" style="margin-bottom: 5ex;" *ngIf="workout != null"> Today's workout </h2>
+
+    <div class="workout-holder">
+        <app-workout-preview [workout]="workout"></app-workout-preview>
+    </div>
+
+    <div class="row" *ngIf="workout != null">
+        <div class="col-md-6 offset-md-3">
+            <button class="btn btn-dark wide-btn" *ngIf="isWorkoutBeingSaved" disabled>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                Save workout
+            </button>
+
+            <button class="btn btn-dark wide-btn" (click)="saveWorkout()" *ngIf="!isWorkoutBeingSaved">
+                Save workout
+            </button>
+        </div>
+    </div>
+
+</div>
 
