@@ -1,10 +1,12 @@
 package rbs.wg.WorkoutGenerator.rules;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import rbs.wg.WorkoutGenerator.facts.UserInformation;
 import rbs.wg.WorkoutGenerator.facts.WorkoutProcessing;
 import rbs.wg.WorkoutGenerator.facts.WorkoutRequest;
@@ -16,6 +18,7 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class WorkoutRequestServiceTests {
 
@@ -230,12 +233,8 @@ public class WorkoutRequestServiceTests {
 
         // make assertions
         assertEquals(2, rulesFired);
-
-        assertEquals(5, workoutProcessing.getSets());
-        assertEquals(60, workoutProcessing.getRestBetweenSets());
-        assertEquals(8, workoutProcessing.getNumOfIntervals());
-        assertEquals(2, workoutProcessing.getNumOfRounds());
-        assertEquals(120, workoutProcessing.getRestBetweenRounds());
+        this.validateComboWorkout(5, 60, 8, 2,
+                120, workoutProcessing);
 
         testSession.dispose();
     }
@@ -320,12 +319,8 @@ public class WorkoutRequestServiceTests {
         assertEquals(3, rulesFired);
         this.validateUserLevelIntensity(2, 40, 20,
                 8, 12, workoutProcessing);
-
-        assertEquals(5, workoutProcessing.getSets());
-        assertEquals(60, workoutProcessing.getRestBetweenSets());
-        assertEquals(8, workoutProcessing.getNumOfIntervals());
-        assertEquals(2, workoutProcessing.getNumOfRounds());
-        assertEquals(120, workoutProcessing.getRestBetweenRounds());
+        this.validateComboWorkout(5, 60, 8, 2,
+                120, workoutProcessing);
 
         testSession.dispose();
     }
@@ -351,6 +346,16 @@ public class WorkoutRequestServiceTests {
         assertTrue(workoutProcessing.getReps() >= repsLowerBound);
         assertTrue(workoutProcessing.getReps() <= repsUpperBound);
 
+    }
+
+    private void validateComboWorkout(int numOfSets, int restBetweenSets, int numOfIntervals,
+                                      int numOfRounds, int restBetweenRounds, WorkoutProcessing workoutProcessing) {
+
+        assertEquals(numOfSets, workoutProcessing.getSets());
+        assertEquals(restBetweenSets, workoutProcessing.getRestBetweenSets());
+        assertEquals(numOfIntervals, workoutProcessing.getNumOfIntervals());
+        assertEquals(numOfRounds, workoutProcessing.getNumOfRounds());
+        assertEquals(restBetweenRounds, workoutProcessing.getRestBetweenRounds());
     }
 
 }

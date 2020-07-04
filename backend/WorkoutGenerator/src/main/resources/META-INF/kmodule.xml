@@ -5,13 +5,16 @@
     <kbase name="WorkoutGeneratorBase" packages="drools.rules">
         <ksession name="WGSession" />
     </kbase>
-
     <kbase name="WorkoutGeneratorCep" eventProcessingMode="stream" packages="drools.cep">
         <ksession name="CEPSession" />
     </kbase>
 
+
     <kbase name="WorkoutGeneratorTestBase" packages="drools.rules">
         <ksession name="WGTestSession" />
+    </kbase>
+    <kbase name="WorkoutGeneratorTestCep" eventProcessingMode="stream" packages="drools.cep">
+        <ksession name="TestCEPSession" />
     </kbase>
 
 </kmodule>

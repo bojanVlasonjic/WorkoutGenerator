@@ -43,10 +43,6 @@ export class AddReviewComponent implements OnInit, OnDestroy {
 
   }
 
-  ngOnDestroy() {
-    this.workoutSubscription.unsubscribe();
-  }
-
   hidePopUp(): void {
     this.workout = null;
   }
@@ -100,6 +96,11 @@ export class AddReviewComponent implements OnInit, OnDestroy {
     );
 
   }
+
+  ngOnDestroy() {
+    this.workoutSubscription.unsubscribe();
+  }
+
 
 
 

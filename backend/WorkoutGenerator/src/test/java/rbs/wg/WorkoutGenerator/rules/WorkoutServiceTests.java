@@ -1,10 +1,12 @@
 package rbs.wg.WorkoutGenerator.rules;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import rbs.wg.WorkoutGenerator.facts.UserInformation;
 import rbs.wg.WorkoutGenerator.model.Equipment;
 import rbs.wg.WorkoutGenerator.model.Exercise;
@@ -16,6 +18,7 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class WorkoutServiceTests {
 
@@ -25,7 +28,7 @@ public class WorkoutServiceTests {
     @Autowired
     private Random random;
 
-    private int userWeight = 70; // in kg
+    private final int userWeight = 70; // in kg
 
     private KieSession prepSessionWithFacts(UserInformation userInformation,
                                             StrengthRegime strengthRegime) {
@@ -91,6 +94,8 @@ public class WorkoutServiceTests {
         // workLoad should be between 35% and 50% of user weight
         assertTrue(strengthRegime.getWorkLoad() >= 0.35 * this.userWeight - 1); // -1 for rounding tolerance
         assertTrue(strengthRegime.getWorkLoad() <= 0.5 * this.userWeight);
+
+        testSession.dispose();
     }
 
     @Test
@@ -110,6 +115,7 @@ public class WorkoutServiceTests {
         assertTrue(strengthRegime.getWorkLoad() >= 0.45 * this.userWeight - 1); // -1 for rounding tolerance
         assertTrue(strengthRegime.getWorkLoad() <= 0.65 * this.userWeight);
 
+        testSession.dispose();
     }
 
     @Test
@@ -128,6 +134,8 @@ public class WorkoutServiceTests {
         // workLoad should be between 55% and 70% of user weight
         assertTrue(strengthRegime.getWorkLoad() >= 0.55 * this.userWeight - 1); // -1 for rounding tolerance
         assertTrue(strengthRegime.getWorkLoad() <= 0.70 * this.userWeight);
+
+        testSession.dispose();
 
     }
 
@@ -152,6 +160,7 @@ public class WorkoutServiceTests {
         assertTrue(strengthRegime.getWorkLoad() >= 0.08 * this.userWeight - 1); // -1 for rounding tolerance
         assertTrue(strengthRegime.getWorkLoad() <= 0.12 * this.userWeight);
 
+        testSession.dispose();
     }
 
     @Test
@@ -167,10 +176,11 @@ public class WorkoutServiceTests {
         printResults("givenUserIntermediate_whenExerciseEquipmentDumbbell_setWorkLoad",
                 strengthRegime.getWorkLoad(), 0.10, 0.15);
 
-        // workLoad should be between 8% and 12% of user weight
+        // workLoad should be between 10% and 15% of user weight
         assertTrue(strengthRegime.getWorkLoad() >= 0.10 * this.userWeight - 1); // -1 for rounding tolerance
         assertTrue(strengthRegime.getWorkLoad() <= 0.15 * this.userWeight);
 
+        testSession.dispose();
     }
 
 
@@ -187,10 +197,11 @@ public class WorkoutServiceTests {
         printResults("givenUserAdvanced_whenExerciseEquipmentDumbbell_setWorkLoad",
                 strengthRegime.getWorkLoad(), 0.15, 0.20);
 
-        // workLoad should be between 8% and 12% of user weight
+        // workLoad should be between 15% and 20% of user weight
         assertTrue(strengthRegime.getWorkLoad() >= 0.15 * this.userWeight - 1); // -1 for rounding tolerance
         assertTrue(strengthRegime.getWorkLoad() <= 0.20 * this.userWeight);
 
+        testSession.dispose();
     }
 
 
@@ -210,9 +221,11 @@ public class WorkoutServiceTests {
         printResults("givenUserBeginner_whenExerciseEquipmentKettlebell_setWorkLoad",
                 strengthRegime.getWorkLoad(), 0.15, 0.20);
 
-        // workLoad should be between 8% and 12% of user weight
+        // workLoad should be between 15% and 20% of user weight
         assertTrue(strengthRegime.getWorkLoad() >= 0.15 * this.userWeight - 1); // -1 for rounding tolerance
         assertTrue(strengthRegime.getWorkLoad() <= 0.20 * this.userWeight);
+
+        testSession.dispose();
 
     }
 
@@ -229,10 +242,11 @@ public class WorkoutServiceTests {
         printResults("givenUserIntermediate_whenExerciseEquipmentKettlebell_setWorkLoad",
                 strengthRegime.getWorkLoad(), 0.22, 0.28);
 
-        // workLoad should be between 8% and 12% of user weight
+        // workLoad should be between 22% and 28% of user weight
         assertTrue(strengthRegime.getWorkLoad() >= 0.22 * this.userWeight - 1); // -1 for rounding tolerance
         assertTrue(strengthRegime.getWorkLoad() <= 0.28 * this.userWeight);
 
+        testSession.dispose();
     }
 
     @Test
@@ -248,10 +262,11 @@ public class WorkoutServiceTests {
         printResults("givenUserAdvanced_whenExerciseEquipmentKettlebell_setWorkLoad",
                 strengthRegime.getWorkLoad(), 0.24, 0.32);
 
-        // workLoad should be between 8% and 12% of user weight
+        // workLoad should be between 24% and 32% of user weight
         assertTrue(strengthRegime.getWorkLoad() >= 0.24 * this.userWeight - 1); // -1 for rounding tolerance
         assertTrue(strengthRegime.getWorkLoad() <= 0.32 * this.userWeight);
 
+        testSession.dispose();
     }
 
 }
