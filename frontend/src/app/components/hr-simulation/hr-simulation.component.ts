@@ -93,13 +93,13 @@ export class HrSimulationComponent implements OnInit, OnDestroy {
 
   increaseHeartRate(): void {
     if(this.heartRateDto.heartRate < 250) {
-      this.heartRateDto.heartRate += 1;
+      this.heartRateDto.heartRate += 2;
     }
   }
 
   decreaseHeartRate(): void {
     if(this.heartRateDto.heartRate > 50) {
-      this.heartRateDto.heartRate -= 1;
+      this.heartRateDto.heartRate -= 2;
     }
   }
 
