@@ -168,6 +168,9 @@ Prekidom simulacije se obustavlja slanje podataka uništava se korisnikova sesij
 
 
 
+*cep*<sup>*</sup> - Kompleksno procesiranje događaja (*Complex event processing*)
+
+
 ## Reference:
 Nisam pronašao literaturu, ali bih naveo u nastavku neke od aplikacija koje su me inspirisale da pokušam da napravim svoje rešenje:
 -	https://wger.de/en/software/api - API iz kog sam izvukao pojedine vežbe.
