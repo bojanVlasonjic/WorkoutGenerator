@@ -110,7 +110,7 @@ export class HrSimulationComponent implements OnInit, OnDestroy {
       switchMap(() => this.heartRateService.sendHeartRate(this.heartRateDto))
     ).subscribe(
       result => { 
-        this.heartRateDto = result; 
+        this.heartRateDto.notificationMessage = result.notificationMessage; 
         this.updateChart();
       },
       err => { this.toasterService.showErrorMessage(err); }
