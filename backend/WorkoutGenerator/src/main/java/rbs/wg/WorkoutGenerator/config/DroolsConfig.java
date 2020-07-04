@@ -5,6 +5,7 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import rbs.wg.WorkoutGenerator.util.KieSessionDynamic;
 
 import java.util.Random;
 
@@ -12,10 +13,19 @@ import java.util.Random;
 public class DroolsConfig {
 
     @Bean
-    public KieContainer getKieContainer() {
-        return KieServices.Factory.get().getKieClasspathContainer();
+    public KieServices getKieServices() {
+        return KieServices.Factory.get();
     }
 
+    @Bean
+    public KieContainer getKieContainer() {
+        return getKieServices().getKieClasspathContainer();
+    }
+
+    @Bean
+    public KieSessionDynamic getKieSessionDynamic() {
+        return new KieSessionDynamic();
+    }
 
     /** Session global variables */
     @Bean

@@ -14,6 +14,7 @@ import rbs.wg.WorkoutGenerator.facts.WorkoutRequest;
 import rbs.wg.WorkoutGenerator.model.*;
 import rbs.wg.WorkoutGenerator.repository.AppUserRepository;
 import rbs.wg.WorkoutGenerator.repository.ExerciseRepository;
+import rbs.wg.WorkoutGenerator.util.KieSessionDynamic;
 
 import java.util.*;
 
@@ -34,6 +35,9 @@ public class WorkoutRequestService {
 
     @Autowired
     private Random random;
+
+    @Autowired
+    private KieSessionDynamic kieSessionDynamic;
 
 
     public WorkoutDto generateWorkout(WorkoutRequest workoutRequest) {
@@ -62,7 +66,27 @@ public class WorkoutRequestService {
         workoutSession.fireAllRules();
         workoutSession.dispose();
 
+        this.fireDynamicRules(userInfo, workoutProcessing, workoutRequest);
+
         return createWorkout(workoutRequest, workoutProcessing, user);
+    }
+
+
+    public void fireDynamicRules(UserInformation userInformation,
+                                 WorkoutProcessing workoutProcessing,
+                                 WorkoutRequest workoutRequest) {
+
+        KieSession dynamicSession = kieSessionDynamic.getDynamicSession();
+        if(dynamicSession != null) {
+
+            dynamicSession.insert(userInformation);
+            dynamicSession.insert(workoutProcessing);
+            dynamicSession.insert(workoutRequest);
+
+            dynamicSession.fireAllRules();
+            dynamicSession.dispose();
+        }
+
     }
 
     public WorkoutDto createWorkout(WorkoutRequest workoutRequest,
