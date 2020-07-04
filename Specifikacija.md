@@ -21,9 +21,9 @@ U današnje vreme, sa razvojem tehnologije i pametnih telefona, pristup internet
 
 Postojeće aplikacije se razlikuju kako po očekivanim ulaznim podacima, tako i po izlaznim podacima koje generišu. U većini slučajeva korisnik bira nivo fizičke spremnosti, koju grupu mišića bi želeo da pogodi, koju opremu poseduje i koliko vremena ima na raspologanju. Kao rezultat dobije ili spisak vežbi koje bi mogao da radi, ili generisan trening u skladu sa zahtevima. Brojevi ponavljanja su mahom predefinisani u zavisnosti od nivoa spremnosti korisnika, a vežbe na izlazu mogu, ali i ne moraju da uključe unetu opremu. 
 
-Moja ideja je da ukombinujem oba pristupa, gde bi korisnik na izlazu dobio predloge vežbi od kojih bi mogao da odabere one koje bi želeo da radi, kao i da pokrene nasumičan odabir vežbi. Takođe, zahtevao bih od korisnika da unese odgovarajuću opremu koju poseduje, nivo spremnosti korisnika i telesnu masu. Ove podatke će, naravno, moći i kasnije da dopuni ili izmeni.
+Cilj mi je da kreiram aplikaciju koja na osnovu korisničkih podataka generiše trening, nasumično birajući neku od korisničke opreme i vežbu za određenu grupu mišića sa tom opremom. Od korisnika bih zahtevao da unese odgovarajuću opremu koju poseduje, nivo spremnosti korisnika i telesnu masu. Ove podatke će, naravno, moći i kasnije da dopuni ili izmeni.
 
-Nakon što korisnik odabere neki trening, popunjavaće anketu na osnovu koje ću pratiti njegov napredak i po potrebi mu povećati opterećenje i broj ponavljanja. Kad se korisnik odabere neki trening i oceni ga, gledao bih da u sledećem treningu ne ponudim vežbe iz prošlog treninga, ne bi li uneo dinamiku i omogućio pogađanje različitih mišićnih grupa.  
+Nakon što korisnik odabere neki trening, popunjavaće anketu na osnovu koje ću pratiti njegov napredak i po potrebi mu povećati opterećenje i broj ponavljanja. Kad se korisnik odabere neki trening i oceni ga, uvećao bih odgovarajuće faktore čime bih mu skalirao intenzitet za ubuduće. Promenom nivoa spremnosti se ovi faktori vraćaju u prvobitno stanje. Takođe, na prvom treningu se biraju nasumično dve grupe mišića za gornji deo tela, a na narednom dve grupe mišića za donji deo tela. Ovaj postupak se smenjuje kako bi se unela dinamika u trening.
 
 ## Metodologija-rada:
 
@@ -57,11 +57,10 @@ Nakon odabira odgovarajućeg treninga, popune se sledeće ankete:
 -	Koliko je zadovoljan treningom, ocena od 1-10.
 
 ### Izlazi-iz-sistema:
--	Određen broj vežbi, od kojih korisnik može da odabere one koje mu pogoduju.
--	Nasumično izgenerisan splet vežbi.
+-	Nasumično izgenerisan splet vežbi, sa odgovarajućim brojem ponavjanja i opterećenjem u zavisnosti od vrste treninga i korisničkih podataka.
 
 ### Baza-znanja:
-Postoji ogroman broj vežbi koje se mogu preporučiti korisniku. Sa povećanjem opreme se povećava i broj vežbi. Kako ne bih morao da populišem bazu podataka tolikim vežbama pronašao sam REST API - wger Workout Manager koji sadrži veliki broj vežbi sa odgovarajućom opremom. Doduše, ovde ne postoje vežbe za kondiciju, tako da bih gledao da omogućim administratoru da njih populiše u bazi podataka.
+Kvalitet aplikacije i uniformnost treninga će u velikoj meri zavisiti od broja vežbi koje su definisane u sistemu. Ukoliko je broj vežbi za određenu grupu mišića mali, postoji mogućnost da će se vežbe često ponavljati, kao i mogućnost da neke vežbe neće biti pronađene i trening neće biti uspešno generisan. U tom slučaju, korisnik bi trebao ponovo da pokuša sa generisanjem, ili po mogućnosti da poveća broj opreme koju poseduje i time poveća mogućnost pronalaska odgovarajućih vežbi.
 
 Pored vežbi, akcenat bi bio na čuvanju podataka o korisnicima. Pamtiću korisnikovu opremu, telesnu masu, nivo spremnosti, treninge koje je odradio i ocene tih treninga i slično.
 
@@ -87,9 +86,9 @@ Na osnovu ovih činjenica, pokreće se rezoner i redom sledeća pravila se okida
   - Tip treninga koji je korisnik odabrao je kombinacija snage i kružnog treninga i broj vežbi je određen na osnovu prethodne grupe pravila. Broj vežbi za snagu i kružni trening prepolovimo, množimo sa odgovarajućim faktorom i zaokružimo. Recimo da smo dobili 2 vežbe. Za snagu će raditi 5 serija, a za kružni trening 8 intervala u 2 runde. Odmaraće 2 minuta između rundi u kružnom treningu i 1 minut između vežbi snage.
 
 
-Od svih vežbi, korisnik će za svaki artikal opreme dobiti izlistano po nekoliko vežbi. Moći će da odabere neke koje bi želeo da radi i time kreira svoj trening. Sa druge strane može pokrenuti i nasumičan odabir čime će se iz skupa odabrati određen broj vežbi na osnovu prethodnih pravila.
+Nakon što se odrede sledeće dve grupe mišića koje će korisnik da aktivira tokom treninga, za svaku od opreme se pronađu postojeće vežbe u sistemu. Nakon toga se nasumičnim odabirom opreme i neke od vežbi sa tom opremom generiše trening. Broj vežbi, serija i odmori nastaju kao posledica izvršvanja prethodnih pravila.
 
-U slučaju nasumičnog odabira vežbi, za svaku od vežbi snage se odredi opterećenje ukoliko se vežba izvodi upotrebom šipke, bučica ili ruskog zvona. Recimo da je jedna od vežbi snage zadnji čučanj šipkom:
+U slučaju odabira vežbe snage ili kombinovanog treninga snage i kondicije, za svaku od vežbi snage se odredi opterećenje - ukoliko se vežba izvodi upotrebom šipke, bučica ili ruskog zvona. Recimo da je jedna od vežbi snage zadnji čučanj šipkom:
   - Korisnik je srednjeg nivoa spremnosti, vežba se izvodi sa šipkom - skaliraj opterećenje na 45-65% telesne mase.
 
 Kad se korisnik opredeli za neki trening i doda ga u kolekciju svojih treninga, nudi mu se mogućnost da popuni odgovarajuće ankete. Recimo da je korisnik ocenio trening kao izuzetno težak (9/10) i požalio se na opterećenje. U tom slučaju se okida pravilo iz sledeće grupe pravila:
@@ -151,17 +150,16 @@ U nastavku su navedena sva pravila po njihovim grupama.
 Osnovna ideja je da korisnik unese sledeće podatke:
 - Godine
 - Jutarnji puls
-- Intenzitet treninga
 
-Potom se izračuna koliki puls bi korisnik trebao da održi tokom treninga kako bi dostigao željeni intenzitet.
+Potom se izračuna koliki puls bi korisnik trebao da održi tokom treninga, kako bi mu trening bio zahtevan, otprilike na 80% napora.
 
 Pokretanjem simulatora se inicijalizuje sesija za *cep*<sup>*</sup> i na *backend* će se u određenom vremenskom intervalu slati trenutni puls i ciljana vrednost pulsa.
 
-Puls će biti inicijalizovan, recimo na 70, i korisnik će moći da ga uvećava ili umanjuje tokom simulacije.
+Puls će biti inicijalizovan, recimo na 100, i korisnik će moći da ga uvećava ili umanjuje tokom simulacije.
 
 Kao rezultat pravila bi trebale da se izlistaju poslednje 3 poslate vrednosti i da se vrati odgovarajuća poruka korisniku.
 
-Pravila za praćenje rada srca tokom treninga:
+Pravila za praćenje srčane frekvence tokom treninga:
   - Ukoliko su poslednje 3 poslate vrednosti manje od zadatog praga za puls, obavesti korisnika da ubrza tempo rada.
   - Ukoliko su poslednje 3 poslate vrednosti veće ili jednake zadatom pragu, obavesti korisnika da održi tempo rada.
   
