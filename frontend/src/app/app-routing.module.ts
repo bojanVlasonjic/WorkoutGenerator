@@ -12,6 +12,9 @@ import { ManageUserComponent } from './components/manage-user/manage-user.compon
 import { LoginGuard } from './guards/login.guard';
 import { RoleGuard } from './guards/role.guard';
 import { environment } from 'src/environments/environment';
+import { RuleComponent } from './components/rule/rule.component';
+import { ViewRulesComponent } from './components/rule/view-rules/view-rules.component';
+import { NewRuleComponent } from './components/rule/new-rule/new-rule.component';
 
 
 const routes: Routes = [
@@ -81,6 +84,27 @@ const routes: Routes = [
     component: ViewUsersComponent,
     canActivate: [RoleGuard],
     data: { permissions: [environment.roleAdmin]}
+  },
+  {
+    path: 'rules',
+    component: RuleComponent,
+    canActivate: [RoleGuard],
+    data: {permissions: [environment.roleAdmin]},
+    children: [
+      {
+        path: '',
+        redirectTo: 'view',
+        pathMatch: 'full'
+      },
+      {
+        path: 'view',
+        component: ViewRulesComponent
+      },
+      {
+        path: 'new',
+        component: NewRuleComponent
+      }
+    ]
   }
 ];
 

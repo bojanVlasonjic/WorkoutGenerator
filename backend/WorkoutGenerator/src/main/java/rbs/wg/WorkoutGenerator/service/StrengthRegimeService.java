@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rbs.wg.WorkoutGenerator.dto.StrengthRegimeDto;
 import rbs.wg.WorkoutGenerator.facts.UserInformation;
+import rbs.wg.WorkoutGenerator.facts.WorkoutProcessing;
+import rbs.wg.WorkoutGenerator.facts.WorkoutRequest;
 import rbs.wg.WorkoutGenerator.model.AppUser;
 import rbs.wg.WorkoutGenerator.model.StrengthRegime;
 

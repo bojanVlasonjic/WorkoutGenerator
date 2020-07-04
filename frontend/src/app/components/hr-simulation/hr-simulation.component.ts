@@ -127,8 +127,8 @@ export class HrSimulationComponent implements OnInit, OnDestroy {
   }
 
   setDefaultHeartRates(): void {
-    this.heartRateDto.heartRate = 60;
-    this.heartRateDto.goal = 60;
+    this.heartRateDto.heartRate = 100;
+    this.heartRateDto.goal = 100;
   }
 
   ngOnDestroy() {

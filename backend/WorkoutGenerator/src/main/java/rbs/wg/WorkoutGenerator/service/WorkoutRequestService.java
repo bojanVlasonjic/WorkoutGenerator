@@ -3,6 +3,7 @@ package rbs.wg.WorkoutGenerator.service;
 import org.apache.commons.collections4.ListUtils;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+import org.kie.api.runtime.rule.FactHandle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rbs.wg.WorkoutGenerator.dto.WorkoutDto;
@@ -14,6 +15,7 @@ import rbs.wg.WorkoutGenerator.facts.WorkoutRequest;
 import rbs.wg.WorkoutGenerator.model.*;
 import rbs.wg.WorkoutGenerator.repository.AppUserRepository;
 import rbs.wg.WorkoutGenerator.repository.ExerciseRepository;
+import rbs.wg.WorkoutGenerator.util.KieSessionDynamic;
 
 import java.util.*;
 
@@ -34,6 +36,9 @@ public class WorkoutRequestService {
 
     @Autowired
     private Random random;
+
+    @Autowired
+    private KieSessionDynamic kieSessionDynamic;
 
 
     public WorkoutDto generateWorkout(WorkoutRequest workoutRequest) {
@@ -62,7 +67,29 @@ public class WorkoutRequestService {
         workoutSession.fireAllRules();
         workoutSession.dispose();
 
+        this.fireDynamicRules(userInfo, workoutProcessing, workoutRequest);
+
         return createWorkout(workoutRequest, workoutProcessing, user);
+    }
+
+
+    public void fireDynamicRules(UserInformation userInformation,
+                                 WorkoutProcessing workoutProcessing,
+                                 WorkoutRequest workoutRequest) {
+
+        KieSession dynamicSession = kieSessionDynamic.getDynamicSession();
+        if(dynamicSession != null) {
+
+            FactHandle userHandle = dynamicSession.insert(userInformation);
+            FactHandle processingHandle = dynamicSession.insert(workoutProcessing);
+            FactHandle requestHandle = dynamicSession.insert(workoutRequest);
+
+            dynamicSession.fireAllRules();
+            dynamicSession.delete(userHandle);
+            dynamicSession.delete(processingHandle);
+            dynamicSession.delete(requestHandle);
+        }
+
     }
 
     public WorkoutDto createWorkout(WorkoutRequest workoutRequest,

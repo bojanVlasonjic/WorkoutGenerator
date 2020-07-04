@@ -1,0 +1,20 @@
+import rbs.wg.WorkoutGenerator.facts.UserInformation;
+import rbs.wg.WorkoutGenerator.facts.WorkoutProcessing;
+import rbs.wg.WorkoutGenerator.facts.WorkoutRequest;
+
+import rbs.wg.WorkoutGenerator.model.UserLevel;
+import rbs.wg.WorkoutGenerator.model.StrengthRegime;
+import rbs.wg.WorkoutGenerator.model.ExerciseType;
+import rbs.wg.WorkoutGenerator.model.Equipment;
+
+import java.lang.Math;
+
+rule "Rule name"
+    when
+        $user: UserInformation()
+        $woPr: WorkoutProcessing()
+        $woReq: WorkoutRequest()
+    then
+        System.out.println("Custom rule executed");
+end
+

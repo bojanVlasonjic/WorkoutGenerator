@@ -1,0 +1,37 @@
+
+.rule-holder {
+    white-space:pre-wrap;
+    margin-bottom: 2ex;
+    color: black;
+}
+
+.no-rule-display {
+    text-align: center;
+    color: black;
+}
+
+.separator {
+    position: relative;
+    width: 100%;
+    height: 2ex;
+    background-color: #333;
+}
+
+.rule {
+    position: relative;
+    margin-top: 4ex;
+    width: 80%;
+    left: 10%;
+}
+
+.remove-rule-text {
+    position: absolute;
+    right: 0;
+    padding: 5px;
+}
+
+.remove-rule-text:hover {
+    background-color: rgb(153, 0, 0);
+    color: white;
+    cursor: pointer;
+}
