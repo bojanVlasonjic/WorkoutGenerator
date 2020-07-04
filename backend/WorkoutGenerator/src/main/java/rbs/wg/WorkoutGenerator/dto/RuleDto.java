@@ -13,12 +13,15 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 public class RuleDto {
 
+    private Long id;
+
     private String ruleName;
 
     @NotEmpty(message = "Rule content is required")
     private String ruleContent;
 
     public RuleDto(Rule rule) {
+        this.id = rule.getId();
         this.ruleName = rule.getName();
         this.ruleContent = rule.getContent();
     }

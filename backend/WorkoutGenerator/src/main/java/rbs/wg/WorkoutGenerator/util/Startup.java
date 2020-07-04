@@ -18,21 +18,6 @@ public class Startup {
 
     @EventListener(ApplicationReadyEvent.class)
     private void createSessionWithOldRules() {
-        StringBuilder sb = new StringBuilder();
-
-        for(Rule rule: ruleRepository.findAll()) {
-
-            if(sb.toString().equals("")) {
-                sb.append(rule.getContent());
-            } else {
-                sb.append(rule.getContent().substring(rule.getContent().indexOf("rule")));
-            }
-
-            sb.append("\n");
-
-        }
-
-        System.out.println(sb.toString());
-        kieSessionDynamic.createSessionFromDrl(sb.toString());
+        kieSessionDynamic.createSessionFromOldRules();
     }
 }

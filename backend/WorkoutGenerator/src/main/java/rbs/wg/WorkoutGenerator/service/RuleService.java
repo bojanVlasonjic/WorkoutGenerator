@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rbs.wg.WorkoutGenerator.dto.RuleDto;
 import rbs.wg.WorkoutGenerator.exception.ApiBadRequestException;
+import rbs.wg.WorkoutGenerator.exception.ApiNotFoundException;
 import rbs.wg.WorkoutGenerator.model.Rule;
 import rbs.wg.WorkoutGenerator.repository.RuleRepository;
 import rbs.wg.WorkoutGenerator.util.KieSessionDynamic;
@@ -44,7 +45,7 @@ public class RuleService {
 
         Rule rule = new Rule(ruleDto);
         String drl = kieSessionDynamic.combinePreviousRules(rule.getContent());
-        kieSessionDynamic.createSessionFromDrl(ruleDto.getRuleContent());
+        kieSessionDynamic.createSessionFromDrl(drl);
 
         try {
             ruleRepository.save(rule);
@@ -62,6 +63,24 @@ public class RuleService {
         } catch (IOException e) {
             throw new ApiBadRequestException("Failed to load template");
         }
+    }
+
+
+    public Boolean deleteRule(Long ruleId) {
+
+        Rule rule = this.ruleRepository
+                .findById(ruleId)
+                .orElseThrow(() -> new ApiNotFoundException("Rule not found"));
+
+        try {
+            ruleRepository.delete(rule);
+        } catch (Exception ex) {
+            throw new ApiBadRequestException("Failed to delete rule. Please refresh and try again");
+        }
+
+        kieSessionDynamic.createSessionFromOldRules();
+
+        return true;
     }
 
 

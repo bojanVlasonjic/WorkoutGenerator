@@ -3,6 +3,7 @@ package rbs.wg.WorkoutGenerator.service;
 import org.apache.commons.collections4.ListUtils;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+import org.kie.api.runtime.rule.FactHandle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rbs.wg.WorkoutGenerator.dto.WorkoutDto;
@@ -79,12 +80,14 @@ public class WorkoutRequestService {
         KieSession dynamicSession = kieSessionDynamic.getDynamicSession();
         if(dynamicSession != null) {
 
-            dynamicSession.insert(userInformation);
-            dynamicSession.insert(workoutProcessing);
-            dynamicSession.insert(workoutRequest);
+            FactHandle userHandle = dynamicSession.insert(userInformation);
+            FactHandle processingHandle = dynamicSession.insert(workoutProcessing);
+            FactHandle requestHandle = dynamicSession.insert(workoutRequest);
 
             dynamicSession.fireAllRules();
-            dynamicSession.dispose();
+            dynamicSession.delete(userHandle);
+            dynamicSession.delete(processingHandle);
+            dynamicSession.delete(requestHandle);
         }
 
     }

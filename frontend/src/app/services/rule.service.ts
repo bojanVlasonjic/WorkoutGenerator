@@ -21,4 +21,8 @@ export class RuleService {
   createRule(ruleData: RuleDto):  Observable<any> {
     return this.http.post('api/rule', ruleData);
   }
+
+  deleteRule(ruleId: number): Observable<any> {
+    return this.http.delete( `api/rule/${ruleId}`);
+  }
 }

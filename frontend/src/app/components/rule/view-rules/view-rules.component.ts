@@ -41,5 +41,25 @@ export class ViewRulesComponent implements OnInit {
     );
   }
 
+  removeRule(rule: RuleDto) {
+
+    if (!window.confirm(`Are you sure you want to delete rule '${rule.ruleName}'?`)) {
+      return;
+    }
+
+    let ruleIndex = this.rules.indexOf(rule);
+
+    this.ruleService.deleteRule(rule.id).subscribe(
+      data => {
+        if (ruleIndex > -1) {
+          this.rules.splice(ruleIndex, 1);
+        }
+      },
+      err => {
+        this.toasterSvc.showErrorMessage(err);
+      }
+    );
+
+  }
 
 }

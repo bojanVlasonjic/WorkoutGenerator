@@ -37,4 +37,10 @@ public class RuleController {
     public ResponseEntity<RuleDto> createRule(@Valid @RequestBody RuleDto ruleDto) {
         return new ResponseEntity<>(ruleService.createRule(ruleDto), HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> deleteRule(@PathVariable Long id) {
+
+        return ResponseEntity.ok(ruleService.deleteRule(id));
+    }
 }

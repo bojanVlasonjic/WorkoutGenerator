@@ -23,3 +23,15 @@
     width: 80%;
     left: 10%;
 }
+
+.remove-rule-text {
+    position: absolute;
+    right: 0;
+    padding: 5px;
+}
+
+.remove-rule-text:hover {
+    background-color: rgb(153, 0, 0);
+    color: white;
+    cursor: pointer;
+}

@@ -11,6 +11,7 @@
 
 <div *ngFor="let rule of rules" class="row rule-holder">
     <h4> {{ rule.ruleName }} </h4>
+    <h5 class="remove-rule-text" (click)="removeRule(rule)"> Remove </h5>
     <div class="separator"> </div>
     <div class="rule"> {{ rule.ruleContent }}</div>
 </div>

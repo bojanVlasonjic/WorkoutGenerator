@@ -61,6 +61,25 @@ public class KieSessionDynamic {
         return sb.toString();
     }
 
+    public void createSessionFromOldRules() {
+        StringBuilder sb = new StringBuilder();
+
+        for(Rule rule: ruleRepository.findAll()) {
+
+            if(sb.toString().equals("")) {
+                sb.append(rule.getContent());
+            } else {
+                sb.append(rule.getContent().substring(rule.getContent().indexOf("rule")));
+            }
+
+            sb.append("\n");
+
+        }
+
+        System.out.println(sb.toString());
+        this.createSessionFromDrl(sb.toString());
+    }
+
 
     public KieSession getDynamicSession() {
         return this.dynamicSession;
