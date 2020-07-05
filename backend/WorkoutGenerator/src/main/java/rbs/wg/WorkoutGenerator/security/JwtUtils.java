@@ -2,13 +2,15 @@ package rbs.wg.WorkoutGenerator.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
 public class JwtUtils {
 
-    private static final String SECRET = "secret"; //TODO: change
+    @Value("${security.jwt.secret}")
+    private String SECRET;
 
     public String generateToken(UserDetails userDetails) {
 
